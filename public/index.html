@@ -3,8 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Homeland Property Group — Zimbabwe property, checked on the ground</title>
-<meta name="description" content="Houses, stands, farms and mines in Zimbabwe — papers checked, ground inspected, money handled properly. Diaspora verification services and a live local market.">
+<title>Homeland Property Group | Zimbabwe Property, Checked on the Ground</title>
+<meta name="description" content="Explore Zimbabwe property for sale and rent. Homeland Property Group checks properties on the ground and offers diaspora advisory, verification reports and build management.">
+<link rel="canonical" href="https://homeland.brandonmambeke.workers.dev/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Homeland Property Group">
+<meta property="og:title" content="Homeland Property Group | Zimbabwe Property, Checked on the Ground">
+<meta property="og:description" content="Zimbabwe property, checked on the ground. Explore sale and rental listings, property verification and build management.">
+<meta property="og:url" content="https://homeland.brandonmambeke.workers.dev/">
+<meta property="og:image" content="https://homeland.brandonmambeke.workers.dev/hero.webp">
+<meta property="og:image:alt" content="Homeland Property Group — Zimbabwe property, checked on the ground">
+<meta property="og:locale" content="en_ZW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Homeland Property Group | Zimbabwe Property">
+<meta name="twitter:description" content="Zimbabwe property, checked on the ground. Explore sale and rental listings, verification and build management.">
+<meta name="twitter:image" content="https://homeland.brandonmambeke.workers.dev/hero.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "RealEstateAgent",
+      "@id": "https://homeland.brandonmambeke.workers.dev/#organization",
+      "name": "Homeland Property Group",
+      "url": "https://homeland.brandonmambeke.workers.dev/",
+      "logo": "https://homeland.brandonmambeke.workers.dev/logo.png",
+      "image": "https://homeland.brandonmambeke.workers.dev/hero.webp",
+      "description": "Zimbabwe property, checked on the ground. Property sales and rentals, diaspora advisory, verification reports and build management.",
+      "email": "info@homelandpropertygroup.com",
+      "telephone": "+27 68 530 2223",
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Zimbabwe"
+        },
+        {
+          "@type": "Place",
+          "name": "Zimbabwean diaspora worldwide"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+27 68 530 2223",
+        "email": "info@homelandpropertygroup.com",
+        "contactType": "customer service",
+        "availableLanguage": "English"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://homeland.brandonmambeke.workers.dev/#website",
+      "url": "https://homeland.brandonmambeke.workers.dev/",
+      "name": "Homeland Property Group",
+      "publisher": {
+        "@id": "https://homeland.brandonmambeke.workers.dev/#organization"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -468,14 +527,20 @@ let L = [];
 const state = { tab: 'sale', loc: '', cat: '', min: null, max: null };
 
 const $ = (s) => document.querySelector(s);
+function escapeAttr(value) {
+  return String(value ?? '').replace(/[&"<>]/g, (char) => ({
+    '&': '&amp;', '"': '&quot;', '<': '&lt;', '>': '&gt;'
+  })[char]);
+}
 const fmtPrice = (p, kind) => kind === 'rent' ? '$' + Math.round(p).toLocaleString() + '/mo' : '$' + Math.round(p).toLocaleString();
 
 function card(l) {
   const ph = (l.photos && l.photos[0]) ? l.photos[0].url : '';
+  const imageAlt = escapeAttr([l.title, l.loc, l.kind === 'rent' ? 'property for rent' : 'property for sale'].filter(Boolean).join(' — '));
   const specs = [l.beds != null ? l.beds + ' bed' : null, l.baths != null ? l.baths + ' bath' : null, l.size || null].filter(Boolean).join(' · ');
   const ver = l.verified === 'yes' ? '<span class="chip chip-v">Verified</span>' : '';
   return `<a class="card" href="#${encodeURIComponent(l.ref || l.id)}">
-    <div class="card-ph">${ph ? `<img src="${ph}" loading="lazy" alt="">` : ''}${l.ref ? `<span class="chip">${l.ref}</span>` : ''}${ver}</div>
+    <div class="card-ph">${ph ? `<img src="${ph}" loading="lazy" alt="${imageAlt}">` : ''}${l.ref ? `<span class="chip">${l.ref}</span>` : ''}${ver}</div>
     <div class="card-b">
       <p class="card-loc">${l.loc}</p>
       <h3>${l.title}</h3>
@@ -548,6 +613,7 @@ function openDetail(id) {
   $('#dRef').hidden = !l.ref;
   $('#dVer').hidden = l.verified !== 'yes';
   $('#dTitle').textContent = l.title;
+  $('#dMain').alt = [l.title, l.loc, l.kind === 'rent' ? 'property for rent' : 'property for sale'].filter(Boolean).join(' — ');
   $('#dLoc').textContent = '📍 ' + l.loc;
   $('#dPrice').textContent = fmtPrice(l.price, l.kind);
   const specs = [];
