@@ -1,0 +1,16 @@
+{
+  "name": "homeland",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-29",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "homeland",
+      "database_id": "e17cdf88-f75d-4261-82f4-367dad5ca85f"
+    }
+  ]
+}

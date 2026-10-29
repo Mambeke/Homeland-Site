@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Homeland Property Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C3C68;--navy-d:#092C4D;--gold:#F5A623;--blue:#1B6FB5;--blue-l:#EAF2F9;--cream:#FBF8F3;--grey:#F7F4EF;--ink:#16232E;--line:#E1E8EE;--ok:#1E7A4E;--soft:#5D6E7C}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--grey);line-height:1.55}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:14.5px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;width:100%}
+textarea{resize:vertical;min-height:90px}
+label{font-size:12.5px;font-weight:600;color:var(--soft);display:block;margin:14px 0 5px;text-transform:uppercase;letter-spacing:.05em}
+.btn{display:inline-block;padding:11px 22px;border-radius:8px;font-weight:600;font-size:14.5px;border:2px solid transparent;cursor:pointer}
+.btn-g{background:var(--gold);color:#231602;border-color:var(--gold)}
+.btn-n{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-o{background:#fff;color:var(--navy);border-color:var(--line)}
+.btn-r{background:#fff;color:#B4232A;border-color:#E7C6C8;padding:7px 12px;font-size:13px}
+.btn-sm{padding:7px 12px;font-size:13px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* login */
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy)}
+.login-card{background:#fff;border-radius:16px;padding:44px;width:100%;max-width:380px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.login-card .mark{width:48px;height:48px;border-radius:10px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:26px;font-family:'Playfair Display',serif;font-weight:700;margin-bottom:18px}
+.login-card h1{font-family:'Playfair Display',serif;color:var(--navy);font-size:24px;margin-bottom:6px}
+.login-card p{color:var(--soft);font-size:14px;margin-bottom:18px}
+.login-card input{width:100%}
+.login-card .btn{width:100%;margin-top:18px;padding:13px}
+.err{color:#B4232A;font-size:13.5px;margin-top:10px;min-height:18px}
+
+/* app bar */
+.appbar{background:var(--navy-d);color:#fff}
+.appbar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:14px;flex-wrap:wrap}
+.appbar .logo{font-family:'Playfair Display',serif;font-weight:700;font-size:17px;display:flex;gap:9px;align-items:center}
+.appbar .logo .mark{width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,.12);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:17px}
+.appbar .acts{display:flex;gap:9px}
+.appbar .btn{padding:8px 15px;font-size:13.5px}
+
+/* dashboard */
+main{padding:28px 0 70px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.stat b{display:block;font-family:'Playfair Display',serif;font-size:26px;color:var(--navy)}
+.stat span{font-size:12.5px;color:var(--soft);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:22px}
+.panel h2{font-family:'Playfair Display',serif;color:var(--navy);font-size:20px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--soft);padding:9px 10px;border-bottom:1.5px solid var(--line)}
+td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+.pill{display:inline-block;border-radius:999px;padding:3px 11px;font-size:11.5px;font-weight:700}
+.pill-avail{background:#E3F2EA;color:var(--ok)}
+.pill-sold{background:#FDEBEA;color:#B4232A}
+.pill-hidden{background:var(--grey);color:var(--soft)}
+.pill-kind{background:var(--blue-l);color:var(--blue)}
+.thumbs{display:flex;gap:5px}
+.thumbs img{width:44px;height:32px;object-fit:cover;border-radius:5px}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+
+/* form */
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px}
+.f-2{grid-column:span 2}
+.f-full{grid-column:1/-1}
+.chk{display:flex;align-items:center;gap:8px;margin-top:16px}
+.chk input{width:auto}
+.chk label{margin:0;text-transform:none;font-size:14px;color:var(--ink)}
+.ph-prev{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.ph-prev .p{position:relative}
+.ph-prev img{width:84px;height:60px;object-fit:cover;border-radius:8px}
+.ph-prev .rm{position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;background:#B4232A;color:#fff;border:none;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center}
+.msg{margin-top:14px;font-size:14px;font-weight:600;min-height:20px}
+.msg.ok{color:var(--ok)}
+.msg.bad{color:#B4232A}
+.filehint{font-size:12.5px;color:var(--soft);margin-top:5px}
+@media (max-width:760px){.f-grid{grid-template-columns:1fr}.f-2{grid-column:auto}.stats{grid-template-columns:repeat(2,1fr)}table{font-size:12.5px}th:nth-child(3),td:nth-child(3){display:none}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login" hidden>
+  <div class="login-card">
+    <div class="mark">H</div>
+    <h1>Admin</h1>
+    <p>Homeland Property Group — listings control</p>
+    <input type="password" id="pass" placeholder="Password" autocomplete="current-password">
+    <button class="btn btn-n" id="loginBtn">Sign in</button>
+    <div class="err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" hidden>
+  <div class="appbar">
+    <div class="wrap">
+      <div class="logo"><span class="mark">H</span>Homeland Admin</div>
+      <div class="acts">
+        <a class="btn btn-o" href="/" target="_blank">View site ↗</a>
+        <button class="btn btn-o" id="addBtn">＋ Add listing</button>
+        <button class="btn btn-o" id="outBtn">Sign out</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="stats">
+      <div class="stat"><b id="stList">–</b><span>Listings</span></div>
+      <div class="stat"><b id="stAvail">–</b><span>Available</span></div>
+      <div class="stat"><b id="stSold">–</b><span>Sold / rented</span></div>
+      <div class="stat"><b id="stPhotos">–</b><span>Photos</span></div>
+    </div>
+
+    <!-- FORM PANEL -->
+    <div class="panel" id="formPanel" hidden>
+      <h2 id="formTitle">Add a listing <button class="btn btn-o btn-sm" id="formClose">Close</button></h2>
+      <form id="form">
+        <input type="hidden" id="fId">
+        <div class="f-grid">
+          <div><label>Title *</label><input id="fTitle" required maxlength="120"></div>
+          <div><label>Reference (e.g. HPG-020)</label><input id="fRef" maxlength="20"></div>
+          <div><label>Location *</label><input id="fLoc" required placeholder="e.g. Harare South"></div>
+          <div><label>Price (USD) *</label><input id="fPrice" type="number" min="0" step="any" required></div>
+          <div><label>Type</label><select id="fKind"><option value="sale">For sale</option><option value="rent">For rent</option></select></div>
+          <div><label>Category</label><input id="fCat" list="cats" placeholder="e.g. Houses"><datalist id="cats"></datalist></div>
+          <div><label>Beds</label><input id="fBeds" type="number" min="0" step="1"></div>
+          <div><label>Baths</label><input id="fBaths" type="number" min="0" step="1"></div>
+          <div><label>Size (e.g. 300 m²)</label><input id="fSize"></div>
+          <div><label>Status</label><select id="fStatus"><option value="available">Available</option><option value="sold">Sold / rented</option><option value="hidden">Hidden</option></select></div>
+          <div><label>Note (short highlight)</label><input id="fNote" maxlength="120"></div>
+          <div><label>Verified?</label><div class="chk" style="margin:2px 0"><input type="checkbox" id="fVerified"><label for="fVerified" style="margin:0">Checked on the ground by us</label></div></div>
+          <div class="f-full"><label>Description</label><textarea id="fDesc" placeholder="What should a buyer know?"></textarea></div>
+          <div class="f-full"><label>Amenities / features (comma separated)</label><input id="fAmen" placeholder="Borehole water, Solar backup, Walled &amp; gated"></div>
+          <div class="f-full"><label>Photos</label>
+            <input type="file" id="fPhotos" accept="image/*" multiple>
+            <p class="filehint">Add photos for this listing. When editing, tick “remove” on a thumbnail to delete that photo.</p>
+            <div class="ph-prev" id="prevNew"></div>
+            <div class="ph-prev" id="prevOld"></div>
+          </div>
+        </div>
+        <div style="margin-top:20px;display:flex;gap:10px">
+          <button type="submit" class="btn btn-g" id="saveBtn">Save listing</button>
+          <button type="button" class="btn btn-o" id="formCancel">Cancel</button>
+        </div>
+        <div class="msg" id="formMsg"></div>
+      </form>
+    </div>
+
+    <!-- LIST PANEL -->
+    <div class="panel">
+      <h2>Listings <span id="listCount" style="font-family:Inter;font-size:13px;color:var(--soft);font-weight:500"></span></h2>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>Ref</th><th>Title</th><th>Location</th><th>Price</th><th>Type</th><th>Status</th><th>Photos</th><th></th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const API = '/api/admin';
+let PASS = sessionStorage.getItem('hp_admin_key') || '';
+let LISTINGS = [];
+let editingPhotos = []; // existing photos of the listing being edited
+
+const $ = (s) => document.querySelector(s);
+const key = () => ({ 'X-Admin-Key': PASS, 'Content-Type': 'application/json' });
+const fmt = (p, k) => (k === 'rent' ? '$' + Math.round(p).toLocaleString() + '/mo' : '$' + Math.round(p).toLocaleString());
+
+/* ---------- login ---------- */
+async function tryLogin(pw) {
+  try {
+    const r = await fetch(API + '/listings', { headers: { 'X-Admin-Key': pw } });
+    if (r.status === 429) return { ok: false, msg: 'Too many attempts — wait a few minutes.' };
+    if (!r.ok) return { ok: false, msg: 'Wrong password.' };
+    PASS = pw;
+    sessionStorage.setItem('hp_admin_key', pw);
+    return { ok: true };
+  } catch (e) { return { ok: false, msg: 'Could not reach the server.' }; }
+}
+
+async function enterApp() {
+  $('#login').hidden = true;
+  $('#app').hidden = false;
+  await loadAll();
+}
+
+$('#loginBtn').addEventListener('click', doLogin);
+$('#pass').addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
+async function doLogin() {
+  const pw = $('#pass').value;
+  $('#loginErr').textContent = '';
+  const res = await tryLogin(pw);
+  if (res.ok) enterApp();
+  else $('#loginErr').textContent = res.msg;
+}
+
+$('#outBtn').addEventListener('click', () => {
+  sessionStorage.removeItem('hp_admin_key');
+  location.reload();
+});
+
+/* ---------- data ---------- */
+async function loadAll() {
+  const r = await fetch(API + '/listings', { headers: key() });
+  if (!r.ok) { sessionStorage.removeItem('hp_admin_key'); location.reload(); return; }
+  LISTINGS = await r.json();
+  renderRows();
+  renderStats();
+  const cats = [...new Set(LISTINGS.map((l) => l.cat))];
+  $('#cats').innerHTML = cats.map((c) => `<option value="${c}">`).join('');
+}
+
+function renderStats() {
+  const photos = LISTINGS.reduce((n, l) => n + (l.photos ? l.photos.length : 0), 0);
+  $('#stList').textContent = LISTINGS.length;
+  $('#stAvail').textContent = LISTINGS.filter((l) => l.status === 'available').length;
+  $('#stSold').textContent = LISTINGS.filter((l) => l.status === 'sold').length;
+  $('#stPhotos').textContent = photos;
+  $('#listCount').textContent = LISTINGS.length + ' total';
+}
+
+function renderRows() {
+  const pill = (s) => `<span class="pill pill-${s}">${s === 'avail' ? 'available' : s}</span>`;
+  $('#rows').innerHTML = LISTINGS.map((l) => `
+    <tr data-id="${l.id}">
+      <td style="font-weight:600;color:var(--navy)">${l.ref || '—'}</td>
+      <td style="max-width:280px">${l.title}</td>
+      <td>${l.loc}</td>
+      <td style="font-weight:600">${fmt(l.price, l.kind)}</td>
+      <td><span class="pill pill-kind">${l.kind}</span></td>
+      <td>${pill(l.status)}</td>
+      <td><div class="thumbs">${(l.photos || []).slice(0, 4).map((p) => `<img src="${p.url}" alt="">`).join('')}</div></td>
+      <td><div class="actions">
+        <button class="btn btn-o btn-sm" data-act="edit">Edit</button>
+        <button class="btn btn-o btn-sm" data-act="toggle">${l.status === 'available' ? 'Hide' : 'Show'}</button>
+        <button class="btn btn-r btn-sm" data-act="del">Delete</button>
+      </div></td>
+    </tr>`).join('');
+}
+
+/* ---------- form ---------- */
+function openForm(l) {
+  editingPhotos = l ? (l.photos || []) : [];
+  $('#formTitle').childNodes[0].textContent = l ? 'Edit listing — ' + (l.ref || l.title) + ' ' : 'Add a listing ';
+  $('#fId').value = l ? l.id : '';
+  $('#fTitle').value = l ? l.title : '';
+  $('#fRef').value = l ? l.ref : '';
+  $('#fLoc').value = l ? l.loc : '';
+  $('#fPrice').value = l ? l.price : '';
+  $('#fKind').value = l ? l.kind : 'sale';
+  $('#fCat').value = l ? l.cat : '';
+  $('#fBeds').value = l && l.beds != null ? l.beds : '';
+  $('#fBaths').value = l && l.baths != null ? l.baths : '';
+  $('#fSize').value = l ? l.size : '';
+  $('#fStatus').value = l ? l.status : 'available';
+  $('#fNote').value = l ? l.note : '';
+  $('#fVerified').checked = l ? l.verified === 'yes' : false;
+  $('#fDesc').value = l ? l.desc : '';
+  $('#fAmen').value = l ? (l.amenities || []).join(', ') : '';
+  $('#fPhotos').value = '';
+  renderPhotoPreview();
+  $('#formMsg').textContent = '';
+  $('#formPanel').hidden = false;
+  $('#formPanel').scrollIntoView({ behavior: 'smooth' });
+}
+
+function renderPhotoPreview() {
+  const files = $('#fPhotos').files;
+  $('#prevNew').innerHTML = [...files].map((f, i) => {
+    const url = URL.createObjectURL(f);
+    return `<div class="p"><img src="${url}" data-new="${i}" alt=""><button type="button" class="rm" data-rmnew="${i}">×</button></div>`;
+  }).join('');
+  $('#prevOld').innerHTML = editingPhotos.map((p) =>
+    `<div class="p"><img src="${p.url}" alt=""><button type="button" class="rm" data-rmold="${p.id}" title="Remove this photo on save">×</button></div>`).join('');
+}
+
+$('#fPhotos').addEventListener('change', renderPhotoPreview);
+$('#prevNew').addEventListener('click', (e) => {
+  const i = e.target.dataset.rmnew;
+  if (i == null) return;
+  const dt = new DataTransfer();
+  [...$('#fPhotos').files].forEach((f, j) => { if (j !== +i) dt.items.add(f); });
+  $('#fPhotos').files = dt.files;
+  renderPhotoPreview();
+});
+$('#prevOld').addEventListener('click', (e) => {
+  const id = e.target.dataset.rmold;
+  if (id == null) return;
+  const p = editingPhotos.find((x) => x.id === id);
+  if (p) p.remove = true;
+  renderPhotoPreview();
+});
+
+$('#addBtn').addEventListener('click', () => openForm(null));
+$('#formClose').addEventListener('click', () => { $('#formPanel').hidden = true; });
+$('#formCancel').addEventListener('click', () => { $('#formPanel').hidden = true; });
+
+$('#form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fd = new FormData();
+  const id = $('#fId').value;
+  if (id) fd.append('id', id);
+  fd.append('title', $('#fTitle').value.trim());
+  fd.append('ref', $('#fRef').value.trim());
+  fd.append('loc', $('#fLoc').value.trim());
+  fd.append('price', $('#fPrice').value);
+  fd.append('kind', $('#fKind').value);
+  fd.append('cat', $('#fCat').value.trim() || 'Houses');
+  fd.append('beds', $('#fBeds').value);
+  fd.append('baths', $('#fBaths').value);
+  fd.append('size', $('#fSize').value.trim());
+  fd.append('status', $('#fStatus').value);
+  fd.append('note', $('#fNote').value.trim());
+  fd.append('desc', $('#fDesc').value.trim());
+  fd.append('amenities', $('#fAmen').value.trim());
+  fd.append('verified', $('#fVerified').checked ? 'yes' : '');
+  const toRemove = editingPhotos.filter((p) => p.remove).map((p) => p.id);
+  if (toRemove.length) fd.append('_remove_photos', toRemove.join(','));
+  for (const f of $('#fPhotos').files) fd.append('photo', f);
+
+  $('#saveBtn').disabled = true;
+  $('#formMsg').textContent = 'Saving…';
+  $('#formMsg').className = 'msg';
+  try {
+    const r = await fetch(API + '/listings', { method: id ? 'PUT' : 'POST', headers: { 'X-Admin-Key': PASS }, body: fd });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || ('HTTP ' + r.status));
+    $('#formMsg').textContent = 'Saved ✓';
+    $('#formMsg').className = 'msg ok';
+    $('#formPanel').hidden = true;
+    await loadAll();
+  } catch (err) {
+    $('#formMsg').textContent = 'Error: ' + err.message;
+    $('#formMsg').className = 'msg bad';
+  }
+  $('#saveBtn').disabled = false;
+});
+
+/* ---------- row actions ---------- */
+$('#rows').addEventListener('click', async (e) => {
+  const btn = e.target.closest('button[data-act]');
+  if (!btn) return;
+  const tr = btn.closest('tr');
+  const l = LISTINGS.find((x) => x.id === tr.dataset.id);
+  if (!l) return;
+  const act = btn.dataset.act;
+
+  if (act === 'edit') { openForm(l); return; }
+
+  if (act === 'toggle') {
+    const next = l.status === 'available' ? 'hidden' : 'available';
+    const fd = new FormData();
+    fd.append('id', l.id);
+    fd.append('title', l.title);
+    fd.append('ref', l.ref || '');
+    fd.append('loc', l.loc);
+    fd.append('price', l.price);
+    fd.append('kind', l.kind);
+    fd.append('cat', l.cat);
+    fd.append('beds', l.beds ?? '');
+    fd.append('baths', l.baths ?? '');
+    fd.append('size', l.size || '');
+    fd.append('status', next);
+    fd.append('note', l.note || '');
+    fd.append('desc', l.desc || '');
+    fd.append('amenities', (l.amenities || []).join(', '));
+    fd.append('verified', l.verified || '');
+    fd.append('specs', JSON.stringify(l.specs || {}));
+    const r = await fetch(API + '/listings', { method: 'PUT', headers: { 'X-Admin-Key': PASS }, body: fd });
+    if (!r.ok) { alert('Could not update.'); return; }
+    loadAll();
+    return;
+  }
+
+  if (act === 'del') {
+    if (!confirm(`Delete "${l.title}" (${l.ref || 'no ref'}) and its photos? This cannot be undone.`)) return;
+    const r = await fetch(API + '/listings/' + l.id, { method: 'DELETE', headers: key() });
+    if (!r.ok) { alert('Could not delete.'); return; }
+    loadAll();
+  }
+});
+
+/* ---------- boot ---------- */
+if (PASS) {
+  tryLogin(PASS).then((res) => { if (res.ok) enterApp(); else { sessionStorage.removeItem('hp_admin_key'); $('#login').hidden = false; } });
+} else {
+  $('#login').hidden = false;
+}
+</script>
+</body>
+</html>
