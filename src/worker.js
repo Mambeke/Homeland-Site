@@ -34,6 +34,19 @@ const SCHEMA = [
     data BLOB,
     pos INTEGER NOT NULL DEFAULT 0
   )`,
+  // Staff access (email-based for now; the owner's email is seeded below).
+  // This table is where "the owner adds staff" will live later.
+  `CREATE TABLE IF NOT EXISTS staff_users (
+    email TEXT PRIMARY KEY,
+    name TEXT,
+    created INTEGER NOT NULL
+  )`,
+  `CREATE TABLE IF NOT EXISTS staff_sessions (
+    token TEXT PRIMARY KEY,
+    email TEXT NOT NULL,
+    created INTEGER NOT NULL,
+    expires INTEGER NOT NULL
+  )`,
 ];
 
 async function ensureSchema(env) {
@@ -52,6 +65,14 @@ async function ensureSchema(env) {
   } catch (e) {
     /* column already exists */
   }
+  // Seed the owner so they always have staff access (idempotent).
+  try {
+    await env.DB.prepare('INSERT OR IGNORE INTO staff_users (email, name, created) VALUES (?, ?, ?)')
+      .bind('brandonmambeke@gmail.com', 'Owner', Date.now()).run();
+  } catch (e) { /* already seeded */ }
+  try {
+    await env.DB.prepare('DELETE FROM staff_sessions WHERE expires < ?').bind(Date.now()).run();
+  } catch (e) { /* best effort */ }
   schemaReady = true;
 }
 
@@ -116,9 +137,37 @@ async function listListings(env, { all = false } = {}) {
 
 /* ---------- admin auth (light rate-limit: 10 fails / 10 min / IP) ---------- */
 const fails = new Map();
-function authOk(request, env) {
+
+// Is this staff session token valid (exists, not expired, email still a staff member)?
+async function staffTokenValid(env, token) {
+  if (!token) return false;
+  const s = await env.DB.prepare('SELECT * FROM staff_sessions WHERE token = ?').bind(token).first();
+  if (!s) return false;
+  if (Date.now() > s.expires) {
+    await env.DB.prepare('DELETE FROM staff_sessions WHERE token = ?').bind(token).run();
+    return false;
+  }
+  const u = await env.DB.prepare('SELECT 1 FROM staff_users WHERE lower(email) = lower(?)').bind(s.email).first();
+  return !!u;
+}
+
+async function authOk(request, env) {
   const key = request.headers.get('x-admin-key') || '';
   if (key === env.ADMIN_PASS) return true;
+  // Staff session token (issued by /api/staff/login)
+  const token = request.headers.get('x-staff-token') || '';
+  if (token) {
+    if (await staffTokenValid(env, token)) return true;
+    // A supplied-but-invalid token counts as a failed attempt for rate-limiting.
+    const ip = request.headers.get('cf-access-ip') || request.headers.get('x-real-ip') || 'unknown';
+    const now = Date.now();
+    const rec = (fails.get(ip) || { n: 0, t: now });
+    if (now - rec.t > 10 * 60 * 1000) { rec.n = 0; rec.t = now; }
+    rec.n += 1;
+    fails.set(ip, rec);
+    if (rec.n > 10) return 'blocked';
+    return false;
+  }
   const ip = request.headers.get('cf-access-ip') || request.headers.get('x-real-ip') || 'unknown';
   const now = Date.now();
   const rec = (fails.get(ip) || { n: 0, t: now });
@@ -227,9 +276,40 @@ async function handleApi(request, env, url) {
     });
   }
 
+  /* ---- staff (email sign-in for now; email-code flow plugs in later) ---- */
+  if (p === '/api/staff/login' && method === 'POST') {
+    let email = '';
+    try { email = String((await request.json()).email || '').trim(); } catch (e) { /* fall through */ }
+    email = email.toLowerCase();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return json({ ok: false, error: 'Enter a valid email address.' }, 400);
+    const u = await env.DB.prepare('SELECT * FROM staff_users WHERE lower(email) = lower(?)').bind(email).first();
+    if (!u) return json({ ok: false, error: 'That email does not have staff access.' }, 401);
+    const token = crypto.randomUUID();
+    const now = Date.now();
+    const expires = now + 30 * 24 * 60 * 60 * 1000; // 30 days
+    await env.DB.prepare('INSERT INTO staff_sessions (token, email, created, expires) VALUES (?, ?, ?, ?)')
+      .bind(token, u.email, now, expires).run();
+    return json({ ok: true, token, email: u.email, name: u.name || '' });
+  }
+  if (p === '/api/staff/logout' && method === 'POST') {
+    let token = '';
+    try { token = String((await request.json()).token || ''); } catch (e) { /* fall through */ }
+    if (token) await env.DB.prepare('DELETE FROM staff_sessions WHERE token = ?').bind(token).run();
+    return json({ ok: true });
+  }
+  if (p === '/api/staff/me' && method === 'GET') {
+    const token = request.headers.get('x-staff-token') || '';
+    if (await staffTokenValid(env, token)) {
+      const s = await env.DB.prepare('SELECT email FROM staff_sessions WHERE token = ?').bind(token).first();
+      const u = await env.DB.prepare('SELECT * FROM staff_users WHERE lower(email) = lower(?)').bind(s.email).first();
+      return json({ ok: true, email: u.email, name: u.name || '' });
+    }
+    return json({ ok: false, error: 'not signed in' }, 401);
+  }
+
   /* ---- admin ---- */
   if (p.startsWith('/api/admin/')) {
-    const auth = authOk(request, env);
+    const auth = await authOk(request, env);
     if (auth === 'blocked') return json({ error: 'too many attempts, try again later' }, 429);
     if (!auth) return json({ error: 'unauthorized' }, 401);
 
