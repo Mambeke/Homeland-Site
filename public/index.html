@@ -407,13 +407,13 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
       <div class="nitem">
         <a href="/marketplace.html" data-nav>For Sale <span class="caret">▾</span></a>
         <div class="dd">
-          <a href="/marketplace.html" data-cat="Houses" data-kind="sale">Houses for Sale</a>
-          <a href="/marketplace.html" data-cat="Urban Stands" data-kind="sale">Urban Stands</a>
-          <a href="/marketplace.html" data-cat="Rural Stands" data-kind="sale">Rural Stands &amp; Farms</a>
-          <a href="/marketplace.html" data-cat="Mines" data-kind="sale">Mines &amp; Claims</a>
-          <a href="/marketplace.html" data-cat="Hotels" data-kind="sale">Hotels &amp; Lodges</a>
-          <a href="/marketplace.html" data-cat="Commercial &amp; Other" data-kind="sale">Commercial &amp; Industrial</a>
-          <a class="dd-all" href="/marketplace.html" data-cat="" data-kind="sale">All properties for sale →</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Houses" data-cat="Houses" data-kind="sale">Houses for Sale</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-cat="Urban Stands" data-kind="sale">Urban Stands</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-cat="Rural Stands" data-kind="sale">Rural Stands &amp; Farms</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Mines" data-cat="Mines" data-kind="sale">Mines &amp; Claims</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-cat="Hotels" data-kind="sale">Hotels &amp; Lodges</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-cat="Commercial &amp; Other" data-kind="sale">Commercial &amp; Industrial</a>
+          <a class="dd-all" href="/marketplace.html?kind=sale" data-cat="" data-kind="sale">All properties for sale →</a>
         </div>
       </div>
       <div class="nitem">
@@ -1036,7 +1036,7 @@ function pickLoc(o) {
   locInput.blur();
   renderGrids();
   if (state.tab === 'rent') document.querySelector('#rent').scrollIntoView({ behavior: 'smooth' });
-  else location.href = '/marketplace.html';
+  else location.href = mkHref();
 }
 
 locInput.addEventListener('input', () => {
@@ -1079,6 +1079,33 @@ locX.addEventListener('click', () => {
   locInput.focus();
 });
 
+const PT_FALLBACK = { 'Houses': 'Houses', 'Rural Stands': 'Rural Stands', 'Urban Stands': 'Stands & Residential Land', 'Commercial & Other': 'Warehouses & Factories', 'Mines': 'Mines', 'Hotels': 'Hotels & Lodges' };
+
+function cardType(list, cat) {
+  const counts = {};
+  list.forEach((l) => { if (l.ptype) counts[l.ptype] = (counts[l.ptype] || 0) + 1; });
+  const names = Object.keys(counts);
+  const exact = names.find((t) => t.toLowerCase() === cat.toLowerCase());
+  if (exact) return exact;
+  const start = names.find((t) => t.toLowerCase().startsWith(cat.toLowerCase()));
+  if (start) return start;
+  if (names.length) return names.sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))[0];
+  return PT_FALLBACK[cat] || 'Houses';
+}
+
+function mkHref() {
+  const p = new URLSearchParams();
+  const loc = (state.locSel ? state.locSel.name : locInput.value.trim());
+  if (loc) p.set('loc', loc);
+  const cat = $('#sCat').value;
+  if (cat) p.set('type', cardType(L.filter((l) => l.cat === cat), cat));
+  const mn = $('#sMin').value, mx = $('#sMax').value;
+  if (mn) p.set('min', mn);
+  if (mx) p.set('max', mx);
+  const qs = p.toString();
+  return '/marketplace.html' + (qs ? '?' + qs : '');
+}
+
 function renderCats() {
   const cats = [...new Set(L.map((l) => l.cat))]
     .map((c) => ({ c, n: L.filter((l) => l.cat === c).length }))
@@ -1088,7 +1115,8 @@ function renderCats() {
     const src = list.find((l) => l.verified === 'yes' && l.photos && l.photos.length)
       || list.find((l) => l.photos && l.photos.length);
     const ph = src ? src.photos[0].url : '';
-    return `<a class="cat-card" href="/marketplace.html"><div class="cat-ph">${ph ? `<img src="${ph}" loading="lazy" alt="${c} properties">` : ''}</div><div class="cat-b"><h3>${c}</h3><span>${n} propert${n === 1 ? 'y' : 'ies'} available</span></div></a>`;
+    const href = '/marketplace.html?type=' + encodeURIComponent(cardType(list, c));
+    return `<a class="cat-card" href="${href}"><div class="cat-ph">${ph ? `<img src="${ph}" loading="lazy" alt="${c} properties">` : ''}</div><div class="cat-b"><h3>${c}</h3><span>${n} propert${n === 1 ? 'y' : 'ies'} available</span></div></a>`;
   }).join('');
 }
 
@@ -1127,7 +1155,7 @@ function applyAndGo() {
   locPanel.hidden = true;
   renderGrids();
   if (state.tab === 'rent') document.querySelector('#rent').scrollIntoView({ behavior: 'smooth' });
-  else location.href = '/marketplace.html';
+  else location.href = mkHref();
 }
 
 /* ---------- detail view ---------- */
@@ -1217,7 +1245,7 @@ document.addEventListener('click', (e) => {
     $('#sCat').value = state.cat;
     renderGrids();
     if (state.tab === 'rent') document.querySelector('#rent').scrollIntoView({ behavior: 'smooth' });
-    else location.href = '/marketplace.html';
+    else location.href = mkHref();
     return;
   }
   const guide = e.target.closest('.insc h4');

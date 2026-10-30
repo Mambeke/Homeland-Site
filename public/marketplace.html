@@ -311,15 +311,15 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 
 /* marketplace page */
 .navlinks a.mk-on{color:var(--navy);font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:4px}
-.mk-head{background:var(--navy);color:#fff;padding:54px 0 48px;text-align:center}
-.mk-eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px}
-.mk-head h1{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,44px);margin-bottom:14px}
-.mk-sub{max-width:64ch;margin:0 auto;color:rgba(255,255,255,.82);font-size:15.5px;line-height:1.65}
+.mk-head{background:var(--navy);color:#fff;padding:16px 0 14px;text-align:center}
+.mk-head h1{font-family:'Playfair Display',serif;font-size:clamp(24px,2.6vw,30px);margin-bottom:6px}
+.mk-sub{max-width:72ch;margin:0 auto;color:rgba(255,255,255,.82);font-size:14px;line-height:1.55}
 .mk-sub b{color:#fff}
-.mk-tabs{padding:30px 0 0}
+.mk-tabs{padding:14px 0 0}
 .mk-toolbar{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
 .mk-tabs .s-tabs{margin-bottom:0}
-@media (max-width:700px){.mk-toolbar{flex-direction:column;gap:10px}.mk-toolbar .curbox{margin:0 auto}}
+.mk-search{margin-top:14px}
+@media (max-width:700px){.mk-toolbar{flex-direction:column;gap:10px}.mk-toolbar .curbox{margin:0 auto}#mMin,#mMax{display:none}.mk-search .s-go{width:calc(100% + 24px)}}
 .card-price{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .ktag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:5px;white-space:nowrap}
 .ktag-s{background:var(--blue-l);color:var(--blue)}
@@ -380,7 +380,6 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 </header>
 <section class="mk-head">
   <div class="wrap">
-    <p class="mk-eyebrow">Homeland Property Group</p>
     <h1>The Marketplace</h1>
     <p class="mk-sub">Every property we list is checked on the ground before it goes live. Browse what's for sale and to rent across Zimbabwe — <b id="mkCounts">loading…</b></p>
   </div>
@@ -394,6 +393,46 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   </div>
   <div class="curbox" id="curBox" role="group" aria-label="Choose currency"></div>
 </div></div>
+
+<div class="wrap mk-search">
+  <div class="searchbox">
+    <div class="s-row">
+      <div class="loc-wrap">
+        <input id="mLoc" type="text" autocomplete="off" spellcheck="false" placeholder="Town, suburb or province…">
+        <button type="button" class="loc-x" id="mLocX" aria-label="Clear location" hidden>×</button>
+        <div class="loc-panel" id="mLocPanel" hidden></div>
+      </div>
+      <select id="mType" aria-label="Property type">
+        <option value="">All types</option>
+        <option>Houses</option>
+        <option>Townhouses &amp; Complexes</option>
+        <option>Land</option>
+        <option>Stands &amp; Residential Land</option>
+        <option>Commercial &amp; Industrial Land</option>
+        <option>Farms &amp; Agricultural Land</option>
+        <option>Commercial Property</option>
+        <option>Warehouses &amp; Factories</option>
+        <option>Shops &amp; Retail Property</option>
+        <option>Offices</option>
+        <option>Hotels &amp; Lodges</option>
+        <option>Flats &amp; Apartments</option>
+        <option>Garden Flats</option>
+        <option>Rural Stands</option>
+        <option>Mines</option>
+      </select>
+      <select id="mBeds" aria-label="Bedrooms">
+        <option value="">Bedrooms</option>
+        <option value="1">1+ bedrooms</option>
+        <option value="2">2+ bedrooms</option>
+        <option value="3">3+ bedrooms</option>
+        <option value="4">4+ bedrooms</option>
+      </select>
+      <input id="mMin" type="number" min="0" step="any" placeholder="Min $">
+      <input id="mMax" type="number" min="0" step="any" placeholder="Max $">
+      <button type="button" class="s-go" id="mGo">Search</button>
+    </div>
+  </div>
+</div>
 
 <section class="market"><div class="wrap"><div class="grid" id="mkGrid"><div class="empty">Loading listings…</div></div>
 <p class="legend"><b>What the badges mean:</b> ✓ Verified — deeds search done, seller ID matched, property inspected. No badge? That listing is still being checked — ask us for the current status.</p>
@@ -478,7 +517,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <script>
 const WA = 'https://wa.me/27685302223?text=';
 let L = [];
-const state = { tab: 'all' };
+const state = { tab: 'all', loc: '', locSel: null, type: '', beds: null, min: null, max: null };
 
 const $ = (s) => document.querySelector(s);
 function escapeAttr(value) {
@@ -502,6 +541,233 @@ function setCur(c) {
   renderGrid();
 }
 
+/* ---------- location intelligence: typed search over Zimbabwe geography (same engine as homepage) ---------- */
+let GEO = { provinces: [], places: [] };
+let GEO_INDEX = [];   // places pre-normalised for fast matching (built at load)
+const normLoc = (s) => (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+const buildGeoIndex = () => {
+  GEO_INDEX = GEO.places.map((pl) => {
+    const all = [pl.name, ...(pl.aliases || [])].map(normLoc).filter(Boolean);
+    return Object.assign({}, pl, {
+      terms: all.filter((t) => t.length >= 3),       // used for suggestions (incl. short nicknames like "Byo")
+      locTerms: all.filter((t) => t.length >= 4)     // used to match listing locations (no short nicknames)
+    });
+  });
+};
+function lev(a, b) {
+  if (a === b) return 0;
+  const m = a.length, n = b.length;
+  if (!m) return n; if (!n) return m;
+  let prev = Array.from({ length: n + 1 }, (_, i) => i), cur = new Array(n + 1);
+  for (let i = 1; i <= m; i++) {
+    cur[0] = i;
+    for (let j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    [prev, cur] = [cur, prev];
+  }
+  return prev[n];
+}
+function jaroWinkler(a, b) {
+  if (a === b) return 1;
+  const la = a.length, lb = b.length;
+  if (!la || !lb) return 0;
+  const md = Math.max(0, Math.floor(Math.max(la, lb) / 2) - 1);
+  const am = new Array(la).fill(false), bm = new Array(lb).fill(false);
+  let matches = 0;
+  for (let i = 0; i < la; i++) for (let j = Math.max(0, i - md); j < Math.min(lb, i + md + 1); j++)
+    if (!bm[j] && a[i] === b[j]) { am[i] = bm[j] = true; matches++; break; }
+  if (!matches) return 0;
+  let t = 0, k = 0;
+  for (let i = 0; i < la; i++) if (am[i]) { while (!bm[k]) k++; if (a[i] !== b[k]) t++; k++; }
+  const mm = matches;
+  const jaro = (mm / la + mm / lb + (mm - t / 2) / mm) / 3;
+  let pw = 0;
+  for (let i = 0; i < Math.min(4, la, lb); i++) { if (a[i] === b[i]) pw++; else break; }
+  return jaro + pw * 0.1 * (1 - jaro);
+}
+/* Score one query term against one canonical name/alias. Tiers: exact(100) > prefix(90) > substring(80) > word-prefix(50) > fuzzy.
+   Fuzzy accepts Jaro-Winkler>=0.85 or Levenshtein<=3 (words 5+ chars) — e.g. "betrige" -> "Beitbridge". */
+function termScore(q, t) {
+  if (t === q) return 100;
+  if (t.startsWith(q)) return 90;
+  if (t.includes(q)) return 80;
+  if (q.length >= 4 && t.split(' ').some((w) => w.startsWith(q))) return 50;
+  const lw = jaroWinkler(q, t);
+  if (lw >= 0.85 || (lev(q, t) <= 3 && Math.min(q.length, t.length) >= 5)) return 55 + lw * 25;
+  return 0;
+}
+/* Rank all places (each canonical place scored once, across its name + aliases — no duplicate rows). */
+function suggest(raw) {
+  const q = normLoc(raw);
+  if (!q) return { places: [], provs: [] };
+  const provs = GEO.provinces.filter((p) => { const n = normLoc(p); return n === q || (q.length >= 3 && (n.startsWith(q) || n.includes(q))); });
+  const places = [];
+  GEO_INDEX.forEach((pl) => {
+    let score = 0;
+    for (const t of pl.terms) { score = Math.max(score, termScore(q, t)); if (score === 100) break; }
+    if (score > 0) places.push({ id: pl.id, name: pl.name, province: pl.province, parent: pl.parent || '', score });
+  });
+  places.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+  return { places: places.slice(0, 7), provs: provs.slice(0, 3) };
+}
+function locMatch(l, sel) {
+  if (!sel) return true;
+  const lc = normLoc(l.loc), pc = normLoc(l.province);
+  if (sel.kind === 'province' || sel.kind === 'text') {
+    const p = normLoc(sel.name);
+    return pc.includes(p) || lc.includes(p);
+  }
+  if (lc.includes(normLoc(sel.name))) return true;
+  if (sel.terms && sel.terms.some((t) => lc.includes(t))) return true;
+  return false;
+}
+function resolveLocSel(raw) {
+  const q = normLoc(raw);
+  if (!q) return null;
+  const s = suggest(raw);
+  const exactProv = s.provs.find((p) => normLoc(p) === q);
+  if (exactProv) return { kind: 'province', name: exactProv };
+  const best = s.places[0];
+  if (best && best.score >= 58) {
+    const pl = GEO_INDEX.find((x) => x.id === best.id) || {};
+    return {
+      kind: 'place', name: best.name, province: best.province, parent: best.parent || '',
+      terms: [pl.name, ...(pl.aliases || [])].map(normLoc).filter((t) => t.length >= 4)
+    };
+  }
+  return { kind: 'text', name: raw };
+}
+
+const mLoc = $('#mLoc'), mLocPanel = $('#mLocPanel'), mLocX = $('#mLocX');
+let mTimer = null, mActive = -1, mBlurTimer = null;
+
+function mRenderPanel(raw) {
+  const q = normLoc(raw);
+  if (q.length < 2) { mLocPanel.hidden = true; return; }
+  if (!GEO_INDEX.length) {
+    mLocPanel.innerHTML = '<div class="loc-none">Loading Zimbabwe locations…</div>';
+    mLocPanel.hidden = false;
+    return;
+  }
+  const { places, provs } = suggest(raw);
+  let html = '';
+  if (provs.length) {
+    html += `<div class="loc-note">Provinces</div>`;
+    provs.forEach((p) => { html += `<button type="button" class="loc-opt" data-p="prov" data-name="${p}"><span class="ln">${p}</span><span class="lp">All areas in the province</span></button>`; });
+  }
+  if (places.length) {
+    if (places[0].score < 80 && !provs.length) html += `<div class="loc-note">Did you mean</div>`;
+    places.forEach((pl) => {
+      const sub = pl.parent ? pl.parent + ', ' + pl.province : pl.province;
+      const plRec = GEO_INDEX.find((x) => x.id === pl.id) || {};
+      html += `<button type="button" class="loc-opt" data-p="place" data-name="${pl.name}" data-prov="${pl.province}" data-parent="${pl.parent}" data-aliases="${escapeAttr((plRec.aliases || []).join('|'))}"><span class="ln">${pl.name}</span><span class="lp">${sub}</span></button>`;
+    });
+  }
+  if (!html) {
+    html = `<div class="loc-none">No place in our list matches “${raw}” yet.</div>
+      <a class="loc-src" href="${WA + encodeURIComponent(`Hi — I'm looking for property in ${raw}. Can you source it for me?`)}" target="_blank" rel="noopener">We can source it for you — ask on WhatsApp →</a>`;
+  }
+  mLocPanel.innerHTML = html;
+  mLocPanel.hidden = false;
+}
+
+function mPickLoc(o) {
+  const name = o.dataset.name, prov = o.dataset.prov || '';
+  if (o.dataset.p === 'prov') {
+    state.locSel = { kind: 'province', name };
+    mLoc.value = name;
+  } else {
+    const aliases = (o.dataset.aliases ? o.dataset.aliases.split('|').filter(Boolean) : []);
+    state.locSel = {
+      kind: 'place', name, province: prov,
+      parent: o.dataset.parent || '',
+      terms: [normLoc(name), ...aliases.map(normLoc)].filter((t) => t.length >= 4)
+    };
+    mLoc.value = name + ', ' + prov;
+  }
+  state.loc = mLoc.value;
+  mLocX.hidden = false;
+  mLocPanel.hidden = true;
+  mLoc.blur();
+  renderGrid();
+}
+
+function mApply() {
+  const raw = mLoc.value.trim();
+  if (raw) {
+    state.locSel = resolveLocSel(raw);
+    if (state.locSel.kind === 'place') mLoc.value = state.locSel.name + ', ' + state.locSel.province;
+    if (state.locSel.kind === 'province') mLoc.value = state.locSel.name;
+  } else {
+    state.locSel = null;
+  }
+  state.loc = mLoc.value;
+  state.type = $('#mType').value;
+  state.beds = $('#mBeds').value ? parseInt($('#mBeds').value, 10) : null;
+  state.min = $('#mMin').value ? parseFloat($('#mMin').value) : null;
+  state.max = $('#mMax').value ? parseFloat($('#mMax').value) : null;
+  mLocX.hidden = !mLoc.value;
+  mLocPanel.hidden = true;
+  mLoc.blur();
+  renderGrid();
+}
+
+mLoc.addEventListener('input', () => {
+  state.locSel = null;
+  mLocX.hidden = !mLoc.value;
+  clearTimeout(mTimer);
+  clearTimeout(mBlurTimer);
+  mTimer = setTimeout(() => { mActive = -1; mRenderPanel(mLoc.value.trim()); }, 120);
+  renderGrid();
+});
+mLoc.addEventListener('focus', () => {
+  clearTimeout(mBlurTimer);
+  if (mLoc.value.trim().length >= 2) { mActive = -1; mRenderPanel(mLoc.value.trim()); }
+});
+mLoc.addEventListener('blur', () => { mBlurTimer = setTimeout(() => { mLocPanel.hidden = true; }, 160); });
+mLoc.addEventListener('keydown', (e) => {
+  const opts = [...mLocPanel.querySelectorAll('.loc-opt')];
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    if (mLocPanel.hidden || !opts.length) return;
+    e.preventDefault();
+    mActive = (mActive + (e.key === 'ArrowDown' ? 1 : -1) + opts.length) % opts.length;
+    opts.forEach((o, i) => o.classList.toggle('act', i === mActive));
+  } else if (e.key === 'Enter') {
+    if (!mLocPanel.hidden && opts.length && mActive >= 0) { e.preventDefault(); mPickLoc(opts[mActive]); }
+    else if (e.target === mLoc) { e.preventDefault(); mApply(); }
+  } else if (e.key === 'Escape') {
+    mLocPanel.hidden = true;
+  }
+});
+mLocPanel.addEventListener('mousedown', (e) => {
+  const o = e.target.closest('.loc-opt');
+  if (o) { e.preventDefault(); mPickLoc(o); }
+});
+mLocX.addEventListener('click', () => {
+  mLoc.value = '';
+  state.locSel = null;
+  state.loc = '';
+  mLocX.hidden = true;
+  mLocPanel.hidden = true;
+  renderGrid();
+  mLoc.focus();
+});
+$('#mGo').addEventListener('click', mApply);
+['mType', 'mBeds'].forEach((id) => $('#' + id).addEventListener('input', mApply));
+['mMin', 'mMax'].forEach((id) => {
+  const el = $('#' + id);
+  el.addEventListener('change', mApply);
+  el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); mApply(); } });
+});
+
+function mMatch(l) {
+  if (state.locSel && !locMatch(l, state.locSel)) return false;
+  if (state.type && l.ptype !== state.type) return false;
+  if (state.beds != null && (l.beds == null || l.beds < state.beds)) return false;
+  if (state.min != null && l.price < state.min) return false;
+  if (state.max != null && l.price > state.max) return false;
+  return true;
+}
+
 function card(l) {
   const ph = (l.photos && l.photos[0]) ? l.photos[0].url : '';
   const imageAlt = escapeAttr([l.title, l.loc, l.kind === 'rent' ? 'property for rent' : 'property for sale'].filter(Boolean).join(' — '));
@@ -519,11 +785,17 @@ function card(l) {
   </a>`;
 }
 
+function hasFilters() {
+  return !!(state.locSel || state.type || state.beds != null || state.min != null || state.max != null);
+}
+
 function renderGrid() {
-  const list = state.tab === 'all' ? L : L.filter((l) => l.kind === state.tab);
+  const list = (state.tab === 'all' ? L : L.filter((l) => l.kind === state.tab)).filter(mMatch);
   $('#mkGrid').innerHTML = list.length
     ? list.map((l) => card(l)).join('')
-    : '<div class="empty">No ' + (state.tab === 'rent' ? 'rentals' : 'properties for sale') + ' yet — we add new listings as they pass our checks. <a href="' + WA + encodeURIComponent('Hi — I\'m looking for property in Zimbabwe. What\'s available?') + '" target="_blank" rel="noopener">Ask us what\'s out there</a>.</div>';
+    : hasFilters()
+      ? '<div class="empty">No properties match those filters. Clear one or two and try again — or <a href="' + WA + encodeURIComponent('Hi — I\'m looking for specific property in Zimbabwe. Can you source it for me?') + '" target="_blank" rel="noopener">tell us exactly what you need</a> and we\'ll source it.</div>'
+      : '<div class="empty">No ' + (state.tab === 'rent' ? 'rentals' : 'properties for sale') + ' yet — we add new listings as they pass our checks. <a href="' + WA + encodeURIComponent('Hi — I\'m looking for property in Zimbabwe. What\'s available?') + '" target="_blank" rel="noopener">Ask us what\'s out there</a>.</div>';
 }
 
 function renderCounts() {
@@ -633,11 +905,41 @@ window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
 /* ---------- load ---------- */
 (async function load() {
   try {
-    const r = await fetch('/api/listings');
+    const [r, g] = await Promise.all([fetch('/api/listings'), fetch('/locations.json')]);
     L = await r.json();
+    GEO = await g.json();
+    buildGeoIndex();
   } catch (err) {
     L = [];
   }
+
+  // deep links: /marketplace.html?kind=sale&type=Houses&loc=Harare South&min=100000&max=400000&beds=3
+  const qp = new URLSearchParams(location.search);
+  const qKind = qp.get('kind');
+  if (qKind === 'sale' || qKind === 'rent') {
+    state.tab = qKind;
+    document.querySelectorAll('#mkTabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === qKind));
+  }
+  const qType = qp.get('type');
+  if (qType) {
+    const sel = $('#mType');
+    if ([...sel.options].some((o) => o.value === qType)) { sel.value = qType; state.type = qType; }
+  }
+  const qBeds = qp.get('beds');
+  if (qBeds !== null && !isNaN(parseInt(qBeds, 10))) { $('#mBeds').value = qBeds; state.beds = parseInt(qBeds, 10); }
+  const qMin = qp.get('min'), qMax = qp.get('max');
+  if (qMin !== null && !isNaN(parseFloat(qMin))) { $('#mMin').value = qMin; state.min = parseFloat(qMin); }
+  if (qMax !== null && !isNaN(parseFloat(qMax))) { $('#mMax').value = qMax; state.max = parseFloat(qMax); }
+  const qLoc = qp.get('loc');
+  if (qLoc) {
+    mLoc.value = qLoc;
+    state.locSel = resolveLocSel(qLoc);
+    if (state.locSel && state.locSel.kind === 'place') mLoc.value = state.locSel.name + ', ' + state.locSel.province;
+    if (state.locSel && state.locSel.kind === 'province') mLoc.value = state.locSel.name;
+    state.loc = mLoc.value;
+    mLocX.hidden = false;
+  }
+
   renderCounts();
   drawCur();
   renderGrid();

@@ -131,7 +131,9 @@ tr:last-child td{border-bottom:none}
           </datalist></div>
           <div><label>Price (USD) *</label><input id="fPrice" type="number" min="0" step="any" required></div>
           <div><label>Type</label><select id="fKind"><option value="sale">For sale</option><option value="rent">For rent</option></select></div>
-          <div><label>Category</label><input id="fCat" list="cats" placeholder="e.g. Houses"><datalist id="cats"></datalist></div>
+          <div><label>Property type *</label><select id="fPtype" required>
+            <option>Houses</option><option>Townhouses &amp; Complexes</option><option>Land</option><option>Stands &amp; Residential Land</option><option>Commercial &amp; Industrial Land</option><option>Farms &amp; Agricultural Land</option><option>Commercial Property</option><option>Warehouses &amp; Factories</option><option>Shops &amp; Retail Property</option><option>Offices</option><option>Hotels &amp; Lodges</option><option>Flats &amp; Apartments</option><option>Garden Flats</option><option>Rural Stands</option><option>Mines</option>
+          </select></div>
           <div><label>Beds</label><input id="fBeds" type="number" min="0" step="1"></div>
           <div><label>Baths</label><input id="fBaths" type="number" min="0" step="1"></div>
           <div><label>Size (e.g. 300 m²)</label><input id="fSize"></div>
@@ -218,8 +220,6 @@ async function loadAll() {
   LISTINGS = await r.json();
   renderRows();
   renderStats();
-  const cats = [...new Set(LISTINGS.map((l) => l.cat))];
-  $('#cats').innerHTML = cats.map((c) => `<option value="${c}">`).join('');
 }
 
 function renderStats() {
@@ -261,7 +261,9 @@ function openForm(l) {
   $('#fProv').value = l ? (l.province || '') : '';
   $('#fPrice').value = l ? l.price : '';
   $('#fKind').value = l ? l.kind : 'sale';
-  $('#fCat').value = l ? l.cat : '';
+  const ptypeSel = $('#fPtype');
+  const pval = l && l.ptype ? l.ptype : 'Houses';
+  ptypeSel.value = [...ptypeSel.options].some((o) => o.value === pval) ? pval : 'Houses';
   $('#fBeds').value = l && l.beds != null ? l.beds : '';
   $('#fBaths').value = l && l.baths != null ? l.baths : '';
   $('#fSize').value = l ? l.size : '';
@@ -319,7 +321,7 @@ $('#form').addEventListener('submit', async (e) => {
   fd.append('province', $('#fProv').value.trim());
   fd.append('price', $('#fPrice').value);
   fd.append('kind', $('#fKind').value);
-  fd.append('cat', $('#fCat').value.trim() || 'Houses');
+  fd.append('ptype', $('#fPtype').value);
   fd.append('beds', $('#fBeds').value);
   fd.append('baths', $('#fBaths').value);
   fd.append('size', $('#fSize').value.trim());
@@ -372,6 +374,7 @@ $('#rows').addEventListener('click', async (e) => {
     fd.append('price', l.price);
     fd.append('kind', l.kind);
     fd.append('cat', l.cat);
+    fd.append('ptype', l.ptype || '');
     fd.append('beds', l.beds ?? '');
     fd.append('baths', l.baths ?? '');
     fd.append('size', l.size || '');

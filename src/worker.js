@@ -47,6 +47,11 @@ async function ensureSchema(env) {
   } catch (e) {
     /* column already exists */
   }
+  try {
+    await env.DB.exec('ALTER TABLE listings ADD COLUMN ptype TEXT');
+  } catch (e) {
+    /* column already exists */
+  }
   schemaReady = true;
 }
 
@@ -57,13 +62,32 @@ function json(body, status = 200, extra = {}) {
   });
 }
 
+// fine property type -> coarse category (keeps home-page category cards working)
+const PT2CAT = {
+  'Houses': 'Houses',
+  'Townhouses & Complexes': 'Houses',
+  'Flats & Apartments': 'Houses',
+  'Garden Flats': 'Houses',
+  'Land': 'Urban Stands',
+  'Stands & Residential Land': 'Urban Stands',
+  'Commercial & Industrial Land': 'Commercial & Other',
+  'Farms & Agricultural Land': 'Rural Stands',
+  'Rural Stands': 'Rural Stands',
+  'Commercial Property': 'Commercial & Other',
+  'Warehouses & Factories': 'Commercial & Other',
+  'Shops & Retail Property': 'Commercial & Other',
+  'Offices': 'Commercial & Other',
+  'Hotels & Lodges': 'Hotels',
+  'Mines': 'Mines',
+};
+
 function rowToListing(r, photos) {
   let amenities = [], specs = {};
   try { amenities = JSON.parse(r.amenities || '[]'); } catch (e) {}
   try { specs = JSON.parse(r.specs || '{}'); } catch (e) {}
   return {
     id: r.id, ref: r.ref || '', title: r.title, loc: r.loc, province: r.province || '', price: r.price,
-    kind: r.kind, cat: r.cat, beds: r.beds ?? null, baths: r.baths ?? null,
+    kind: r.kind, cat: r.cat, ptype: r.ptype || '', beds: r.beds ?? null, baths: r.baths ?? null,
     size: r.size || '', desc: r.desc || '', note: r.note || '',
     amenities, specs, status: r.status, verified: r.verified || '',
     photos: photos || [],
@@ -115,7 +139,8 @@ async function saveListing(request, env) {
   if (!title || !loc || !isFinite(price)) return json({ error: 'title, loc and a valid price are required' }, 400);
 
   const kind = f('kind') === 'rent' ? 'rent' : 'sale';
-  const cat = f('cat') || 'Houses';
+  const ptype = f('ptype');
+  const cat = (ptype && PT2CAT[ptype]) || f('cat') || 'Houses';
   const status = ['available', 'hidden', 'sold'].includes(f('status')) ? f('status') : 'available';
   const now = Date.now();
   const files = fd.getAll('photo').filter((x) => x && typeof x === 'object' && x.name);
@@ -132,18 +157,18 @@ async function saveListing(request, env) {
     const existing = await env.DB.prepare('SELECT id FROM listings WHERE id = ?').bind(id).first();
     if (!existing) return json({ error: 'listing not found' }, 404);
     await env.DB.prepare(
-      `UPDATE listings SET ref=?, title=?, loc=?, province=?, price=?, kind=?, cat=?, beds=?, baths=?, size=?, desc=?, note=?, amenities=?, specs=?, status=?, verified=?, updated_at=? WHERE id=?`
+      `UPDATE listings SET ref=?, title=?, loc=?, province=?, price=?, kind=?, cat=?, ptype=?, beds=?, baths=?, size=?, desc=?, note=?, amenities=?, specs=?, status=?, verified=?, updated_at=? WHERE id=?`
     )
-      .bind(f('ref'), title, loc, prov, price, kind, cat, beds, baths, f('size'), f('desc'), f('note'),
+      .bind(f('ref'), title, loc, prov, price, kind, cat, ptype, beds, baths, f('size'), f('desc'), f('note'),
         amenitiesJson, specsJson, status, f('verified') || '', now, id)
       .run();
   } else {
     id = crypto.randomUUID();
     await env.DB.prepare(
-      `INSERT INTO listings (id, ref, title, loc, province, price, kind, cat, beds, baths, size, desc, note, amenities, specs, status, verified, created_at, updated_at)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+      `INSERT INTO listings (id, ref, title, loc, province, price, kind, cat, ptype, beds, baths, size, desc, note, amenities, specs, status, verified, created_at, updated_at)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
     )
-      .bind(id, f('ref'), title, loc, prov, price, kind, cat,
+      .bind(id, f('ref'), title, loc, prov, price, kind, cat, ptype,
         f('beds') ? parseFloat(f('beds')) : null, f('baths') ? parseFloat(f('baths')) : null,
         f('size'), f('desc'), f('note'), JSON.stringify(f('amenities') ? f('amenities').split(',').map((s) => s.trim()).filter(Boolean) : []),
         f('specs') || '{}', status, f('verified') || '', now, now)
