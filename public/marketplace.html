@@ -301,7 +301,9 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 .mk-sub{max-width:64ch;margin:0 auto;color:rgba(255,255,255,.82);font-size:15.5px;line-height:1.65}
 .mk-sub b{color:#fff}
 .mk-tabs{padding:30px 0 0}
+.mk-toolbar{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
 .mk-tabs .s-tabs{margin-bottom:0}
+@media (max-width:700px){.mk-toolbar{flex-direction:column;gap:10px}.mk-toolbar .curbox{margin:0 auto}}
 .card-price{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .ktag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:5px;white-space:nowrap}
 .ktag-s{background:var(--blue-l);color:var(--blue)}
@@ -357,7 +359,6 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
           </div>
         </div>
       </div>
-      <div class="curbox" id="curBox" role="group" aria-label="Choose currency"></div>
     </div>
   </div>
 </header>
@@ -369,11 +370,14 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   </div>
 </section>
 
-<div class="mk-tabs"><div class="wrap"><div class="s-tabs" id="mkTabs">
-  <button data-tab="all" class="on">All property</button>
-  <button data-tab="sale">For Sale</button>
-  <button data-tab="rent">To Rent</button>
-</div></div></div>
+<div class="mk-tabs"><div class="wrap mk-toolbar">
+  <div class="s-tabs" id="mkTabs">
+    <button data-tab="all" class="on">All property</button>
+    <button data-tab="sale">For Sale</button>
+    <button data-tab="rent">To Rent</button>
+  </div>
+  <div class="curbox" id="curBox" role="group" aria-label="Choose currency"></div>
+</div></div>
 
 <section class="market"><div class="wrap"><div class="grid" id="mkGrid"><div class="empty">Loading listings…</div></div>
 <p class="legend"><b>What the badges mean:</b> ✓ Verified — deeds search done, seller ID matched, property inspected. No badge? That listing is still being checked — ask us for the current status.</p>
@@ -401,7 +405,8 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
       </div>
       <div>
         <h5>Explore</h5>
-        <a href="#sale" data-nav>Marketplace</a>
+        <a href="/marketplace.html">Marketplace</a>
+        <a href="#sale" data-nav>Properties for Sale</a>
         <a href="#rent" data-nav>Properties to Rent</a>
         <a href="#services" data-nav>Services &amp; prices</a>
         <a href="#sell" data-nav>Sell or list property</a>
