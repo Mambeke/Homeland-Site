@@ -705,6 +705,16 @@ const WA = 'https://wa.me/27685302223?text=';
 let L = [];
 const state = { tab: 'sale', loc: '', cat: '', min: null, max: null };
 
+/* locations offered (Zimbabwe-wide, matching the major portals' coverage) */
+const LOCATIONS = [
+  ['Harare', ['Harare', 'Harare CBD', 'Harare North', 'Harare South', 'Harare East', 'Harare West', 'Harare High Density']],
+  ['Bulawayo', ['Bulawayo', 'Bulawayo CBD Industrial', 'Bulawayo East', 'Bulawayo North', 'Bulawayo High-Density']],
+  ['Around Harare', ['Chitungwiza', 'Goromonzi', 'Marondera', 'Mazowe', 'Msasa', 'Norton', 'Nyabira', 'Ruwa']],
+  ['Towns & Cities', ['Beitbridge', 'Binga', 'Bindura', 'Chegutu', 'Chinhoyi', 'Chirundu', 'Gokwe', 'Gweru', 'Gwanda', 'Highfield', 'Hwange', 'Hurungwe', 'Kadoma', 'Kariba', 'KweKwe', 'Mberengwa', 'Murehwa', 'Masvingo', 'Mutare', 'Shurugwi', 'Victoria Falls', 'Zvishavane']],
+  ['Harare Suburbs', ['Avondale', 'Borrowdale', 'Burnside', 'Budiriro', 'Darwendale', 'Eastlea', 'Emerald Hill', 'Glen Lorne', 'Glen Norah', 'Greendale', 'Greystone Park', 'Hatfield', 'Highlands', 'Hillside', 'Kuwadzana', 'Mabvuku', 'Mabvazuva', 'Marlborough', 'Matsheumhlope', 'Mount Pleasant', 'Mt Pleasant Heights', 'Newlands', 'Northwood', 'Pomona', 'Queens Park East', 'Umwinsidale', 'Warren Park', 'Waterfalls', 'Westgate']],
+  ['Provinces', ['Mashonaland East', 'Mashonaland West', 'Mashonaland Central', 'Manicaland', 'Midlands', 'Matabeleland North', 'Matabeleland South', 'Masvingo Province', 'Maxicaland']]
+];
+
 const $ = (s) => document.querySelector(s);
 function escapeAttr(value) {
   return String(value ?? '').replace(/[&"<>]/g, (char) => ({
@@ -754,7 +764,11 @@ function card(l) {
 }
 
 function match(l) {
-  if (state.loc && l.loc !== state.loc) return false;
+  if (state.loc) {
+    const loc = (l.loc || '').toLowerCase();
+    const q = state.loc.toLowerCase();
+    if (!loc.includes(q) && !q.includes(loc)) return false;
+  }
   if (state.cat && l.cat !== state.cat) return false;
   if (state.min != null && l.price < state.min) return false;
   if (state.max != null && l.price > state.max) return false;
@@ -779,9 +793,11 @@ function renderCounts() {
 }
 
 function renderLocs() {
-  const locs = [...new Set(L.map((l) => l.loc))].sort();
   const cur = state.loc;
-  $('#sLoc').innerHTML = '<option value="">Enter a location</option>' + locs.map((x) => `<option ${x === cur ? 'selected' : ''}>${x}</option>`).join('');
+  const groups = LOCATIONS.map(([g, items]) =>
+    `<optgroup label="${g}">` + items.map((x) => `<option ${x === cur ? 'selected' : ''}>${x}</option>`).join('') + '</optgroup>'
+  ).join('');
+  $('#sLoc').innerHTML = '<option value="">Enter a location</option>' + groups;
   const cats = [...new Set(L.map((l) => l.cat))].sort();
   const curC = state.cat;
   $('#sCat').innerHTML = '<option value="">Property Type</option>' + cats.map((x) => `<option ${x === curC ? 'selected' : ''}>${x}</option>`).join('');
