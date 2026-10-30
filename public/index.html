@@ -425,7 +425,6 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
           </div>
         </div>
       </div>
-      <div class="curbox" id="curBox" role="group" aria-label="Choose currency"></div>
     </div>
   </div>
 </header>
@@ -819,16 +818,6 @@ const RATES = { USD: { r: 1, s: 'US$' }, GBP: { r: 0.78, s: '£' }, ZAR: { r: 18
 let CUR = 'USD';
 const money = (usd) => RATES[CUR].s + Math.round(usd * RATES[CUR].r).toLocaleString();
 const fmtPrice = (p, kind) => kind === 'rent' ? money(p) + '/mo' : money(p);
-function drawCur() {
-  const box = $('#curBox');
-  if (box) box.innerHTML = Object.keys(RATES).map((c) => `<button type="button" class="${CUR === c ? 'on' : ''}" data-cur="${c}" aria-pressed="${CUR === c}">${RATES[c].s}</button>`).join('');
-}
-function setCur(c) {
-  CUR = c;
-  drawCur();
-  renderGrids();
-  calc();
-}
 
 /* build cost estimator */
 function calc() {
@@ -1096,8 +1085,6 @@ document.addEventListener('click', (e) => {
     menuPanel.classList.remove('open');
     $('#menuToggle').setAttribute('aria-expanded', 'false');
   }
-  const cb = e.target.closest('#curBox button');
-  if (cb) { setCur(cb.dataset.cur); return; }
   const nc = e.target.closest('.navlinks a[data-cat]');
   if (nc) {
     e.preventDefault();
@@ -1176,7 +1163,6 @@ window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
   renderCounts();
   renderLocs();
   renderCats();
-  drawCur();
   renderGrids();
   calc();
   handleHash();
