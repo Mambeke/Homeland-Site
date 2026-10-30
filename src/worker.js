@@ -237,7 +237,13 @@ export default {
         u.pathname = '/admin.html';
         return await env.ASSETS.fetch(new Request(u.toString(), request));
       }
-      return await env.ASSETS.fetch(request);
+      const res = await env.ASSETS.fetch(request);
+      if (url.pathname === '/' || url.pathname.endsWith('.html')) {
+        const fresh = new Response(res.body, res);
+        fresh.headers.set('Cache-Control', 'no-cache');
+        return fresh;
+      }
+      return res;
     } catch (err) {
       console.error(err);
       return new Response(JSON.stringify({ error: 'server error: ' + ((err && err.message) || String(err)) }),
