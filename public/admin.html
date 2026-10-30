@@ -126,6 +126,9 @@ tr:last-child td{border-bottom:none}
           <div><label>Title *</label><input id="fTitle" required maxlength="120"></div>
           <div><label>Reference (e.g. HPG-020)</label><input id="fRef" maxlength="20"></div>
           <div><label>Location *</label><input id="fLoc" required placeholder="e.g. Harare South"></div>
+          <div><label>Province</label><input id="fProv" list="provs" placeholder="e.g. Harare — or “Masvingo · Midlands” for multi-region"><datalist id="provs">
+            <option>Harare</option><option>Bulawayo</option><option>Mashonaland Central</option><option>Mashonaland East</option><option>Mashonaland West</option><option>Manicaland</option><option>Midlands</option><option>Matabeleland North</option><option>Matabeleland South</option><option>Masvingo</option>
+          </datalist></div>
           <div><label>Price (USD) *</label><input id="fPrice" type="number" min="0" step="any" required></div>
           <div><label>Type</label><select id="fKind"><option value="sale">For sale</option><option value="rent">For rent</option></select></div>
           <div><label>Category</label><input id="fCat" list="cats" placeholder="e.g. Houses"><datalist id="cats"></datalist></div>
@@ -234,7 +237,7 @@ function renderRows() {
     <tr data-id="${l.id}">
       <td style="font-weight:600;color:var(--navy)">${l.ref || '—'}</td>
       <td style="max-width:280px">${l.title}</td>
-      <td>${l.loc}</td>
+      <td>${l.loc}${l.province ? `<br><small style="color:#7a8a99">${l.province}</small>` : ''}</td>
       <td style="font-weight:600">${fmt(l.price, l.kind)}</td>
       <td><span class="pill pill-kind">${l.kind}</span></td>
       <td>${pill(l.status)}</td>
@@ -255,6 +258,7 @@ function openForm(l) {
   $('#fTitle').value = l ? l.title : '';
   $('#fRef').value = l ? l.ref : '';
   $('#fLoc').value = l ? l.loc : '';
+  $('#fProv').value = l ? (l.province || '') : '';
   $('#fPrice').value = l ? l.price : '';
   $('#fKind').value = l ? l.kind : 'sale';
   $('#fCat').value = l ? l.cat : '';
@@ -312,6 +316,7 @@ $('#form').addEventListener('submit', async (e) => {
   fd.append('title', $('#fTitle').value.trim());
   fd.append('ref', $('#fRef').value.trim());
   fd.append('loc', $('#fLoc').value.trim());
+  fd.append('province', $('#fProv').value.trim());
   fd.append('price', $('#fPrice').value);
   fd.append('kind', $('#fKind').value);
   fd.append('cat', $('#fCat').value.trim() || 'Houses');
@@ -363,6 +368,7 @@ $('#rows').addEventListener('click', async (e) => {
     fd.append('title', l.title);
     fd.append('ref', l.ref || '');
     fd.append('loc', l.loc);
+    fd.append('province', l.province || '');
     fd.append('price', l.price);
     fd.append('kind', l.kind);
     fd.append('cat', l.cat);

@@ -144,16 +144,30 @@ input,select{font-family:inherit;font-size:15px}
 .s-tabs button:hover{border-color:var(--blue);color:var(--blue)}
 .s-tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
 .s-mk:hover{border-color:var(--blue);color:var(--blue)}
-.searchbox{background:#fff;border-radius:12px;box-shadow:0 18px 50px rgba(9,20,40,.28);overflow:hidden}
+.searchbox{background:#fff;border-radius:12px;box-shadow:0 18px 50px rgba(9,20,40,.28);position:relative}
 .s-row{display:flex;align-items:stretch;padding:12px 0 12px 12px}
 .s-row select,.s-row input{flex:1;min-width:0;border:none;border-right:1px solid var(--line);padding:13px 16px;font-size:14.5px;background:transparent;color:var(--ink)}
 .s-row select:focus,.s-row input:focus{outline:2px solid var(--blue-l);outline-offset:-2px}
 .s-row input::placeholder{color:var(--soft)}
 .s-row input[type=number]::-webkit-outer-spin-button,.s-row input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 .s-row input[type=number]{-moz-appearance:textfield}
-.s-go{padding:0 32px;margin:-12px 0;border:none;background:var(--blue);color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.15s;flex-shrink:0}
+.loc-wrap{position:relative;display:flex;flex:1.6;min-width:0;border-right:1px solid var(--line)}
+.loc-wrap input{border-right:none;padding:13px 34px 13px 16px}
+.loc-x{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:24px;height:24px;border:none;border-radius:50%;background:var(--blue-l);color:var(--navy);font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.loc-x[hidden]{display:none}
+.loc-x:hover{background:var(--blue);color:#fff}
+.loc-panel{position:absolute;top:calc(100% + 10px);left:-12px;right:12px;min-width:340px;z-index:60;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 44px rgba(9,20,40,.24);padding:6px;max-height:330px;overflow:auto}
+.loc-note{padding:8px 12px 4px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--soft)}
+.loc-opt{display:flex;align-items:baseline;justify-content:space-between;gap:14px;width:100%;text-align:left;padding:10px 12px;border:none;background:transparent;border-radius:8px;cursor:pointer;font-size:14.5px;color:var(--ink)}
+.loc-opt:hover,.loc-opt.act{background:var(--blue-l)}
+.loc-opt .ln{font-weight:600}
+.loc-opt .lp{color:var(--soft);font-size:12.5px;white-space:nowrap}
+.loc-none{padding:12px 12px 4px;font-size:14px;color:var(--soft)}
+.loc-src{display:block;padding:8px 12px 10px;font-size:13.5px;font-weight:600;color:var(--blue);text-decoration:none}
+.loc-src:hover{background:var(--blue-l);border-radius:8px}
+.s-go{padding:0 32px;margin:-12px 0;border:none;border-radius:0 12px 12px 0;background:var(--blue);color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.15s;flex-shrink:0}
 .s-go:hover{background:#155A94}
-@media (max-width:700px){.search-wrap{margin-top:40px}.s-tabs{gap:6px}.s-tabs button,.s-tabs .s-mk{flex:1;padding:10px 6px;font-size:13.5px;text-align:center}.s-row{flex-wrap:wrap;padding:12px 12px 0}.s-row select{min-width:100%;border-right:none;border-bottom:1px solid var(--line)}.s-row input{display:none}.s-go{width:calc(100% + 24px);margin:0 -12px;height:48px;padding:0}}
+@media (max-width:700px){.search-wrap{margin-top:40px}.s-tabs{gap:6px}.s-tabs button,.s-tabs .s-mk{flex:1;padding:10px 6px;font-size:13.5px;text-align:center}.s-row{flex-wrap:wrap;padding:12px 12px 0}.s-row select{min-width:100%;border-right:none;border-bottom:1px solid var(--line)}.s-row .loc-wrap{flex:1;min-width:100%;border-right:none;border-bottom:1px solid var(--line)}#sMin,#sMax{display:none}.loc-panel{left:0;right:0}.s-go{width:calc(100% + 24px);margin:0 -12px;height:48px;padding:0;border-radius:0 0 12px 12px}}
 
 /* doors */
 .doors{background:var(--cream);padding:64px 0}
@@ -430,7 +444,11 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
       </div>
       <div class="searchbox">
         <div class="s-row">
-          <select id="sLoc"><option value="">Enter a location</option></select>
+          <div class="loc-wrap">
+            <input id="sLoc" type="text" autocomplete="off" spellcheck="false" placeholder="Town, suburb or province…">
+            <button type="button" class="loc-x" id="sLocX" aria-label="Clear location" hidden>×</button>
+            <div class="loc-panel" id="locPanel" hidden></div>
+          </div>
           <select id="sCat"><option value="">Property Type</option></select>
           <input id="sMin" type="number" min="0" placeholder="Min $">
           <input id="sMax" type="number" min="0" placeholder="Max $">
@@ -703,17 +721,78 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <script>
 const WA = 'https://wa.me/27685302223?text=';
 let L = [];
-const state = { tab: 'sale', loc: '', cat: '', min: null, max: null };
+const state = { tab: 'sale', loc: '', cat: '', min: null, max: null, locSel: null };
 
-/* locations offered (Zimbabwe-wide, matching the major portals' coverage) */
-const LOCATIONS = [
-  ['Harare', ['Harare', 'Harare CBD', 'Harare North', 'Harare South', 'Harare East', 'Harare West', 'Harare High Density']],
-  ['Bulawayo', ['Bulawayo', 'Bulawayo CBD Industrial', 'Bulawayo East', 'Bulawayo North', 'Bulawayo High-Density']],
-  ['Around Harare', ['Chitungwiza', 'Goromonzi', 'Marondera', 'Mazowe', 'Msasa', 'Norton', 'Nyabira', 'Ruwa']],
-  ['Towns & Cities', ['Beitbridge', 'Binga', 'Bindura', 'Chegutu', 'Chinhoyi', 'Chirundu', 'Gokwe', 'Gweru', 'Gwanda', 'Highfield', 'Hwange', 'Hurungwe', 'Kadoma', 'Kariba', 'KweKwe', 'Mberengwa', 'Murehwa', 'Masvingo', 'Mutare', 'Shurugwi', 'Victoria Falls', 'Zvishavane']],
-  ['Harare Suburbs', ['Avondale', 'Borrowdale', 'Burnside', 'Budiriro', 'Darwendale', 'Eastlea', 'Emerald Hill', 'Glen Lorne', 'Glen Norah', 'Greendale', 'Greystone Park', 'Hatfield', 'Highlands', 'Hillside', 'Kuwadzana', 'Mabvuku', 'Mabvazuva', 'Marlborough', 'Matsheumhlope', 'Mount Pleasant', 'Mt Pleasant Heights', 'Newlands', 'Northwood', 'Pomona', 'Queens Park East', 'Umwinsidale', 'Warren Park', 'Waterfalls', 'Westgate']],
-  ['Provinces', ['Mashonaland East', 'Mashonaland West', 'Mashonaland Central', 'Manicaland', 'Midlands', 'Matabeleland North', 'Matabeleland South', 'Masvingo Province', 'Maxicaland']]
-];
+/* ---------- location intelligence: typed search over Zimbabwe geography ---------- */
+let GEO = { provinces: [], places: [] };
+const normLoc = (s) => (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+
+function lev(a, b) {
+  if (a === b) return 0;
+  const m = a.length, n = b.length;
+  if (!m) return n; if (!n) return m;
+  let prev = Array.from({ length: n + 1 }, (_, i) => i), cur = new Array(n + 1);
+  for (let i = 1; i <= m; i++) {
+    cur[0] = i;
+    for (let j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    [prev, cur] = [cur, prev];
+  }
+  return prev[n];
+}
+function jaroWinkler(a, b) {
+  if (a === b) return 1;
+  const la = a.length, lb = b.length;
+  if (!la || !lb) return 0;
+  const md = Math.max(0, Math.floor(Math.max(la, lb) / 2) - 1);
+  const am = new Array(la).fill(false), bm = new Array(lb).fill(false);
+  let matches = 0;
+  for (let i = 0; i < la; i++) for (let j = Math.max(0, i - md); j < Math.min(lb, i + md + 1); j++)
+    if (!bm[j] && a[i] === b[j]) { am[i] = bm[j] = true; matches++; break; }
+  if (!matches) return 0;
+  let t = 0, k = 0;
+  for (let i = 0; i < la; i++) if (am[i]) { while (!bm[k]) k++; if (a[i] !== b[k]) t++; k++; }
+  const mm = matches;
+  const jaro = (mm / la + mm / lb + (mm - t / 2) / mm) / 3;
+  let pw = 0;
+  for (let i = 0; i < Math.min(4, la, lb); i++) { if (a[i] === b[i]) pw++; else break; }
+  return jaro + pw * 0.1 * (1 - jaro);
+}
+/* Score a query against the geography. Places: exact(100) > prefix(90) > substring(80) > word-prefix(50) > fuzzy.
+   Fuzzy accepts Levenshtein<=2 (for words 4+ chars) or Jaro-Winkler>=0.87. */
+function suggest(raw) {
+  const q = normLoc(raw);
+  if (!q) return { places: [], provs: [] };
+  const provs = GEO.provinces.filter((p) => { const n = normLoc(p); return n === q || (q.length >= 3 && (n.startsWith(q) || n.includes(q))); });
+  const places = [];
+  GEO.places.forEach((pl) => {
+    const n = normLoc(pl.name);
+    let score = 0;
+    if (n === q) score = 100;
+    else if (n.startsWith(q)) score = 90;
+    else if (n.includes(q)) score = 80;
+    else if (q.length >= 4 && n.split(' ').some((w) => w.startsWith(q))) score = 50;
+    else {
+      const lw = jaroWinkler(q, n);
+      if (lw >= 0.85 || (lev(q, n) <= 3 && Math.min(q.length, n.length) >= 5)) score = 55 + lw * 25;
+    }
+    if (score > 0) places.push({ name: pl.name, province: pl.province, score });
+  });
+  places.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+  return { places: places.slice(0, 7), provs: provs.slice(0, 3) };
+}
+/* Filter a listing against a chosen location selection. */
+function locMatch(l, sel) {
+  if (!sel) return true;
+  const lc = normLoc(l.loc), pc = normLoc(l.province);
+  if (sel.kind === 'province' || sel.kind === 'text') {
+    const p = normLoc(sel.name);
+    return pc.includes(p) || lc.includes(p);
+  }
+  const n = normLoc(sel.name);
+  if (lc.includes(n)) return true;
+  if (sel.province) { const p = normLoc(sel.province); if (pc.includes(p)) return true; }
+  return false;
+}
 
 const $ = (s) => document.querySelector(s);
 function escapeAttr(value) {
@@ -764,11 +843,7 @@ function card(l) {
 }
 
 function match(l) {
-  if (state.loc) {
-    const loc = (l.loc || '').toLowerCase();
-    const q = state.loc.toLowerCase();
-    if (!loc.includes(q) && !q.includes(loc)) return false;
-  }
+  if (!locMatch(l, state.locSel)) return false;
   if (state.cat && l.cat !== state.cat) return false;
   if (state.min != null && l.price < state.min) return false;
   if (state.max != null && l.price > state.max) return false;
@@ -793,15 +868,98 @@ function renderCounts() {
 }
 
 function renderLocs() {
-  const cur = state.loc;
-  const groups = LOCATIONS.map(([g, items]) =>
-    `<optgroup label="${g}">` + items.map((x) => `<option ${x === cur ? 'selected' : ''}>${x}</option>`).join('') + '</optgroup>'
-  ).join('');
-  $('#sLoc').innerHTML = '<option value="">Enter a location</option>' + groups;
   const cats = [...new Set(L.map((l) => l.cat))].sort();
   const curC = state.cat;
   $('#sCat').innerHTML = '<option value="">Property Type</option>' + cats.map((x) => `<option ${x === curC ? 'selected' : ''}>${x}</option>`).join('');
 }
+
+/* ---------- typed location field + suggestion panel ---------- */
+const locInput = $('#sLoc'), locPanel = $('#locPanel'), locX = $('#sLocX');
+let locTimer = null, locActive = -1, locBlurTimer = null;
+
+function renderPanel(raw) {
+  const q = normLoc(raw);
+  if (q.length < 2) { locPanel.hidden = true; return; }
+  if (!GEO.places.length) {
+    locPanel.innerHTML = '<div class="loc-none">Loading Zimbabwe locations…</div>';
+    locPanel.hidden = false;
+    return;
+  }
+  const { places, provs } = suggest(raw);
+  let html = '';
+  if (provs.length) {
+    html += `<div class="loc-note">Provinces</div>`;
+    provs.forEach((p) => { html += `<button type="button" class="loc-opt" data-p="prov" data-name="${p}"><span class="ln">${p}</span><span class="lp">All areas in the province</span></button>`; });
+  }
+  if (places.length) {
+    if (places[0].score < 80 && !provs.length) html += `<div class="loc-note">Did you mean</div>`;
+    places.forEach((pl) => { html += `<button type="button" class="loc-opt" data-p="place" data-name="${pl.name}" data-prov="${pl.province}"><span class="ln">${pl.name}</span><span class="lp">${pl.province}</span></button>`; });
+  }
+  if (!html) {
+    html = `<div class="loc-none">No place in our list matches “${raw}” yet.</div>
+      <a class="loc-src" href="${WA + encodeURIComponent(`Hi — I'm looking for property in ${raw}. Can you source it for me?`)}" target="_blank" rel="noopener">We can source it for you — ask on WhatsApp →</a>`;
+  }
+  locPanel.innerHTML = html;
+  locPanel.hidden = false;
+}
+
+function pickLoc(o) {
+  const name = o.dataset.name, prov = o.dataset.prov || '';
+  if (o.dataset.p === 'prov') {
+    state.locSel = { kind: 'province', name };
+    locInput.value = name;
+  } else {
+    state.locSel = { kind: 'place', name, province: prov };
+    locInput.value = name + ', ' + prov;
+  }
+  state.loc = locInput.value;
+  locX.hidden = false;
+  locPanel.hidden = true;
+  locInput.blur();
+  renderGrids();
+  const target = state.tab === 'rent' ? '#rent' : '#sale';
+  document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
+}
+
+locInput.addEventListener('input', () => {
+  state.locSel = null;
+  locX.hidden = !locInput.value;
+  clearTimeout(locTimer);
+  clearTimeout(locBlurTimer);
+  locTimer = setTimeout(() => { locActive = -1; renderPanel(locInput.value.trim()); }, 120);
+});
+locInput.addEventListener('focus', () => {
+  clearTimeout(locBlurTimer);
+  if (locInput.value.trim().length >= 2) { locActive = -1; renderPanel(locInput.value.trim()); }
+});
+locInput.addEventListener('blur', () => { locBlurTimer = setTimeout(() => { locPanel.hidden = true; }, 160); });
+locInput.addEventListener('keydown', (e) => {
+  const opts = [...locPanel.querySelectorAll('.loc-opt')];
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    if (locPanel.hidden || !opts.length) return;
+    e.preventDefault();
+    locActive = (locActive + (e.key === 'ArrowDown' ? 1 : -1) + opts.length) % opts.length;
+    opts.forEach((o, i) => o.classList.toggle('act', i === locActive));
+  } else if (e.key === 'Enter') {
+    if (!locPanel.hidden && opts.length && locActive >= 0) { e.preventDefault(); pickLoc(opts[locActive]); }
+    else if (e.target === locInput) { e.preventDefault(); applyAndGo(); }
+  } else if (e.key === 'Escape') {
+    locPanel.hidden = true;
+  }
+});
+locPanel.addEventListener('mousedown', (e) => {
+  const o = e.target.closest('.loc-opt');
+  if (o) { e.preventDefault(); pickLoc(o); }
+});
+locX.addEventListener('click', () => {
+  locInput.value = '';
+  state.locSel = null;
+  state.loc = '';
+  locX.hidden = true;
+  locPanel.hidden = true;
+  renderGrids();
+  locInput.focus();
+});
 
 function renderCats() {
   const cats = [...new Set(L.map((l) => l.cat))].sort();
@@ -811,12 +969,33 @@ function renderCats() {
   }).join('');
 }
 
+function resolveLocSel(raw) {
+  const q = normLoc(raw);
+  if (!q) return null;
+  const s = suggest(raw);
+  const exactProv = s.provs.find((p) => normLoc(p) === q);
+  if (exactProv) return { kind: 'province', name: exactProv };
+  const best = s.places[0];
+  if (best && best.score >= 58) return { kind: 'place', name: best.name, province: best.province };
+  return { kind: 'text', name: raw };
+}
+
 function applyAndGo() {
-  state.loc = $('#sLoc').value;
+  const raw = locInput.value.trim();
+  if (raw) {
+    state.locSel = resolveLocSel(raw);
+    if (state.locSel.kind === 'place') locInput.value = state.locSel.name + ', ' + state.locSel.province;
+    if (state.locSel.kind === 'province') locInput.value = state.locSel.name;
+  } else {
+    state.locSel = null;
+  }
+  state.loc = locInput.value;
   state.cat = $('#sCat').value;
   const mn = $('#sMin').value, mx = $('#sMax').value;
   state.min = mn ? parseFloat(mn) : null;
   state.max = mx ? parseFloat(mx) : null;
+  locX.hidden = !locInput.value;
+  locPanel.hidden = true;
   renderGrids();
   const target = state.tab === 'rent' ? '#rent' : state.tab === 'all' ? '#sale' : '#sale';
   document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
@@ -965,6 +1144,11 @@ window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
   } catch (err) {
     L = [];
   }
+  try {
+    const g = await fetch('/locations.json');
+    if (g.ok) GEO = await g.json();
+  } catch (err) { /* suggestions degrade to text matching */ }
+  if (locInput.value.trim().length >= 2) renderPanel(locInput.value.trim());
   renderCounts();
   renderLocs();
   renderCats();

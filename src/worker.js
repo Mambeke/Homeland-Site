@@ -42,6 +42,11 @@ async function ensureSchema(env) {
     const sql = raw.replace(/\s+/g, ' ').trim();
     await env.DB.exec(sql);
   }
+  try {
+    await env.DB.exec('ALTER TABLE listings ADD COLUMN province TEXT');
+  } catch (e) {
+    /* column already exists */
+  }
   schemaReady = true;
 }
 
@@ -57,7 +62,7 @@ function rowToListing(r, photos) {
   try { amenities = JSON.parse(r.amenities || '[]'); } catch (e) {}
   try { specs = JSON.parse(r.specs || '{}'); } catch (e) {}
   return {
-    id: r.id, ref: r.ref || '', title: r.title, loc: r.loc, price: r.price,
+    id: r.id, ref: r.ref || '', title: r.title, loc: r.loc, province: r.province || '', price: r.price,
     kind: r.kind, cat: r.cat, beds: r.beds ?? null, baths: r.baths ?? null,
     size: r.size || '', desc: r.desc || '', note: r.note || '',
     amenities, specs, status: r.status, verified: r.verified || '',
@@ -122,22 +127,23 @@ async function saveListing(request, env) {
   if (f('specs')) { try { specsJson = JSON.stringify(JSON.parse(f('specs'))); } catch (e) {} }
 
   let id = f('id');
+  const prov = f('province');
   if (id) {
     const existing = await env.DB.prepare('SELECT id FROM listings WHERE id = ?').bind(id).first();
     if (!existing) return json({ error: 'listing not found' }, 404);
     await env.DB.prepare(
-      `UPDATE listings SET ref=?, title=?, loc=?, price=?, kind=?, cat=?, beds=?, baths=?, size=?, desc=?, note=?, amenities=?, specs=?, status=?, verified=?, updated_at=? WHERE id=?`
+      `UPDATE listings SET ref=?, title=?, loc=?, province=?, price=?, kind=?, cat=?, beds=?, baths=?, size=?, desc=?, note=?, amenities=?, specs=?, status=?, verified=?, updated_at=? WHERE id=?`
     )
-      .bind(f('ref'), title, loc, price, kind, cat, beds, baths, f('size'), f('desc'), f('note'),
+      .bind(f('ref'), title, loc, prov, price, kind, cat, beds, baths, f('size'), f('desc'), f('note'),
         amenitiesJson, specsJson, status, f('verified') || '', now, id)
       .run();
   } else {
     id = crypto.randomUUID();
     await env.DB.prepare(
-      `INSERT INTO listings (id, ref, title, loc, price, kind, cat, beds, baths, size, desc, note, amenities, specs, status, verified, created_at, updated_at)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+      `INSERT INTO listings (id, ref, title, loc, province, price, kind, cat, beds, baths, size, desc, note, amenities, specs, status, verified, created_at, updated_at)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
     )
-      .bind(id, f('ref'), title, loc, price, kind, cat,
+      .bind(id, f('ref'), title, loc, prov, price, kind, cat,
         f('beds') ? parseFloat(f('beds')) : null, f('baths') ? parseFloat(f('baths')) : null,
         f('size'), f('desc'), f('note'), JSON.stringify(f('amenities') ? f('amenities').split(',').map((s) => s.trim()).filter(Boolean) : []),
         f('specs') || '{}', status, f('verified') || '', now, now)
