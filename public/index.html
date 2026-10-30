@@ -219,7 +219,16 @@ input,select{font-family:inherit;font-size:15px}
 .empty{grid-column:1/-1;text-align:center;color:var(--soft);padding:48px 0;font-size:15px}
 
 /* featured */
-.feat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:32px}
+.feat-outer{max-width:1180px;margin:0 auto;padding:0 24px}
+.feat-grid{display:flex;gap:18px;margin-top:32px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.feat-grid::-webkit-scrollbar{display:none}
+.feat-grid > *{flex:0 0 calc((100% - 36px)/3);min-width:0;scroll-snap-align:start}
+.feat-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.feat-nav-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:all .18s}
+.feat-nav-btn:hover:not(:disabled){border-color:var(--gold);color:var(--gold);transform:translateY(-1px)}
+.feat-nav-btn:disabled{opacity:.32;cursor:default}
+.feat-bar{position:relative;width:min(420px,50vw);height:4px;background:var(--line);border-radius:99px;cursor:pointer;flex:0 1 420px}
+.feat-bar-fill{position:absolute;top:0;bottom:0;left:0;width:60%;background:var(--gold);border-radius:99px;transition:width .15s ease,left .15s ease}
 .feat-grid .card-ph{aspect-ratio:16/11}
 .feat-grid .card-b{padding:14px 14px 16px;gap:3px}
 .feat-grid .card-loc{font-size:11.5px}
@@ -231,9 +240,9 @@ input,select{font-family:inherit;font-size:15px}
 .ktag-r{background:rgba(245,166,35,.97);color:#231602}
 .feat-more{text-align:center;margin-top:26px}
 .feat-more a{color:var(--blue);font-weight:600}
-@media (max-width:1100px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:680px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:440px){.feat-grid{grid-template-columns:1fr}}
+@media (max-width:679px){.feat-grid > *{flex:0 0 calc((100% - 18px)/2)}}
+@media (max-width:439px){.feat-grid > *{flex:0 0 100%}}
+@media (min-width:1520px){.feat-outer{max-width:1500px}.feat-grid > *{flex:0 0 calc((100% - 54px)/4)}}
 
 /* categories */
 .cats{background:var(--grey);padding:56px 0}
@@ -505,7 +514,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
     <p class="ssub">Five listings we're proudest of right now — hand-picked from the marketplace, each one checked on the ground.</p>
   </div>
 </section>
-<section class="market"><div class="wrap"><div class="grid feat-grid" id="featGrid"><div class="empty">Loading listings…</div></div><p class="feat-more" id="featMore"></p></div></section>
+<section class="market"><div class="feat-outer"><div class="feat-grid" id="featGrid" tabindex="0" aria-label="Featured properties — scroll for more"><div class="empty">Loading listings…</div></div><div class="feat-nav" id="featNav"><button type="button" class="feat-nav-btn" id="featPrev" aria-label="Previous listings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><div class="feat-bar" id="featBar"><div class="feat-bar-fill" id="featBarFill"></div></div><button type="button" class="feat-nav-btn" id="featNext" aria-label="Next listings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div><p class="feat-more" id="featMore"></p></div></section>
 </div>
 
 <section class="services" id="services">
@@ -929,6 +938,44 @@ function renderFeatured() {
   if (more) more.innerHTML = L.length > feats.length
     ? `Showing ${feats.length} of ${L.length} — <a href="/marketplace.html">browse the full Marketplace →</a>`
     : '<a href="/marketplace.html">Browse the full Marketplace →</a>';
+  setupFeatCarousel();
+}
+function setupFeatCarousel() {
+  const grid = $('#featGrid');
+  if (!grid) return;
+  const nav = $('#featNav'), fill = $('#featBarFill'), track = $('#featBar');
+  const prev = $('#featPrev'), next = $('#featNext');
+  function step() {
+    const c = grid.querySelector(':scope > *');
+    if (!c) return grid.clientWidth;
+    return c.getBoundingClientRect().width + 18;
+  }
+  function update() {
+    const max = grid.scrollWidth - grid.clientWidth;
+    const can = max > 6;
+    if (nav) nav.style.display = can ? 'flex' : 'none';
+    prev.disabled = grid.scrollLeft <= 4;
+    next.disabled = max - grid.scrollLeft <= 4;
+    if (fill && can) {
+      const fw = Math.max(12, (grid.clientWidth / grid.scrollWidth) * 100);
+      fill.style.width = fw + '%';
+      fill.style.left = (grid.scrollLeft / max) * (100 - fw) + '%';
+    }
+  }
+  function go(dir) { grid.scrollBy({ left: dir * step(), behavior: 'smooth' }); }
+  prev.addEventListener('click', () => go(-1));
+  next.addEventListener('click', () => go(1));
+  track.addEventListener('click', (e) => {
+    const r = track.getBoundingClientRect();
+    grid.scrollTo({ left: ((e.clientX - r.left) / r.width) * (grid.scrollWidth - grid.clientWidth), behavior: 'smooth' });
+  });
+  grid.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  grid.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+  });
+  window.addEventListener('resize', update);
+  update();
 }
 
 function renderCounts() {
