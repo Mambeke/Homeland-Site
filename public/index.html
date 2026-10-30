@@ -396,15 +396,15 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
     <a class="logo" href="#" id="logoLink"><img src="/logo.png" alt="Homeland Property Group"></a>
     <nav class="navlinks" aria-label="Main navigation">
       <div class="nitem">
-        <a href="#sale" data-nav>For Sale <span class="caret">▾</span></a>
+        <a href="/marketplace.html" data-nav>For Sale <span class="caret">▾</span></a>
         <div class="dd">
-          <a href="#sale" data-cat="Houses" data-kind="sale">Houses for Sale</a>
-          <a href="#sale" data-cat="Urban Stands" data-kind="sale">Urban Stands</a>
-          <a href="#sale" data-cat="Rural Stands" data-kind="sale">Rural Stands &amp; Farms</a>
-          <a href="#sale" data-cat="Mines" data-kind="sale">Mines &amp; Claims</a>
-          <a href="#sale" data-cat="Hotels" data-kind="sale">Hotels &amp; Lodges</a>
-          <a href="#sale" data-cat="Commercial &amp; Other" data-kind="sale">Commercial &amp; Industrial</a>
-          <a class="dd-all" href="#sale" data-cat="" data-kind="sale">All properties for sale →</a>
+          <a href="/marketplace.html" data-cat="Houses" data-kind="sale">Houses for Sale</a>
+          <a href="/marketplace.html" data-cat="Urban Stands" data-kind="sale">Urban Stands</a>
+          <a href="/marketplace.html" data-cat="Rural Stands" data-kind="sale">Rural Stands &amp; Farms</a>
+          <a href="/marketplace.html" data-cat="Mines" data-kind="sale">Mines &amp; Claims</a>
+          <a href="/marketplace.html" data-cat="Hotels" data-kind="sale">Hotels &amp; Lodges</a>
+          <a href="/marketplace.html" data-cat="Commercial &amp; Other" data-kind="sale">Commercial &amp; Industrial</a>
+          <a class="dd-all" href="/marketplace.html" data-cat="" data-kind="sale">All properties for sale →</a>
         </div>
       </div>
       <div class="nitem">
@@ -570,17 +570,6 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   </div>
 </section>
 
-<div id="saleSec">
-<section class="band" id="sale">
-  <div class="wrap">
-    <p class="eyebrow">HOMELAND MARKETPLACE</p>
-    <h2 class="stitle">Find property for sale in Zimbabwe</h2>
-    <p class="ssub">Browse available houses, stands, farms and commercial opportunities. Contact us to ask about a listing or request checks before you proceed.</p>
-  </div>
-</section>
-<section class="market"><div class="wrap"><div class="grid" id="saleGrid"><div class="empty">Loading listings…</div></div><p class="legend"><b>What the badges mean:</b> ✓ Verified — deeds search done, seller ID matched, property inspected. No badge? That listing is still being checked — ask us for the current status. Don't see what you're looking for? <a href="#sell">We'll source it.</a></p></div></section>
-</div>
-
 <div id="rentSec">
 <section class="band" id="rent">
   <div class="wrap">
@@ -650,7 +639,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
     </div>
     <p class="about-fine">All property transactions close through registered estate agents and conveyancers in line with Zimbabwean law. Homeland Property Group acts as your consultant and owner's representative throughout.</p>
     <div class="std-cta">
-      <a class="btn btn-g" href="#sale">Explore the marketplace</a>
+      <a class="btn btn-g" href="/marketplace.html">Explore the marketplace</a>
       <a class="btn btn-n" href="#contact">Talk to Homeland</a>
     </div>
   </div>
@@ -704,7 +693,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
       <div>
         <h5>Explore</h5>
         <a href="/marketplace.html">Marketplace</a>
-        <a href="#sale" data-nav>Properties for Sale</a>
+        <a href="/marketplace.html" data-nav>Properties for Sale</a>
         <a href="#rent" data-nav>Properties to Rent</a>
         <a href="#services" data-nav>Services &amp; prices</a>
         <a href="#sell" data-nav>Sell or list property</a>
@@ -904,11 +893,8 @@ function emptyMsg(kind) {
   return base + ' match your search — try clearing a filter.';
 }
 function renderGrids() {
-  $('#saleSec').style.display = state.tab === 'rent' ? 'none' : '';
-  $('#rentSec').style.display = state.tab === 'sale' ? 'none' : '';
-  const sales = L.filter((l) => l.kind === 'sale' && match(l));
+  $('#rentSec').style.display = state.tab === 'rent' ? '' : 'none';
   const rents = L.filter((l) => l.kind === 'rent' && match(l));
-  $('#saleGrid').innerHTML = sales.length ? sales.map((l) => card(l)).join('') : '<div class="empty">' + emptyMsg('sale') + '</div>';
   $('#rentGrid').innerHTML = rents.length ? rents.map((l) => card(l)).join('') : '<div class="empty">' + emptyMsg('rent') + '</div>';
 }
 
@@ -1040,8 +1026,8 @@ function pickLoc(o) {
   locPanel.hidden = true;
   locInput.blur();
   renderGrids();
-  const target = state.tab === 'rent' ? '#rent' : '#sale';
-  document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
+  if (state.tab === 'rent') document.querySelector('#rent').scrollIntoView({ behavior: 'smooth' });
+  else location.href = '/marketplace.html';
 }
 
 locInput.addEventListener('input', () => {
@@ -1126,8 +1112,8 @@ function applyAndGo() {
   locX.hidden = !locInput.value;
   locPanel.hidden = true;
   renderGrids();
-  const target = state.tab === 'rent' ? '#rent' : state.tab === 'all' ? '#sale' : '#sale';
-  document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
+  if (state.tab === 'rent') document.querySelector('#rent').scrollIntoView({ behavior: 'smooth' });
+  else location.href = '/marketplace.html';
 }
 
 /* ---------- detail view ---------- */
@@ -1192,13 +1178,14 @@ document.addEventListener('click', (e) => {
   }
   const nc = e.target.closest('.navlinks a[data-cat]');
   if (nc) {
+    if (nc.dataset.kind === 'sale') return; // For-sale categories live on the Marketplace page now
     e.preventDefault();
     state.cat = nc.dataset.cat;
     state.tab = nc.dataset.kind;
     document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === state.tab));
     $('#sCat').value = state.cat;
     renderGrids();
-    const goGrid = () => document.querySelector(state.tab === 'rent' ? '#rent' : '#sale').scrollIntoView({ behavior: 'smooth' });
+    const goGrid = () => document.querySelector('#rent').scrollIntoView({ behavior: 'smooth' });
     if (!$('#view-detail').hidden) { closeDetail(); setTimeout(goGrid, 30); } else goGrid();
     return;
   }
@@ -1215,7 +1202,8 @@ document.addEventListener('click', (e) => {
     state.cat = state.cat === cc.dataset.cat ? '' : cc.dataset.cat;
     $('#sCat').value = state.cat;
     renderGrids();
-    document.querySelector('#sale').scrollIntoView({ behavior: 'smooth' });
+    if (state.tab === 'rent') document.querySelector('#rent').scrollIntoView({ behavior: 'smooth' });
+    else location.href = '/marketplace.html';
     return;
   }
   const guide = e.target.closest('.insc h4');
