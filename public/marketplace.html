@@ -17,7 +17,7 @@
   --soft:#5D6E7C; --warm:#C8873A; --bg:#FFFFFF;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
 h1,h2,h3,.serif{font-family:'Playfair Display',serif}
 a{color:inherit;text-decoration:none}
@@ -319,7 +319,20 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 .mk-toolbar{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
 .mk-tabs .s-tabs{margin-bottom:0}
 .mk-search{margin-top:14px}
-@media (max-width:700px){.mk-toolbar{flex-direction:column;gap:10px}.mk-toolbar .curbox{margin:0 auto}#mMin,#mMax{display:none}.mk-search .s-go{width:calc(100% + 24px)}}
+.price-sel{border-right:none}
+/* property-type checkbox picker */
+.type-wrap{position:relative;display:flex;flex:1.4;min-width:0;border-right:1px solid var(--line)}
+.td-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:0 14px;border:none;background:transparent;font:inherit;font-size:14.5px;color:var(--ink);cursor:pointer;text-align:left;white-space:nowrap;overflow:hidden}
+.td-btn .td-lab{overflow:hidden;text-overflow:ellipsis}
+.td-btn .caret{margin:0;flex-shrink:0}
+.td-panel{position:absolute;top:calc(100% + 10px);left:-12px;width:272px;max-width:72vw;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 44px rgba(9,30,55,.24);z-index:70;display:flex;flex-direction:column;overflow:hidden}
+.td-list{max-height:238px;overflow-y:auto;padding:6px;scrollbar-width:thin}
+.td-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:14px;color:var(--ink);white-space:nowrap}
+.td-row:hover{background:var(--blue-l)}
+.td-row input{accent-color:var(--blue);width:15px;height:15px;flex:none;padding:0;margin:0}
+.td-hint{padding:7px 12px;font-size:11.5px;color:var(--soft);background:linear-gradient(to top,#fff 55%,rgba(255,255,255,0));text-align:center}
+.td-hint[hidden]{display:none}
+@media (max-width:700px){.mk-toolbar{flex-direction:column;gap:10px}.mk-toolbar .curbox{margin:0 auto}.type-wrap{flex:1;min-width:100%;border-right:none;border-bottom:1px solid var(--line)}.mk-search .s-go{width:calc(100% + 24px)}.td-panel{left:-12px}}
 .card-price{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .ktag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:5px;white-space:nowrap}
 .ktag-s{background:var(--blue-l);color:var(--blue)}
@@ -347,11 +360,44 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   <div class="wrap">
     <a class="logo" href="/" id="logoLink"><img src="/logo.png" alt="Homeland Property Group"></a>
     <nav class="navlinks" aria-label="Main navigation">
-      <a href="/#sale" data-nav>For Sale</a>
-      <a href="/#rent" data-nav>To Rent</a>
+      <div class="nitem">
+        <a href="/marketplace.html?kind=sale" data-nav>For Sale <span class="caret">▾</span></a>
+        <div class="dd">
+          <a href="/marketplace.html?kind=sale&amp;type=Houses">Houses for Sale</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land">Urban Stands</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands">Rural Stands &amp; Farms</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Mines">Mines &amp; Claims</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges">Hotels &amp; Lodges</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories">Commercial &amp; Industrial</a>
+          <a class="dd-all" href="/marketplace.html?kind=sale">All properties for sale →</a>
+        </div>
+      </div>
+      <div class="nitem">
+        <a href="/marketplace.html?kind=rent" data-nav>To Rent <span class="caret">▾</span></a>
+        <div class="dd">
+          <a href="/marketplace.html?kind=rent&amp;type=Houses">Houses to Rent</a>
+          <a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories">Commercial to Rent</a>
+          <a class="dd-all" href="/marketplace.html?kind=rent">All rentals →</a>
+        </div>
+      </div>
       <a href="/marketplace.html" class="mk-on" aria-current="page">Marketplace</a>
-      <a href="/#services" data-nav>Our Services</a>
-      <a href="/#about" data-nav>About</a>
+      <div class="nitem">
+        <a href="/#services" data-nav>Our Services <span class="caret">▾</span></a>
+        <div class="dd">
+          <a href="/#services">Advisory Session — from $50</a>
+          <a href="/#services">Verification Report — from $250</a>
+          <a href="/#services">Full Turnkey Purchase</a>
+          <a href="/#services">Build Management</a>
+          <a href="/#estimator">Build Cost Estimator</a>
+        </div>
+      </div>
+      <div class="nitem">
+        <a href="/#about" data-nav>About <span class="caret">▾</span></a>
+        <div class="dd">
+          <a href="/#about">About Homeland</a>
+          <a href="/#sell">For Agents &amp; Sellers</a>
+        </div>
+      </div>
       <a href="/#contact" data-nav>Contact</a>
     </nav>
     <div class="navr">
@@ -362,7 +408,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         <div class="menu-panel" id="siteMenu">
           <div class="menu-grid">
             <a class="menu-item" href="/marketplace.html"><strong>Marketplace</strong><span>Browse property for sale and to rent.</span></a>
-            <a class="menu-item" href="/#sale" data-nav><strong>For Sale</strong><span>Houses, stands, farms, mines, hotels and commercial.</span></a>
+            <a class="menu-item" href="/marketplace.html?kind=sale" data-nav><strong>For Sale</strong><span>Houses, stands, farms, mines, hotels and commercial.</span></a>
             <a class="menu-item" href="/#rent" data-nav><strong>To Rent</strong><span>Find rooms, homes, farms and commercial space.</span></a>
             <a class="menu-item" href="/#sell" data-nav><strong>Sell or list property</strong><span>You have the stock. We have the buyers.</span></a>
             <a class="menu-item" href="/#services" data-nav><strong>Services &amp; prices</strong><span>Advisory, verification, turnkey and build management — written prices.</span></a>
@@ -402,33 +448,14 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         <button type="button" class="loc-x" id="mLocX" aria-label="Clear location" hidden>×</button>
         <div class="loc-panel" id="mLocPanel" hidden></div>
       </div>
-      <select id="mType" aria-label="Property type">
-        <option value="">All types</option>
-        <option>Houses</option>
-        <option>Townhouses &amp; Complexes</option>
-        <option>Land</option>
-        <option>Stands &amp; Residential Land</option>
-        <option>Commercial &amp; Industrial Land</option>
-        <option>Farms &amp; Agricultural Land</option>
-        <option>Commercial Property</option>
-        <option>Warehouses &amp; Factories</option>
-        <option>Shops &amp; Retail Property</option>
-        <option>Offices</option>
-        <option>Hotels &amp; Lodges</option>
-        <option>Flats &amp; Apartments</option>
-        <option>Garden Flats</option>
-        <option>Rural Stands</option>
-        <option>Mines</option>
-      </select>
-      <select id="mBeds" aria-label="Bedrooms">
-        <option value="">Bedrooms</option>
-        <option value="1">1+ bedrooms</option>
-        <option value="2">2+ bedrooms</option>
-        <option value="3">3+ bedrooms</option>
-        <option value="4">4+ bedrooms</option>
-      </select>
-      <input id="mMin" type="number" min="0" step="any" placeholder="Min $">
-      <input id="mMax" type="number" min="0" step="any" placeholder="Max $">
+      <div class="type-wrap">
+        <button type="button" class="td-btn" id="mTypeBtn" aria-haspopup="true" aria-expanded="false"><span id="mTypeLabel" class="td-lab">All types</span><span class="caret">▾</span></button>
+        <div class="td-panel" id="mTypePanel" hidden>
+          <div class="td-list" id="mTypeList"></div>
+          <div class="td-hint" id="mTypeHint" hidden></div>
+        </div>
+      </div>
+      <select id="mPrice" class="price-sel" aria-label="Price range"></select>
       <button type="button" class="s-go" id="mGo">Search</button>
     </div>
   </div>
@@ -517,7 +544,65 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <script>
 const WA = 'https://wa.me/27685302223?text=';
 let L = [];
-const state = { tab: 'all', loc: '', locSel: null, type: '', beds: null, min: null, max: null };
+const state = { tab: 'all', loc: '', locSel: null, types: [], min: null, max: null };
+
+/* ---------- property types + price bands (shared with homepage) ---------- */
+const PTYPES = ['Houses', 'Townhouses & Complexes', 'Land', 'Stands & Residential Land', 'Commercial & Industrial Land', 'Farms & Agricultural Land', 'Commercial Property', 'Warehouses & Factories', 'Shops & Retail Property', 'Offices', 'Hotels & Lodges', 'Flats & Apartments', 'Garden Flats', 'Rural Stands', 'Mines'];
+const PRICE_BANDS = {
+  sale: [
+    { v: '', label: 'All prices', min: null, max: null },
+    { v: 's1', label: 'Below US$15,000', min: null, max: 15000 },
+    { v: 's2', label: 'US$15,000 – US$100,000', min: 15000, max: 100000 },
+    { v: 's3', label: 'US$100,000 – US$250,000', min: 100000, max: 250000 },
+    { v: 's4', label: 'US$250,000+', min: 250000, max: null }
+  ],
+  rent: [
+    { v: '', label: 'All prices', min: null, max: null },
+    { v: 'r1', label: 'Below US$1,000', min: null, max: 1000 },
+    { v: 'r2', label: 'US$1,000 – US$2,000', min: 1000, max: 2000 },
+    { v: 'r3', label: 'US$2,000 – US$3,000', min: 2000, max: 3000 },
+    { v: 'r4', label: 'US$3,000+', min: 3000, max: null }
+  ]
+};
+function priceBandsFor(tab) { return PRICE_BANDS[tab === 'rent' ? 'rent' : 'sale']; }
+
+function initTypePicker(btnId, labelId, panelId, listId, hintId, onChange) {
+  const btn = document.getElementById(btnId), label = document.getElementById(labelId);
+  const panel = document.getElementById(panelId), list = document.getElementById(listId), hint = document.getElementById(hintId);
+  list.innerHTML = PTYPES.map((t) => `<label class="td-row"><input type="checkbox" value="${t}"><span>${t}</span></label>`).join('');
+  function selected() { return [...list.querySelectorAll('input:checked')].map((i) => i.value); }
+  function updateLabel() {
+    const sel = selected();
+    label.textContent = !sel.length ? 'All types' : sel.length === 1 ? sel[0] : sel[0] + ' +' + (sel.length - 1);
+  }
+  function syncHint() {
+    if (list.scrollHeight <= list.clientHeight + 4) { hint.hidden = true; return; }
+    const rect = list.getBoundingClientRect();
+    let below = 0;
+    list.querySelectorAll('.td-row').forEach((r) => { if (r.getBoundingClientRect().top > rect.bottom - 4) below++; });
+    if (below > 0) { hint.hidden = false; hint.textContent = below + ' more type' + (below === 1 ? '' : 's') + ' below — keep scrolling'; }
+    else hint.hidden = true;
+  }
+  list.addEventListener('change', () => { updateLabel(); onChange(selected()); });
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    panel.hidden = !panel.hidden;
+    btn.setAttribute('aria-expanded', String(!panel.hidden));
+    if (!panel.hidden) syncHint();
+  });
+  list.addEventListener('scroll', syncHint);
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !panel.hidden) { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+  });
+  return {
+    get: selected,
+    set: (types) => { list.querySelectorAll('input').forEach((i) => { i.checked = types.includes(i.value); }); updateLabel(); },
+    refresh: updateLabel
+  };
+}
 
 const $ = (s) => document.querySelector(s);
 function escapeAttr(value) {
@@ -701,10 +786,6 @@ function mApply() {
     state.locSel = null;
   }
   state.loc = mLoc.value;
-  state.type = $('#mType').value;
-  state.beds = $('#mBeds').value ? parseInt($('#mBeds').value, 10) : null;
-  state.min = $('#mMin').value ? parseFloat($('#mMin').value) : null;
-  state.max = $('#mMax').value ? parseFloat($('#mMax').value) : null;
   mLocX.hidden = !mLoc.value;
   mLocPanel.hidden = true;
   mLoc.blur();
@@ -751,18 +832,38 @@ mLocX.addEventListener('click', () => {
   renderGrid();
   mLoc.focus();
 });
-$('#mGo').addEventListener('click', mApply);
-['mType', 'mBeds'].forEach((id) => $('#' + id).addEventListener('input', mApply));
-['mMin', 'mMax'].forEach((id) => {
-  const el = $('#' + id);
-  el.addEventListener('change', mApply);
-  el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); mApply(); } });
+const mTypePicker = initTypePicker('mTypeBtn', 'mTypeLabel', 'mTypePanel', 'mTypeList', 'mTypeHint', (sel) => {
+  state.types = sel;
+  renderGrid();
 });
+
+function setPriceBands(tab) {
+  const sel = $('#mPrice');
+  sel.innerHTML = priceBandsFor(tab).map((b) => `<option value="${b.v}">${b.label}</option>`).join('');
+  sel.value = '';
+  state.min = null;
+  state.max = null;
+}
+$('#mPrice').addEventListener('change', () => {
+  const b = priceBandsFor(state.tab).find((x) => x.v === $('#mPrice').value) || priceBandsFor(state.tab)[0];
+  state.min = b.min;
+  state.max = b.max;
+  renderGrid();
+});
+function applyBandFromMinMax(min, max) {
+  const bands = priceBandsFor(state.tab);
+  const hit = bands.find((b) => b.min === min && b.max === max);
+  $('#mPrice').value = hit ? hit.v : '';
+  state.min = min;
+  state.max = max;
+}
+setPriceBands(state.tab);
+
+$('#mGo').addEventListener('click', mApply);
 
 function mMatch(l) {
   if (state.locSel && !locMatch(l, state.locSel)) return false;
-  if (state.type && l.ptype !== state.type) return false;
-  if (state.beds != null && (l.beds == null || l.beds < state.beds)) return false;
+  if (state.types.length && !state.types.includes(l.ptype)) return false;
   if (state.min != null && l.price < state.min) return false;
   if (state.max != null && l.price > state.max) return false;
   return true;
@@ -786,7 +887,7 @@ function card(l) {
 }
 
 function hasFilters() {
-  return !!(state.locSel || state.type || state.beds != null || state.min != null || state.max != null);
+  return !!(state.locSel || state.types.length || state.min != null || state.max != null);
 }
 
 function renderGrid() {
@@ -871,6 +972,7 @@ document.addEventListener('click', (e) => {
     document.querySelectorAll('#mkTabs button').forEach((b) => b.classList.remove('on'));
     tab.classList.add('on');
     state.tab = tab.dataset.tab;
+    setPriceBands(state.tab);
     renderGrid();
     return;
   }
@@ -920,16 +1022,13 @@ window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
     state.tab = qKind;
     document.querySelectorAll('#mkTabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === qKind));
   }
-  const qType = qp.get('type');
-  if (qType) {
-    const sel = $('#mType');
-    if ([...sel.options].some((o) => o.value === qType)) { sel.value = qType; state.type = qType; }
-  }
-  const qBeds = qp.get('beds');
-  if (qBeds !== null && !isNaN(parseInt(qBeds, 10))) { $('#mBeds').value = qBeds; state.beds = parseInt(qBeds, 10); }
+  if (qKind === 'sale' || qKind === 'rent') setPriceBands(state.tab); // rebuild price options for the linked tab
+  const qTypes = (qp.get('type') || '').split(',').map((s) => s.trim()).filter(Boolean).filter((t) => PTYPES.includes(t));
+  if (qTypes.length) { mTypePicker.set(qTypes); state.types = qTypes; }
   const qMin = qp.get('min'), qMax = qp.get('max');
-  if (qMin !== null && !isNaN(parseFloat(qMin))) { $('#mMin').value = qMin; state.min = parseFloat(qMin); }
-  if (qMax !== null && !isNaN(parseFloat(qMax))) { $('#mMax').value = qMax; state.max = parseFloat(qMax); }
+  const qm = qMin !== null && !isNaN(parseFloat(qMin)) ? parseFloat(qMin) : null;
+  const qx = qMax !== null && !isNaN(parseFloat(qMax)) ? parseFloat(qMax) : null;
+  if (qm != null || qx != null) applyBandFromMinMax(qm, qx);
   const qLoc = qp.get('loc');
   if (qLoc) {
     mLoc.value = qLoc;

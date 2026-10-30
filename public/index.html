@@ -75,7 +75,7 @@
   --soft:#5D6E7C; --warm:#C8873A; --bg:#FFFFFF;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
 h1,h2,h3,.serif{font-family:'Playfair Display',serif}
 a{color:inherit;text-decoration:none}
@@ -148,6 +148,19 @@ input,select{font-family:inherit;font-size:15px}
 .s-row{display:flex;align-items:stretch;padding:12px 0 12px 12px}
 .s-row select,.s-row input{flex:1;min-width:0;border:none;border-right:1px solid var(--line);padding:13px 16px;font-size:14.5px;background:transparent;color:var(--ink)}
 .s-row select:focus,.s-row input:focus{outline:2px solid var(--blue-l);outline-offset:-2px}
+.price-sel{border-right:none}
+/* property-type checkbox picker */
+.type-wrap{position:relative;display:flex;flex:1.4;min-width:0;border-right:1px solid var(--line)}
+.td-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:0 14px;border:none;background:transparent;font:inherit;font-size:14.5px;color:var(--ink);cursor:pointer;text-align:left;white-space:nowrap;overflow:hidden}
+.td-btn .td-lab{overflow:hidden;text-overflow:ellipsis}
+.td-btn .caret{margin:0;flex-shrink:0}
+.td-panel{position:absolute;top:calc(100% + 10px);left:-12px;width:272px;max-width:72vw;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 44px rgba(9,30,55,.24);z-index:70;display:flex;flex-direction:column;overflow:hidden}
+.td-list{max-height:238px;overflow-y:auto;padding:6px;scrollbar-width:thin}
+.td-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:14px;color:var(--ink);white-space:nowrap}
+.td-row:hover{background:var(--blue-l)}
+.td-row input{accent-color:var(--blue);width:15px;height:15px;flex:none;padding:0;margin:0}
+.td-hint{padding:7px 12px;font-size:11.5px;color:var(--soft);background:linear-gradient(to top,#fff 55%,rgba(255,255,255,0));text-align:center}
+.td-hint[hidden]{display:none}
 .s-row input::placeholder{color:var(--soft)}
 .s-row input[type=number]::-webkit-outer-spin-button,.s-row input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 .s-row input[type=number]{-moz-appearance:textfield}
@@ -167,7 +180,7 @@ input,select{font-family:inherit;font-size:15px}
 .loc-src:hover{background:var(--blue-l);border-radius:8px}
 .s-go{padding:0 32px;margin:-12px 0;border:none;border-radius:0 12px 12px 0;background:var(--blue);color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.15s;flex-shrink:0}
 .s-go:hover{background:#155A94}
-@media (max-width:700px){.search-wrap{margin-top:40px}.s-tabs{gap:6px}.s-tabs button,.s-tabs .s-mk{flex:1;padding:10px 6px;font-size:13.5px;text-align:center}.s-row{flex-wrap:wrap;padding:12px 12px 0}.s-row select{min-width:100%;border-right:none;border-bottom:1px solid var(--line)}.s-row .loc-wrap{flex:1;min-width:100%;border-right:none;border-bottom:1px solid var(--line)}#sMin,#sMax{display:none}.loc-panel{left:0;right:0}.s-go{width:calc(100% + 24px);margin:0 -12px;height:48px;padding:0;border-radius:0 0 12px 12px}}
+@media (max-width:700px){.search-wrap{margin-top:40px}.s-tabs{gap:6px}.s-tabs button,.s-tabs .s-mk{flex:1;padding:10px 6px;font-size:13.5px;text-align:center}.s-row{flex-wrap:wrap;padding:12px 12px 0}.s-row select{min-width:100%;border-right:none;border-bottom:1px solid var(--line)}.s-row .loc-wrap{flex:1;min-width:100%;border-right:none;border-bottom:1px solid var(--line)}.type-wrap{flex:1;min-width:100%;border-right:none;border-bottom:1px solid var(--line)}.loc-panel{left:0;right:0}.s-go{width:calc(100% + 24px);margin:0 -12px;height:48px;padding:0;border-radius:0 0 12px 12px}}
 
 /* doors */
 .doors{background:var(--cream);padding:64px 0}
@@ -488,9 +501,14 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
             <button type="button" class="loc-x" id="sLocX" aria-label="Clear location" hidden>×</button>
             <div class="loc-panel" id="locPanel" hidden></div>
           </div>
-          <select id="sCat"><option value="">Property Type</option></select>
-          <input id="sMin" type="number" min="0" placeholder="Min $">
-          <input id="sMax" type="number" min="0" placeholder="Max $">
+          <div class="type-wrap">
+            <button type="button" class="td-btn" id="hTypeBtn" aria-haspopup="true" aria-expanded="false"><span id="hTypeLabel" class="td-lab">All types</span><span class="caret">▾</span></button>
+            <div class="td-panel" id="hTypePanel" hidden>
+              <div class="td-list" id="hTypeList"></div>
+              <div class="td-hint" id="hTypeHint" hidden></div>
+            </div>
+          </div>
+          <select id="hPrice" class="price-sel" aria-label="Price range"></select>
           <button class="s-go" id="sGo" aria-label="Search">Search</button>
         </div>
       </div>
@@ -759,7 +777,65 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <script>
 const WA = 'https://wa.me/27685302223?text=';
 let L = [];
-const state = { tab: 'sale', loc: '', cat: '', min: null, max: null, locSel: null };
+const state = { tab: 'sale', loc: '', types: [], min: null, max: null, locSel: null };
+
+/* ---------- property types + price bands (shared with marketplace) ---------- */
+const PTYPES = ['Houses', 'Townhouses & Complexes', 'Land', 'Stands & Residential Land', 'Commercial & Industrial Land', 'Farms & Agricultural Land', 'Commercial Property', 'Warehouses & Factories', 'Shops & Retail Property', 'Offices', 'Hotels & Lodges', 'Flats & Apartments', 'Garden Flats', 'Rural Stands', 'Mines'];
+const PRICE_BANDS = {
+  sale: [
+    { v: '', label: 'All prices', min: null, max: null },
+    { v: 's1', label: 'Below US$15,000', min: null, max: 15000 },
+    { v: 's2', label: 'US$15,000 – US$100,000', min: 15000, max: 100000 },
+    { v: 's3', label: 'US$100,000 – US$250,000', min: 100000, max: 250000 },
+    { v: 's4', label: 'US$250,000+', min: 250000, max: null }
+  ],
+  rent: [
+    { v: '', label: 'All prices', min: null, max: null },
+    { v: 'r1', label: 'Below US$1,000', min: null, max: 1000 },
+    { v: 'r2', label: 'US$1,000 – US$2,000', min: 1000, max: 2000 },
+    { v: 'r3', label: 'US$2,000 – US$3,000', min: 2000, max: 3000 },
+    { v: 'r4', label: 'US$3,000+', min: 3000, max: null }
+  ]
+};
+function priceBandsFor(tab) { return PRICE_BANDS[tab === 'rent' ? 'rent' : 'sale']; }
+
+function initTypePicker(btnId, labelId, panelId, listId, hintId, onChange) {
+  const btn = document.getElementById(btnId), label = document.getElementById(labelId);
+  const panel = document.getElementById(panelId), list = document.getElementById(listId), hint = document.getElementById(hintId);
+  list.innerHTML = PTYPES.map((t) => `<label class="td-row"><input type="checkbox" value="${t}"><span>${t}</span></label>`).join('');
+  function selected() { return [...list.querySelectorAll('input:checked')].map((i) => i.value); }
+  function updateLabel() {
+    const sel = selected();
+    label.textContent = !sel.length ? 'All types' : sel.length === 1 ? sel[0] : sel[0] + ' +' + (sel.length - 1);
+  }
+  function syncHint() {
+    if (list.scrollHeight <= list.clientHeight + 4) { hint.hidden = true; return; }
+    const rect = list.getBoundingClientRect();
+    let below = 0;
+    list.querySelectorAll('.td-row').forEach((r) => { if (r.getBoundingClientRect().top > rect.bottom - 4) below++; });
+    if (below > 0) { hint.hidden = false; hint.textContent = below + ' more type' + (below === 1 ? '' : 's') + ' below — keep scrolling'; }
+    else hint.hidden = true;
+  }
+  list.addEventListener('change', () => { updateLabel(); onChange(selected()); });
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    panel.hidden = !panel.hidden;
+    btn.setAttribute('aria-expanded', String(!panel.hidden));
+    if (!panel.hidden) syncHint();
+  });
+  list.addEventListener('scroll', syncHint);
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !panel.hidden) { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+  });
+  return {
+    get: selected,
+    set: (types) => { list.querySelectorAll('input').forEach((i) => { i.checked = types.includes(i.value); }); updateLabel(); },
+    refresh: updateLabel
+  };
+}
 
 /* ---------- location intelligence: typed search over Zimbabwe geography ---------- */
 let GEO = { provinces: [], places: [] };
@@ -850,6 +926,28 @@ function escapeAttr(value) {
     '&': '&amp;', '"': '&quot;', '<': '&lt;', '>': '&gt;'
   })[char]);
 }
+const hTypePicker = initTypePicker('hTypeBtn', 'hTypeLabel', 'hTypePanel', 'hTypeList', 'hTypeHint', (sel) => {
+  state.types = sel;
+  renderGrids();
+});
+function setPriceBands(tab) {
+  const sel = $('#hPrice');
+  sel.innerHTML = priceBandsFor(tab).map((b) => `<option value="${b.v}">${b.label}</option>`).join('');
+  sel.value = '';
+  state.min = null;
+  state.max = null;
+}
+$('#hPrice').addEventListener('change', () => {
+  const b = priceBandsFor(state.tab).find((x) => x.v === $('#hPrice').value) || priceBandsFor(state.tab)[0];
+  state.min = b.min;
+  state.max = b.max;
+  renderGrids();
+});
+const CAT2TYPES = {
+  'Houses': ['Houses'],
+  'Commercial & Other': ['Commercial Property', 'Warehouses & Factories', 'Offices', 'Shops & Retail Property', 'Commercial & Industrial Land']
+};
+
 /* currency (prices in data are US$) */
 const RATES = { USD: { r: 1, s: 'US$' }, GBP: { r: 0.78, s: '£' }, ZAR: { r: 18.2, s: 'R' } };
 let CUR = 'USD';
@@ -885,7 +983,7 @@ function card(l, tag = false) {
 
 function match(l) {
   if (!locMatch(l, state.locSel)) return false;
-  if (state.cat && l.cat !== state.cat) return false;
+  if (state.types.length && !state.types.includes(l.ptype)) return false;
   if (state.min != null && l.price < state.min) return false;
   if (state.max != null && l.price > state.max) return false;
   return true;
@@ -974,12 +1072,6 @@ function setupFeatCarousel() {
 
 function renderCounts() {
   // Listing totals are not displayed as homepage claims.
-}
-
-function renderLocs() {
-  const cats = [...new Set(L.map((l) => l.cat))].sort();
-  const curC = state.cat;
-  $('#sCat').innerHTML = '<option value="">Property Type</option>' + cats.map((x) => `<option ${x === curC ? 'selected' : ''}>${x}</option>`).join('');
 }
 
 /* ---------- typed location field + suggestion panel ---------- */
@@ -1097,11 +1189,10 @@ function mkHref() {
   const p = new URLSearchParams();
   const loc = (state.locSel ? state.locSel.name : locInput.value.trim());
   if (loc) p.set('loc', loc);
-  const cat = $('#sCat').value;
-  if (cat) p.set('type', cardType(L.filter((l) => l.cat === cat), cat));
-  const mn = $('#sMin').value, mx = $('#sMax').value;
-  if (mn) p.set('min', mn);
-  if (mx) p.set('max', mx);
+  if (state.types.length) p.set('type', state.types.join(','));
+  if (state.min != null) p.set('min', state.min);
+  if (state.max != null) p.set('max', state.max);
+  p.set('kind', state.tab);
   const qs = p.toString();
   return '/marketplace.html' + (qs ? '?' + qs : '');
 }
@@ -1147,10 +1238,6 @@ function applyAndGo() {
     state.locSel = null;
   }
   state.loc = locInput.value;
-  state.cat = $('#sCat').value;
-  const mn = $('#sMin').value, mx = $('#sMax').value;
-  state.min = mn ? parseFloat(mn) : null;
-  state.max = mx ? parseFloat(mx) : null;
   locX.hidden = !locInput.value;
   locPanel.hidden = true;
   renderGrids();
@@ -1222,10 +1309,11 @@ document.addEventListener('click', (e) => {
   if (nc) {
     if (nc.dataset.kind === 'sale') return; // For-sale categories live on the Marketplace page now
     e.preventDefault();
-    state.cat = nc.dataset.cat;
+    state.types = CAT2TYPES[nc.dataset.cat] || [];
+    hTypePicker.set(state.types);
     state.tab = nc.dataset.kind;
     document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === state.tab));
-    $('#sCat').value = state.cat;
+    setPriceBands(state.tab);
     renderGrids();
     const goGrid = () => document.querySelector('#rent').scrollIntoView({ behavior: 'smooth' });
     if (!$('#view-detail').hidden) { closeDetail(); setTimeout(goGrid, 30); } else goGrid();
@@ -1236,16 +1324,8 @@ document.addEventListener('click', (e) => {
     document.querySelectorAll('#tabs button').forEach((b) => b.classList.remove('on'));
     tab.classList.add('on');
     state.tab = tab.dataset.tab;
+    setPriceBands(state.tab);
     renderGrids();
-    return;
-  }
-  const cc = e.target.closest('.catchip');
-  if (cc) {
-    state.cat = state.cat === cc.dataset.cat ? '' : cc.dataset.cat;
-    $('#sCat').value = state.cat;
-    renderGrids();
-    if (state.tab === 'rent') document.querySelector('#rent').scrollIntoView({ behavior: 'smooth' });
-    else location.href = mkHref();
     return;
   }
   const guide = e.target.closest('.insc h4');
@@ -1296,7 +1376,7 @@ window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
   } catch (err) { /* suggestions degrade to text matching */ }
   if (locInput.value.trim().length >= 2) renderPanel(locInput.value.trim());
   renderCounts();
-  renderLocs();
+  setPriceBands(state.tab);
   renderCats();
   renderGrids();
   renderFeatured();
