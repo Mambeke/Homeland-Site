@@ -385,6 +385,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
           <a class="dd-all" href="#rent" data-cat="" data-kind="rent">All rentals →</a>
         </div>
       </div>
+      <a href="/marketplace.html" data-nav>Marketplace</a>
       <div class="nitem">
         <a href="#services" data-nav>Our Services <span class="caret">▾</span></a>
         <div class="dd">
@@ -411,7 +412,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         </button>
         <div class="menu-panel" id="siteMenu">
           <div class="menu-grid">
-            <a class="menu-item" href="#sale" data-nav><strong>Marketplace</strong><span>Browse property for sale across Zimbabwe.</span></a>
+            <a class="menu-item" href="/marketplace.html"><strong>Marketplace</strong><span>Browse property for sale and to rent across Zimbabwe.</span></a>
             <a class="menu-item" href="#rent" data-nav><strong>Rent a property</strong><span>Find rooms, homes, farms and commercial space.</span></a>
             <a class="menu-item" href="#sell" data-nav><strong>Sell or list property</strong><span>You have the stock. We have the buyers.</span></a>
             <a class="menu-item" href="#services" data-nav><strong>Services &amp; prices</strong><span>Advisory, verification, turnkey and build management — written prices.</span></a>
@@ -440,7 +441,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
       <div class="s-tabs" id="tabs">
         <button data-tab="sale" class="on">For Sale</button>
         <button data-tab="rent">For Rent</button>
-        <a class="s-mk" href="#sale">See Marketplace</a>
+        <a class="s-mk" href="/marketplace.html">See Marketplace</a>
       </div>
       <div class="searchbox">
         <div class="s-row">
@@ -664,7 +665,8 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
       </div>
       <div>
         <h5>Explore</h5>
-        <a href="#sale" data-nav>Marketplace</a>
+        <a href="/marketplace.html">Marketplace</a>
+        <a href="#sale" data-nav>Properties for Sale</a>
         <a href="#rent" data-nav>Properties to Rent</a>
         <a href="#services" data-nav>Services &amp; prices</a>
         <a href="#sell" data-nav>Sell or list property</a>
@@ -1134,27 +1136,16 @@ document.addEventListener('click', (e) => {
     document.querySelectorAll('.d-thumbs img').forEach((t) => t.classList.remove('on'));
     thumb.classList.add('on');
   }
-  const sm = e.target.closest('.s-mk');
-  if (sm) {
-    e.preventDefault();
-    const mp = $('#siteMenu');
-    if (mp) mp.classList.remove('open');
-    $('#menuToggle').setAttribute('aria-expanded', 'false');
-    state.tab = 'sale';
-    document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === 'sale'));
-    renderGrids();
-    const goMk = () => document.querySelector('#sale').scrollIntoView({ behavior: 'smooth' });
-    if (!$('#view-detail').hidden) { closeDetail(); setTimeout(goMk, 30); } else goMk();
-    return;
-  }
   const nav = e.target.closest('[data-nav]');
   if (nav) {
     if (menuPanel) menuPanel.classList.remove('open');
     if ($('#menuToggle')) $('#menuToggle').setAttribute('aria-expanded', 'false');
     if (!$('#view-detail').hidden) {
+      const href = nav.getAttribute('href');
       e.preventDefault();
       closeDetail();
-      setTimeout(() => document.querySelector(nav.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }), 30);
+      if (href.startsWith('/')) setTimeout(() => { location.href = href; }, 30);
+      else setTimeout(() => document.querySelector(href).scrollIntoView({ behavior: 'smooth' }), 30);
       return;
     }
   }

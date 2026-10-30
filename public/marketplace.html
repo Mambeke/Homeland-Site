@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketplace — Property for Sale &amp; Rent in Zimbabwe | Homeland Property Group</title>
+<meta name="description" content="Browse every property for sale and to rent listed by Homeland Property Group — houses, urban and rural stands, farms, commercial and more across Zimbabwe. Each listing checked on the ground.">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --navy:#0C3C68; --navy-d:#092C4D; --gold:#F5A623; --blue:#1B6FB5; --blue-l:#EAF2F9;
+  --cream:#FBF8F3; --grey:#F7F4EF; --ink:#16232E; --line:#E1E8EE; --ok:#1E7A4E;
+  --soft:#5D6E7C; --warm:#C8873A; --bg:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+button{font-family:inherit;cursor:pointer}
+input,select{font-family:inherit;font-size:15px}
+
+/* buttons */
+.btn{display:inline-block;padding:13px 26px;border-radius:8px;font-weight:600;font-size:15px;border:2px solid transparent;transition:.15s}
+.btn-g{background:var(--gold);color:#231602;border-color:var(--gold)}
+.btn-g:hover{filter:brightness(1.06)}
+.btn-o{background:transparent;color:#fff;border-color:rgba(255,255,255,.65)}
+.btn-o:hover{background:rgba(255,255,255,.12)}
+.btn-n{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-n:hover{background:var(--navy-d)}
+
+/* topbar */
+.topbar{background:var(--navy-d);color:rgba(255,255,255,.85);font-size:13px}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:36px}
+.topbar a{color:var(--gold);font-weight:600}
+
+/* nav */
+.nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:50}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:18px}
+.logo{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.logo img{height:42px;width:auto;display:block}
+.navlinks{display:flex;align-items:center;gap:24px;font-size:14.5px;font-weight:500;color:var(--ink)}
+.navlinks > a{padding:6px 0}
+.navlinks a:hover{color:var(--navy)}
+.caret{font-size:10px;color:var(--soft);margin-left:3px}
+.nitem{position:relative}
+.nitem .dd{position:absolute;top:calc(100% + 12px);left:-16px;min-width:235px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 45px rgba(9,30,55,.16);padding:8px;opacity:0;visibility:hidden;transform:translateY(8px);transition:.16s;z-index:100}
+.nitem .dd:before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.nitem:hover .dd{opacity:1;visibility:visible;transform:translateY(0)}
+.nitem .dd a{display:block;padding:9px 12px;border-radius:8px;font-size:13.5px;white-space:nowrap}
+.nitem .dd a:hover{background:var(--cream);color:var(--navy)}
+.nitem .dd .dd-all{margin-top:5px;padding-top:10px;border-top:1px solid var(--line);color:var(--blue);font-weight:600}
+.nav .btn{padding:9px 18px;font-size:14px}
+.menu-wrap{position:relative;display:flex;align-items:center}
+.menu-toggle{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 13px;color:var(--navy);font-size:13px;font-weight:700;letter-spacing:.06em}
+.menu-toggle:hover,.menu-toggle[aria-expanded="true"]{border-color:var(--navy);background:var(--blue-l)}
+.menu-icon{display:grid;grid-template-columns:repeat(2,5px);gap:3px}
+.menu-icon i{width:5px;height:5px;border-radius:1px;background:var(--navy);display:block}
+.menu-panel{position:absolute;right:0;top:calc(100% + 12px);width:min(520px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 18px 45px rgba(9,30,55,.18);display:none;z-index:100}
+.menu-panel.open{display:block}
+.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.menu-item{display:block;padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.menu-item:hover{border-color:var(--gold);background:var(--cream)}
+.menu-item strong{display:block;color:var(--navy);font-size:14px}
+.menu-item span{display:block;color:var(--soft);font-size:12px;margin-top:4px;line-height:1.45}
+.menu-foot{display:flex;gap:16px;flex-wrap:wrap;padding:13px 3px 0;font-size:13px;font-weight:600;color:var(--blue)}
+@media (min-width:981px){.menu-wrap{display:none}}
+.hero .sub{max-width:53ch}
+.hero .sub .mobile-break{display:none}
+@media (max-width:600px){.menu-panel{right:-2px;padding:11px}.menu-grid{gap:8px}.menu-item{padding:11px}.menu-item strong{font-size:13px}.menu-item span{font-size:11.5px}.menu-toggle{padding:9px 11px}.hero .wrap{padding-top:44px;padding-bottom:44px}.hero .sub{max-width:35ch;font-size:15px}.hero .sub .mobile-break{display:inline}}
+
+/* hero */
+.hero{position:relative;min-height:min(86vh,720px);display:flex;align-items:center;background:url('/hero.webp') center/cover no-repeat;color:#fff}
+.hero .wrap{width:100%;padding-top:64px;padding-bottom:64px}
+.hero h1{font-size:clamp(28px,3.8vw,42px);line-height:1.15;max-width:26ch;font-weight:700;text-shadow:0 2px 18px rgba(9,30,55,.55)}
+.hero .sub{margin-top:16px;font-size:clamp(15px,1.6vw,18px);max-width:56ch;color:rgba(255,255,255,.94);text-shadow:0 1px 10px rgba(9,30,55,.5)}
+.search-wrap{margin-top:44px;max-width:880px}
+.s-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:14px;white-space:nowrap}
+.s-tabs button,.s-tabs .s-mk{padding:10px 24px;border-radius:9px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:14.5px;color:var(--soft);transition:.15s;display:inline-block;box-shadow:0 4px 14px rgba(9,20,40,.18)}
+.s-tabs button:hover{border-color:var(--blue);color:var(--blue)}
+.s-tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.s-mk:hover{border-color:var(--blue);color:var(--blue)}
+.searchbox{background:#fff;border-radius:12px;box-shadow:0 18px 50px rgba(9,20,40,.28);position:relative}
+.s-row{display:flex;align-items:stretch;padding:12px 0 12px 12px}
+.s-row select,.s-row input{flex:1;min-width:0;border:none;border-right:1px solid var(--line);padding:13px 16px;font-size:14.5px;background:transparent;color:var(--ink)}
+.s-row select:focus,.s-row input:focus{outline:2px solid var(--blue-l);outline-offset:-2px}
+.s-row input::placeholder{color:var(--soft)}
+.s-row input[type=number]::-webkit-outer-spin-button,.s-row input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+.s-row input[type=number]{-moz-appearance:textfield}
+.loc-wrap{position:relative;display:flex;flex:1.6;min-width:0;border-right:1px solid var(--line)}
+.loc-wrap input{border-right:none;padding:13px 34px 13px 16px}
+.loc-x{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:24px;height:24px;border:none;border-radius:50%;background:var(--blue-l);color:var(--navy);font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.loc-x[hidden]{display:none}
+.loc-x:hover{background:var(--blue);color:#fff}
+.loc-panel{position:absolute;top:calc(100% + 10px);left:-12px;right:12px;min-width:340px;z-index:60;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 44px rgba(9,20,40,.24);padding:6px;max-height:330px;overflow:auto}
+.loc-note{padding:8px 12px 4px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--soft)}
+.loc-opt{display:flex;align-items:baseline;justify-content:space-between;gap:14px;width:100%;text-align:left;padding:10px 12px;border:none;background:transparent;border-radius:8px;cursor:pointer;font-size:14.5px;color:var(--ink)}
+.loc-opt:hover,.loc-opt.act{background:var(--blue-l)}
+.loc-opt .ln{font-weight:600}
+.loc-opt .lp{color:var(--soft);font-size:12.5px;white-space:nowrap}
+.loc-none{padding:12px 12px 4px;font-size:14px;color:var(--soft)}
+.loc-src{display:block;padding:8px 12px 10px;font-size:13.5px;font-weight:600;color:var(--blue);text-decoration:none}
+.loc-src:hover{background:var(--blue-l);border-radius:8px}
+.s-go{padding:0 32px;margin:-12px 0;border:none;border-radius:0 12px 12px 0;background:var(--blue);color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.15s;flex-shrink:0}
+.s-go:hover{background:#155A94}
+@media (max-width:700px){.search-wrap{margin-top:40px}.s-tabs{gap:6px}.s-tabs button,.s-tabs .s-mk{flex:1;padding:10px 6px;font-size:13.5px;text-align:center}.s-row{flex-wrap:wrap;padding:12px 12px 0}.s-row select{min-width:100%;border-right:none;border-bottom:1px solid var(--line)}.s-row .loc-wrap{flex:1;min-width:100%;border-right:none;border-bottom:1px solid var(--line)}#sMin,#sMax{display:none}.loc-panel{left:0;right:0}.s-go{width:calc(100% + 24px);margin:0 -12px;height:48px;padding:0;border-radius:0 0 12px 12px}}
+
+/* doors */
+.doors{background:var(--cream);padding:64px 0}
+.door-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.door{background:#fff;border:1px solid var(--line);border-radius:16px;padding:34px;display:block;transition:.2s}
+.door:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(12,60,104,.14);border-color:var(--navy)}
+.door-tag{font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--warm)}
+.door h3{font-size:24px;color:var(--navy);margin:10px 0 10px}
+.door p{color:var(--soft);font-size:15px}
+.door-cta{display:inline-block;margin-top:16px;font-weight:600;color:var(--blue);font-size:14.5px}
+
+/* numbers */
+.numbers{background:var(--navy);color:#fff;padding:44px 0}
+.nwrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.num b{display:block;font-family:'Playfair Display',serif;font-size:38px;color:var(--gold)}
+.num span{font-size:13.5px;color:rgba(255,255,255,.75)}
+
+/* section helpers */
+.band{padding:56px 0 8px;text-align:center}
+.stitle{font-size:clamp(26px,3vw,34px);color:var(--navy)}
+.ssub{color:var(--soft);max-width:62ch;margin:10px auto 0;text-align:center}
+.eyebrow{letter-spacing:.18em;font-size:12px;font-weight:700;color:var(--warm);margin-bottom:10px;text-align:center}
+
+/* standard */
+.standard{background:var(--cream);padding:64px 0}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.step4{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+.snum{width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--gold);font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.step4 h4{font-size:17px;color:var(--navy);margin-bottom:8px;font-family:'Playfair Display',serif}
+.step4 p{font-size:14px;color:var(--soft)}
+.paidline{margin-top:30px;text-align:center;font-size:15.5px;color:var(--ink);max-width:70ch}
+.paidline b{color:var(--navy)}
+.std-cta{display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+
+/* market */
+.market{padding:40px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:34px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.18s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(12,60,104,.15)}
+.card-ph{position:relative;aspect-ratio:16/10;background:var(--grey)}
+.card-ph img{width:100%;height:100%;object-fit:cover}
+.chip{position:absolute;top:10px;left:10px;background:rgba(9,44,77,.88);color:#fff;font-size:11px;font-weight:600;padding:4px 9px;border-radius:6px}
+.chip-v{left:auto;right:10px;background:rgba(30,122,78,.92)}
+.card-b{padding:16px 18px 18px;display:flex;flex-direction:column;gap:4px;flex:1}
+.card-loc{font-size:12.5px;color:var(--soft);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.card h3{font-size:16.5px;line-height:1.35;color:var(--ink);font-family:'Playfair Display',serif}
+.card-price{font-size:19px;font-weight:700;color:var(--navy);margin-top:6px}
+.card-specs{font-size:13px;color:var(--soft)}
+.empty{grid-column:1/-1;text-align:center;color:var(--soft);padding:48px 0;font-size:15px}
+
+/* categories */
+.cats{background:var(--grey);padding:56px 0}
+.cat-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+.catchip{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:11px 22px;font-weight:600;font-size:14.5px;color:var(--navy);cursor:pointer;transition:.15s}
+.catchip:hover{border-color:var(--navy)}
+.catchip small{color:var(--soft);font-weight:500;margin-left:6px}
+
+/* services */
+.services{background:var(--blue-l);padding:64px 0}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:38px}
+.svcc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 22px;display:flex;flex-direction:column;transition:.18s}
+.svcc:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(12,60,104,.13)}
+.svcc.hl{border:2px solid var(--gold);position:relative}
+.svcc.hl:before{content:"MOST POPULAR";position:absolute;top:-11px;right:14px;background:var(--gold);color:#231602;font-size:10px;font-weight:700;letter-spacing:.08em;padding:3px 9px;border-radius:5px}
+.svc-price{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--gold)}
+.svcc h4{font-size:17px;color:var(--navy);margin:8px 0 8px;font-family:'Playfair Display',serif}
+.svcc p{font-size:13.5px;color:var(--soft);flex:1}
+.svc-link{display:inline-block;margin-top:16px;font-weight:600;font-size:14px;color:var(--blue)}
+
+/* guides */
+.guides{padding:64px 0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.insc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px}
+.insc h4{font-size:17px;color:var(--navy);cursor:pointer;font-family:'Playfair Display',serif}
+.insc h4:after{content:"+";float:right;color:var(--gold);font-size:22px;font-family:Inter}
+.insc.open h4:after{content:"–"}
+.insc p{display:none;margin-top:12px;font-size:14px;color:var(--soft)}
+.insc.open p{display:block}
+
+/* agent cta */
+.agentcta{background:var(--blue-l);padding:64px 0;text-align:center}
+.agentcta .ssub{margin-bottom:26px}
+
+/* strip */
+.strip{background:var(--navy);color:#fff;padding:54px 0}
+.strip-in{display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap}
+.strip h3{font-size:clamp(22px,2.6vw,30px)}
+.strip p{color:rgba(255,255,255,.8);max-width:52ch;margin-top:6px;font-size:15px}
+
+/* footer */
+footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;font-size:14px}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:34px}
+.f-grid h5{color:#fff;font-size:14px;margin-bottom:12px;font-family:Inter;font-weight:700;letter-spacing:.04em}
+.f-grid a{display:block;padding:4px 0;color:rgba(255,255,255,.7)}
+.f-grid a:hover{color:var(--gold)}
+.f-brand .logo{color:#fff;margin-bottom:12px}
+.f-bottom{border-top:1px solid rgba(255,255,255,.14);margin-top:40px;padding-top:20px;font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* detail view */
+.detail{padding:40px 0 70px}
+.back{background:none;border:none;color:var(--blue);font-weight:600;font-size:15px;margin-bottom:22px}
+.d-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;align-items:start}
+.d-main-ph{border-radius:16px;overflow:hidden;aspect-ratio:16/10;background:var(--grey)}
+.d-main-ph img{width:100%;height:100%;object-fit:cover}
+.d-thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.d-thumbs img{width:84px;height:60px;object-fit:cover;border-radius:8px;border:2px solid var(--line);cursor:pointer}
+.d-thumbs img.on{border-color:var(--navy)}
+.d-side .chip{position:static;display:inline-block;margin-bottom:12px}
+.d-side h1{font-size:clamp(24px,3vw,32px);color:var(--navy);line-height:1.2}
+.d-loc{color:var(--soft);margin-top:8px;font-weight:500}
+.d-price{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--navy);margin:14px 0}
+.d-specs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.d-spec{background:var(--grey);border-radius:8px;padding:9px 14px;font-size:13.5px;font-weight:600;color:var(--navy)}
+.d-spec small{display:block;font-weight:500;color:var(--soft);font-size:11.5px}
+.d-desc{color:#33424e;font-size:15px;margin:14px 0}
+.d-extras{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:13.5px}
+.d-extras td{padding:7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.d-extras td:first-child{color:var(--soft);width:110px}
+.d-amen{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.d-amen span{background:var(--blue-l);color:var(--blue);border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:600}
+.d-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* responsive */
+@media (max-width:980px){
+  .grid,.grid4{grid-template-columns:repeat(2,1fr)}
+  .steps4{grid-template-columns:repeat(2,1fr)}
+  .grid3{grid-template-columns:1fr}
+  .nwrap{grid-template-columns:repeat(2,1fr);gap:26px}
+  .d-grid{grid-template-columns:1fr}
+  .navlinks{display:none}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .grid,.grid4,.door-row{grid-template-columns:1fr}
+  .topbar .wrap{justify-content:center}
+  .topbar .tb-l{display:none}
+  .f-grid{grid-template-columns:1fr}
+}
+
+/* nav right group */
+.navr{display:flex;align-items:center;gap:12px}
+.curbox{display:flex;gap:3px;border:1px solid var(--line);border-radius:8px;padding:3px}
+.curbox button{border:none;background:transparent;color:var(--soft);font-weight:700;font-size:12.5px;padding:6px 9px;border-radius:6px}
+.curbox button.on{background:var(--navy);color:#fff}
+
+/* service bullets */
+.svc-b{list-style:none;margin:6px 0 0;flex:1}
+.svc-b li{position:relative;padding-left:20px;font-size:13.5px;color:var(--soft);margin-bottom:8px;line-height:1.45}
+.svc-b li:before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:700}
+
+/* badge legend */
+.legend{text-align:center;font-size:13.5px;color:var(--soft);margin:26px auto 0;max-width:78ch}
+.legend b{color:var(--navy)}
+.legend a{color:var(--blue);font-weight:600}
+
+/* why homeland */
+.why{background:#fff;padding:64px 0}
+.why-c{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:24px}
+.why-c h4{font-size:17px;color:var(--navy);margin-bottom:10px;font-family:'Playfair Display',serif}
+.why-c p{font-size:14px;color:var(--soft)}
+
+/* seller steps */
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+@media (max-width:980px){.steps3{grid-template-columns:1fr}}
+.looking{max-width:80ch;margin:34px auto 30px;background:#fff;border:1.5px dashed var(--navy);border-radius:12px;padding:18px 24px;font-size:14.5px;color:var(--ink);text-align:center}
+.looking b{color:var(--navy)}
+
+/* about story */
+.about-p{max-width:74ch;margin:16px auto 0;font-size:15.5px;color:#33424e;text-align:center}
+.about-fine{margin:30px auto 0;text-align:center;font-size:13px;color:var(--soft);max-width:72ch}
+
+/* estimator */
+.estimator{background:var(--grey);padding:64px 0}
+.est-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;justify-content:center;margin:38px auto 0;max-width:880px}
+.est-box .field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.est-box .field input,.est-box .field select{padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;min-width:180px}
+.est-out{display:flex;flex-direction:column;min-width:230px}
+#estOut{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--navy);line-height:1.2}
+.est-out small{color:var(--soft);font-size:12px;margin-top:4px}
+.est-fine{text-align:center;font-size:12.5px;color:var(--soft);margin-top:16px}
+.est-fin{max-width:70ch;margin:28px auto 0;background:var(--blue-l);border-radius:12px;padding:18px 22px;font-size:14.5px;text-align:center;color:var(--ink)}
+.est-fin b{color:var(--navy)}
+
+/* marketplace page */
+.navlinks a.mk-on{color:var(--navy);font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:4px}
+.mk-head{background:var(--navy);color:#fff;padding:54px 0 48px;text-align:center}
+.mk-eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px}
+.mk-head h1{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,44px);margin-bottom:14px}
+.mk-sub{max-width:64ch;margin:0 auto;color:rgba(255,255,255,.82);font-size:15.5px;line-height:1.65}
+.mk-sub b{color:#fff}
+.mk-tabs{padding:30px 0 0}
+.mk-tabs .s-tabs{margin-bottom:0}
+.card-price{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ktag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:5px;white-space:nowrap}
+.ktag-s{background:var(--blue-l);color:var(--blue)}
+.ktag-r{background:#FDF3E3;color:#B4690E}
+.mk-strip{background:var(--cream);border-top:1px solid var(--line);padding:44px 0}
+.mk-strip .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.mk-strip h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:6px}
+.mk-strip p{color:var(--soft);font-size:14.5px;max-width:52ch}
+.mk-strip .btns{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:700px){.mk-strip .wrap{flex-direction:column;align-items:flex-start}}
+
+</style>
+</head>
+<body>
+
+<div id="view-main">
+<div class="topbar">
+  <div class="wrap">
+    <span class="tb-l">Serving Zimbabweans in every country</span>
+    <span><a href="mailto:info@homelandpropertygroup.com">info@homelandpropertygroup.com</a> &nbsp;·&nbsp; +27 68 530 2223</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/" id="logoLink"><img src="/logo.png" alt="Homeland Property Group"></a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="/#sale" data-nav>For Sale</a>
+      <a href="/#rent" data-nav>To Rent</a>
+      <a href="/marketplace.html" class="mk-on" aria-current="page">Marketplace</a>
+      <a href="/#services" data-nav>Our Services</a>
+      <a href="/#about" data-nav>About</a>
+      <a href="/#contact" data-nav>Contact</a>
+    </nav>
+    <div class="navr">
+      <div class="menu-wrap">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteMenu">
+          <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span> MENU
+        </button>
+        <div class="menu-panel" id="siteMenu">
+          <div class="menu-grid">
+            <a class="menu-item" href="/marketplace.html"><strong>Marketplace</strong><span>Browse property for sale and to rent.</span></a>
+            <a class="menu-item" href="/#sale" data-nav><strong>For Sale</strong><span>Houses, stands, farms, mines, hotels and commercial.</span></a>
+            <a class="menu-item" href="/#rent" data-nav><strong>To Rent</strong><span>Find rooms, homes, farms and commercial space.</span></a>
+            <a class="menu-item" href="/#sell" data-nav><strong>Sell or list property</strong><span>You have the stock. We have the buyers.</span></a>
+            <a class="menu-item" href="/#services" data-nav><strong>Services &amp; prices</strong><span>Advisory, verification, turnkey and build management — written prices.</span></a>
+          </div>
+          <div class="menu-foot">
+            <a href="/#why" data-nav>Why Homeland</a>
+            <a href="/#guides" data-nav>Property guides</a>
+            <a href="/#about" data-nav>About Homeland</a>
+            <a href="/#contact" data-nav>Contact us</a>
+          </div>
+        </div>
+      </div>
+      <div class="curbox" id="curBox" role="group" aria-label="Choose currency"></div>
+    </div>
+  </div>
+</header>
+<section class="mk-head">
+  <div class="wrap">
+    <p class="mk-eyebrow">Homeland Property Group</p>
+    <h1>The Marketplace</h1>
+    <p class="mk-sub">Every property we list is checked on the ground before it goes live. Browse what's for sale and to rent across Zimbabwe — <b id="mkCounts">loading…</b></p>
+  </div>
+</section>
+
+<div class="mk-tabs"><div class="wrap"><div class="s-tabs" id="mkTabs">
+  <button data-tab="all" class="on">All property</button>
+  <button data-tab="sale">For Sale</button>
+  <button data-tab="rent">To Rent</button>
+</div></div></div>
+
+<section class="market"><div class="wrap"><div class="grid" id="mkGrid"><div class="empty">Loading listings…</div></div>
+<p class="legend"><b>What the badges mean:</b> ✓ Verified — deeds search done, seller ID matched, property inspected. No badge? That listing is still being checked — ask us for the current status.</p>
+</div></section>
+
+<section class="mk-strip">
+  <div class="wrap">
+    <div>
+      <h3>Can't find what you're looking for?</h3>
+      <p>Tell us the area, budget and type — we'll source it, check it, and only show you what holds up.</p>
+    </div>
+    <div class="btns">
+      <a class="btn btn-g" id="mkWa" target="_blank" rel="noopener">WhatsApp us</a>
+      <a class="btn btn-o" href="/#sell">List your property</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a class="logo" href="#"><img src="/logo-white.png" alt="Homeland Property Group"></a>
+        <p>Verified property, honest advice and managed builds for Zimbabweans abroad. The only party in the chain paid by you.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <a href="#sale" data-nav>Marketplace</a>
+        <a href="#rent" data-nav>Properties to Rent</a>
+        <a href="#services" data-nav>Services &amp; prices</a>
+        <a href="#sell" data-nav>Sell or list property</a>
+        <a href="#why" data-nav>Why Homeland</a>
+        <a href="#guides" data-nav>Property guides</a>
+        <a href="#estimator" data-nav>Build cost estimator</a>
+        <a href="#about" data-nav>About Homeland</a>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <a target="_blank" rel="noopener" href="https://wa.me/27685302223">WhatsApp: +27 68 530 2223</a>
+        <a href="mailto:info@homelandpropertygroup.com">info@homelandpropertygroup.com</a>
+        <a>Serving Zimbabweans in every country</a>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 Homeland Property Group. All rights reserved.</span>
+      <span>Harare · Bulawayo · Diaspora worldwide</span>
+    </div>
+  </div>
+</footer>
+</div><!-- /view-main -->
+
+<!-- ============ DETAIL VIEW ============ -->
+<div id="view-detail" hidden>
+  <div class="wrap detail">
+    <button class="back" id="dBack">← Back to marketplace</button>
+    <div class="d-grid">
+      <div>
+        <div class="d-main-ph"><img id="dMain" alt="Property photo"></div>
+        <div class="d-thumbs" id="dThumbs"></div>
+      </div>
+      <div class="d-side">
+        <span class="chip" id="dRef"></span>
+        <span class="chip chip-v" id="dVer" hidden>Verified</span>
+        <h1 id="dTitle"></h1>
+        <p class="d-loc" id="dLoc"></p>
+        <p class="d-price" id="dPrice"></p>
+        <div class="d-specs" id="dSpecs"></div>
+        <table class="d-extras" id="dExtras"></table>
+        <p class="d-desc" id="dDesc"></p>
+        <div class="d-amen" id="dAmen"></div>
+        <div class="d-cta">
+          <a class="btn btn-g" id="dWa" target="_blank" rel="noopener">WhatsApp about this property</a>
+          <a class="btn btn-o" id="dVerify" target="_blank" rel="noopener" style="border-color:var(--gold);color:var(--gold)">Verification report — $250</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height:60px"></div>
+</div>
+
+<script>
+const WA = 'https://wa.me/27685302223?text=';
+let L = [];
+const state = { tab: 'all' };
+
+const $ = (s) => document.querySelector(s);
+function escapeAttr(value) {
+  return String(value ?? '').replace(/[&"<>]/g, (char) => ({
+    '&': '&amp;', '"': '&quot;', '<': '&lt;', '>': '&gt;'
+  })[char]);
+}
+
+/* currency (prices in data are US$) — same rates as homepage */
+const RATES = { USD: { r: 1, s: 'US$' }, GBP: { r: 0.78, s: '£' }, ZAR: { r: 18.2, s: 'R' } };
+let CUR = 'USD';
+const money = (usd) => RATES[CUR].s + Math.round(usd * RATES[CUR].r).toLocaleString();
+const fmtPrice = (p, kind) => kind === 'rent' ? money(p) + '/mo' : money(p);
+function drawCur() {
+  const box = $('#curBox');
+  if (box) box.innerHTML = Object.keys(RATES).map((c) => `<button type="button" class="${CUR === c ? 'on' : ''}" data-cur="${c}" aria-pressed="${CUR === c}">${RATES[c].s}</button>`).join('');
+}
+function setCur(c) {
+  CUR = c;
+  drawCur();
+  renderGrid();
+}
+
+function card(l) {
+  const ph = (l.photos && l.photos[0]) ? l.photos[0].url : '';
+  const imageAlt = escapeAttr([l.title, l.loc, l.kind === 'rent' ? 'property for rent' : 'property for sale'].filter(Boolean).join(' — '));
+  const specs = [l.beds != null ? l.beds + ' bed' : null, l.baths != null ? l.baths + ' bath' : null, l.size || null].filter(Boolean).join(' · ');
+  const ver = l.verified === 'yes' ? '<span class="chip chip-v">Verified</span>' : '';
+  const ktag = l.kind === 'rent' ? '<span class="ktag ktag-r">To Rent</span>' : '<span class="ktag ktag-s">For Sale</span>';
+  return `<a class="card" href="#${encodeURIComponent(l.ref || l.id)}">
+    <div class="card-ph">${ph ? `<img src="${ph}" loading="lazy" alt="${imageAlt}">` : ''}${l.ref ? `<span class="chip">${l.ref}</span>` : ''}${ver}</div>
+    <div class="card-b">
+      <p class="card-loc">${l.loc}</p>
+      <h3>${l.title}</h3>
+      <p class="card-price">${fmtPrice(l.price, l.kind)}${ktag}</p>
+      ${specs ? `<p class="card-specs">${specs}</p>` : ''}
+    </div>
+  </a>`;
+}
+
+function renderGrid() {
+  const list = state.tab === 'all' ? L : L.filter((l) => l.kind === state.tab);
+  $('#mkGrid').innerHTML = list.length
+    ? list.map(card).join('')
+    : '<div class="empty">No ' + (state.tab === 'rent' ? 'rentals' : 'properties for sale') + ' yet — we add new listings as they pass our checks. <a href="' + WA + encodeURIComponent('Hi — I\'m looking for property in Zimbabwe. What\'s available?') + '" target="_blank" rel="noopener">Ask us what\'s out there</a>.</div>';
+}
+
+function renderCounts() {
+  const s = L.filter((l) => l.kind === 'sale').length;
+  const r = L.filter((l) => l.kind === 'rent').length;
+  $('#mkCounts').textContent = `${s} for sale · ${r} to rent`;
+}
+
+/* ---------- detail view (same behaviour as homepage) ---------- */
+function openDetail(id) {
+  const l = L.find((x) => x.id === id || x.ref === id);
+  if (!l) return;
+  $('#dRef').textContent = l.ref || '';
+  $('#dRef').hidden = !l.ref;
+  $('#dVer').hidden = l.verified !== 'yes';
+  $('#dTitle').textContent = l.title;
+  $('#dMain').alt = [l.title, l.loc, l.kind === 'rent' ? 'property for rent' : 'property for sale'].filter(Boolean).join(' — ');
+  $('#dLoc').textContent = '📍 ' + l.loc;
+  $('#dPrice').textContent = fmtPrice(l.price, l.kind);
+  const specs = [];
+  if (l.beds != null) specs.push([l.beds + '', 'Bedrooms']);
+  if (l.baths != null) specs.push([l.baths + '', 'Bathrooms']);
+  if (l.size) specs.push([l.size, 'Size']);
+  $('#dSpecs').innerHTML = specs.map((s) => `<div class="d-spec">${s[0]}<small>${s[1]}</small></div>`).join('');
+  const ex = Object.entries(l.specs || {});
+  $('#dExtras').innerHTML = ex.length ? ex.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('') : '';
+  $('#dExtras').hidden = !ex.length;
+  $('#dDesc').textContent = l.desc || '';
+  $('#dAmen').innerHTML = (l.amenities || []).map((a) => `<span>${a}</span>`).join('');
+  const phs = l.photos || [];
+  $('#dMain').src = phs[0] ? phs[0].url : '';
+  $('#dThumbs').innerHTML = phs.map((p, i) => `<img src="${p.url}" class="${i === 0 ? 'on' : ''}" data-i="${i}" alt="">`).join('');
+  $('#dWa').href = WA + encodeURIComponent(`Hi — I'm interested in ${l.ref || 'a property'}: ${l.title} (${l.loc}).`);
+  $('#dVerify').href = WA + encodeURIComponent(`Hi — I'd like a verification report ($250) for ${l.ref || ''} ${l.title} (${l.loc}).`);
+  $('#view-main').hidden = true;
+  $('#view-detail').hidden = false;
+  window.scrollTo({ top: 0 });
+  history.replaceState(null, '', '#' + encodeURIComponent(l.ref || l.id));
+}
+
+function closeDetail() {
+  $('#view-detail').hidden = true;
+  $('#view-main').hidden = false;
+  history.replaceState(null, '', location.pathname);
+}
+
+function handleHash() {
+  const h = decodeURIComponent(location.hash.slice(1));
+  if (h && L.length) {
+    const l = L.find((x) => x.id === h || x.ref === h);
+    if (l) { openDetail(l.id); return true; }
+  }
+  return false;
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click', (e) => {
+  const menuToggle = e.target.closest('#menuToggle');
+  const menuPanel = $('#siteMenu');
+  if (menuToggle) {
+    const isOpen = menuPanel.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    return;
+  }
+  if (menuPanel && !e.target.closest('#siteMenu') && !e.target.closest('#menuToggle')) {
+    menuPanel.classList.remove('open');
+    $('#menuToggle').setAttribute('aria-expanded', 'false');
+  }
+  const cb = e.target.closest('#curBox button');
+  if (cb) { setCur(cb.dataset.cur); return; }
+  const tab = e.target.closest('#mkTabs button');
+  if (tab) {
+    document.querySelectorAll('#mkTabs button').forEach((b) => b.classList.remove('on'));
+    tab.classList.add('on');
+    state.tab = tab.dataset.tab;
+    renderGrid();
+    return;
+  }
+  const nav = e.target.closest('[data-nav]');
+  if (nav) {
+    if (menuPanel) menuPanel.classList.remove('open');
+    if ($('#menuToggle')) $('#menuToggle').setAttribute('aria-expanded', 'false');
+    if (!$('#view-detail').hidden) {
+      e.preventDefault();
+      closeDetail();
+      setTimeout(() => { location.href = nav.getAttribute('href'); }, 30);
+      return;
+    }
+  }
+  const thumb = e.target.closest('.d-thumbs img');
+  if (thumb) {
+    const l = L.find((x) => !$('#view-detail').hidden && $('#dTitle').textContent === x.title);
+    const phs = l ? l.photos : [];
+    $('#dMain').src = phs[+thumb.dataset.i].url;
+    document.querySelectorAll('.d-thumbs img').forEach((t) => t.classList.remove('on'));
+    thumb.classList.add('on');
+  }
+  if (e.target.closest('#dBack')) closeDetail();
+  if (e.target.closest('#logoLink') || e.target.closest('footer .logo')) {
+    e.preventDefault();
+    location.href = '/';
+  }
+});
+
+window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
+
+/* ---------- load ---------- */
+(async function load() {
+  try {
+    const r = await fetch('/api/listings');
+    L = await r.json();
+  } catch (err) {
+    L = [];
+  }
+  renderCounts();
+  drawCur();
+  renderGrid();
+  $('#mkWa').href = WA + encodeURIComponent("Hi — I'm looking for property in Zimbabwe. What's available?");
+  handleHash();
+})();
+</script>
+</body>
+</html>
