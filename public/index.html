@@ -127,7 +127,7 @@ input,select{font-family:inherit;font-size:15px}
 .hero{position:relative;min-height:min(86vh,720px);display:flex;align-items:center;background:url('/hero.webp') center/cover no-repeat;color:#fff}
 .hero .wrap{width:100%;padding-top:64px;padding-bottom:64px}
 .hero .eyebrow{letter-spacing:.18em;font-size:12.5px;font-weight:700;color:var(--gold);margin-bottom:14px}
-.hero h1{font-size:clamp(34px,5.4vw,56px);line-height:1.12;max-width:15ch;font-weight:700;text-shadow:0 2px 18px rgba(9,30,55,.55)}
+.hero h1{font-size:clamp(34px,5.4vw,56px);line-height:1.12;max-width:26ch;font-weight:700;text-shadow:0 2px 18px rgba(9,30,55,.55)}
 .hero .sub{margin-top:16px;font-size:clamp(15px,1.6vw,18px);max-width:56ch;color:rgba(255,255,255,.94);text-shadow:0 1px 10px rgba(9,30,55,.5)}
 .searchcard{margin-top:34px;background:#fff;border-radius:14px;padding:18px;max-width:880px;box-shadow:0 18px 50px rgba(9,20,40,.28)}
 .tabs{display:flex;gap:6px;margin-bottom:14px}
@@ -277,6 +277,52 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   .searchrow select,.searchrow input{min-width:100%}
   .f-grid{grid-template-columns:1fr}
 }
+
+/* nav right group */
+.navr{display:flex;align-items:center;gap:12px}
+.curbox{display:flex;gap:3px;border:1px solid var(--line);border-radius:8px;padding:3px}
+.curbox button{border:none;background:transparent;color:var(--soft);font-weight:700;font-size:12.5px;padding:6px 9px;border-radius:6px}
+.curbox button.on{background:var(--navy);color:#fff}
+.navwa{white-space:nowrap}
+@media (max-width:600px){.navwa{display:none}}
+
+/* service bullets */
+.svc-b{list-style:none;margin:6px 0 0;flex:1}
+.svc-b li{position:relative;padding-left:20px;font-size:13.5px;color:var(--soft);margin-bottom:8px;line-height:1.45}
+.svc-b li:before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:700}
+
+/* badge legend */
+.legend{text-align:center;font-size:13.5px;color:var(--soft);margin:26px auto 0;max-width:78ch}
+.legend b{color:var(--navy)}
+.legend a{color:var(--blue);font-weight:600}
+
+/* why homeland */
+.why{background:#fff;padding:64px 0}
+.why-c{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:24px}
+.why-c h4{font-size:17px;color:var(--navy);margin-bottom:10px;font-family:'Playfair Display',serif}
+.why-c p{font-size:14px;color:var(--soft)}
+
+/* seller steps */
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+@media (max-width:980px){.steps3{grid-template-columns:1fr}}
+.looking{max-width:80ch;margin:34px auto 30px;background:#fff;border:1.5px dashed var(--navy);border-radius:12px;padding:18px 24px;font-size:14.5px;color:var(--ink);text-align:center}
+.looking b{color:var(--navy)}
+
+/* about story */
+.about-p{max-width:74ch;margin:16px auto 0;font-size:15.5px;color:#33424e;text-align:center}
+.about-fine{margin:30px auto 0;text-align:center;font-size:13px;color:var(--soft);max-width:72ch}
+
+/* estimator */
+.estimator{background:var(--grey);padding:64px 0}
+.est-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;justify-content:center;margin:38px auto 0;max-width:880px}
+.est-box .field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.est-box .field input,.est-box .field select{padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;min-width:180px}
+.est-out{display:flex;flex-direction:column;min-width:230px}
+#estOut{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--navy);line-height:1.2}
+.est-out small{color:var(--soft);font-size:12px;margin-top:4px}
+.est-fine{text-align:center;font-size:12.5px;color:var(--soft);margin-top:16px}
+.est-fin{max-width:70ch;margin:28px auto 0;background:var(--blue-l);border-radius:12px;padding:18px 22px;font-size:14.5px;text-align:center;color:var(--ink)}
+.est-fin b{color:var(--navy)}
 </style>
 </head>
 <body>
@@ -291,23 +337,28 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="#" id="logoLink"><img src="/logo.png" alt="Homeland Property Group"></a>
-    <div class="menu-wrap">
-      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteMenu">
-        <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span> MENU
-      </button>
-      <div class="menu-panel" id="siteMenu">
-        <div class="menu-grid">
-          <a class="menu-item" href="#sale" data-nav><strong>Marketplace</strong><span>Browse property for sale across Zimbabwe.</span></a>
-          <a class="menu-item" href="#rent" data-nav><strong>Rent a property</strong><span>Find rooms, homes, farms and commercial space.</span></a>
-          <a class="menu-item" href="#sell" data-nav><strong>Sell or list property</strong><span>Ask Homeland to help bring your property to buyers.</span></a>
-          <a class="menu-item" href="#standard" data-nav><strong>Property checks</strong><span>Understand documents, the land and what needs checking.</span></a>
-        </div>
-        <div class="menu-foot">
-          <a href="#guides" data-nav>Property guides &amp; updates</a>
-          <a href="#about" data-nav>About Homeland</a>
-          <a href="#contact" data-nav>Contact us</a>
+    <div class="navr">
+      <div class="menu-wrap">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteMenu">
+          <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span> MENU
+        </button>
+        <div class="menu-panel" id="siteMenu">
+          <div class="menu-grid">
+            <a class="menu-item" href="#sale" data-nav><strong>Marketplace</strong><span>Browse property for sale across Zimbabwe.</span></a>
+            <a class="menu-item" href="#rent" data-nav><strong>Rent a property</strong><span>Find rooms, homes, farms and commercial space.</span></a>
+            <a class="menu-item" href="#sell" data-nav><strong>Sell or list property</strong><span>You have the stock. We have the buyers.</span></a>
+            <a class="menu-item" href="#services" data-nav><strong>Services &amp; prices</strong><span>Advisory, verification, turnkey and build management — written prices.</span></a>
+          </div>
+          <div class="menu-foot">
+            <a href="#guides" data-nav>Property guides &amp; updates</a>
+            <a href="#why" data-nav>Why Homeland</a>
+            <a href="#about" data-nav>About Homeland</a>
+            <a href="#contact" data-nav>Contact us</a>
+          </div>
         </div>
       </div>
+      <div class="curbox" id="curBox" role="group" aria-label="Choose currency"></div>
+      <a class="btn btn-g navwa" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20to%20talk%20to%20Homeland%20Property%20Group.">WhatsApp Us</a>
     </div>
   </div>
 </header>
@@ -318,8 +369,8 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <section class="hero">
   <div class="wrap">
     <p class="eyebrow">HOMELAND PROPERTY GROUP</p>
-    <h1>Find, buy or rent property in Zimbabwe with confidence.</h1>
-    <p class="sub">Houses, stands, farms, commercial property, mines, hotels and lodges. Get local information and on-the-ground checks before you commit.</p>
+    <h1>Own property back home,<br>without flying home.</h1>
+    <p class="sub">Houses, stands, farms, mines and lodges across Zimbabwe — we check the papers and stand on the ground before you pay a dollar.</p>
     <div class="searchcard">
       <div class="tabs" id="tabs">
         <button data-tab="sale" class="on">Buy</button>
@@ -335,8 +386,9 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
       </div>
     </div>
     <div class="trust">
-      <span>Property opportunities across Zimbabwe</span>
-      <span>On-the-ground checks available</span>
+      <span>✓ Papers before payment</span>
+      <span>✓ Money moves through registered conveyancers</span>
+      <span>✓ Weekly photo reports on WhatsApp</span>
     </div>
   </div>
 </section>
@@ -344,21 +396,56 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 
 
 
-<section class="standard" id="standard">
+<section class="services" id="services">
   <div class="wrap">
-    <p class="eyebrow">PROPERTY VERIFICATION</p>
-    <h2 class="stitle">Know what you are buying before you pay</h2>
-    <p class="ssub">Buying from abroad or in Zimbabwe can raise difficult questions. We help you check the property, understand the documents and see what has—and has not—been confirmed.</p>
-    <div class="steps4">
-      <div class="step4"><div class="snum">1</div><h4>Visit the property</h4><p>Arrange an on-the-ground visit to understand the property's condition, access and surroundings.</p></div>
-      <div class="step4"><div class="snum">2</div><h4>Ask the right questions</h4><p>Review available ownership documents and check relevant permits, boundaries and land-use concerns.</p></div>
-      <div class="step4"><div class="snum">3</div><h4>Receive clear findings</h4><p>Get photos, available documents and a written report showing what was checked and what still needs confirmation.</p></div>
-      <div class="step4"><div class="snum">4</div><h4>Make an informed decision</h4><p>Use the findings to decide your next steps and seek qualified legal advice where needed.</p></div>
-    </div>
-    <p class="paidline"><b>Do not rely on photographs or promises alone.</b> Ask questions, check the documents and understand the risks before committing your money.</p>
-    <div class="std-cta">
-      <a class="btn btn-g" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20a%20verification%20report%20(%24250).">Get a verification report — $250</a>
-      <a class="btn btn-o" href="#services">See how buying works</a>
+    <p class="eyebrow">WHAT WE DO</p>
+    <h2 class="stitle">Clear services. Written prices. No surprises.</h2>
+    <p class="ssub">You are the client — not the seller, not the agent. Here is exactly what we do and what it costs.</p>
+    <div class="grid4">
+      <div class="svcc">
+        <p class="svc-price">From $50</p>
+        <h4>Advisory session</h4>
+        <ul class="svc-b">
+          <li>Budget &amp; area strategy</li>
+          <li>Title types explained plainly</li>
+          <li>Realistic price benchmarks</li>
+          <li>Written summary &amp; next steps</li>
+        </ul>
+        <a class="svc-link" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20to%20book%20an%20advisory%20session%20(from%20%2450).">Book session →</a>
+      </div>
+      <div class="svcc hl">
+        <p class="svc-price">From $250</p>
+        <h4>Verification report</h4>
+        <ul class="svc-b">
+          <li>Deeds Office / council ownership search</li>
+          <li>Seller identity &amp; dispute checks</li>
+          <li>Physical inspection, beacons photographed</li>
+          <li>Written go / no-go recommendation</li>
+        </ul>
+        <a class="svc-link" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20a%20verification%20report%20(from%20%24250).">Verify a property →</a>
+      </div>
+      <div class="svcc">
+        <p class="svc-price">Custom quote</p>
+        <h4>Full turnkey</h4>
+        <ul class="svc-b">
+          <li>Everything in Advisory + Verification</li>
+          <li>Sourcing from our network</li>
+          <li>Closing through registered conveyancers</li>
+          <li>Transfer tracked to your name</li>
+        </ul>
+        <a class="svc-link" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20a%20quote%20for%20a%20full%20turnkey%20purchase.">Get a quote →</a>
+      </div>
+      <div class="svcc">
+        <p class="svc-price">From 10%</p>
+        <h4>Build management</h4>
+        <ul class="svc-b">
+          <li>Plans approved, builders vetted</li>
+          <li>Staged payments after inspection only</li>
+          <li>Weekly WhatsApp photo reports</li>
+          <li>Budget tracked line by line</li>
+        </ul>
+        <a class="svc-link" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20to%20talk%20about%20build%20management%20(from%2010%25).">Manage my build →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -371,7 +458,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
     <p class="ssub">Browse available houses, stands, farms and commercial opportunities. Contact us to ask about a listing or request checks before you proceed.</p>
   </div>
 </section>
-<section class="market"><div class="wrap"><div class="grid" id="saleGrid"><div class="empty">Loading listings…</div></div></div></section>
+<section class="market"><div class="wrap"><div class="grid" id="saleGrid"><div class="empty">Loading listings…</div></div><p class="legend"><b>What the badges mean:</b> ✓ Verified — deeds search done, seller ID matched, property inspected. No badge? That listing is still being checked — ask us for the current status. Don't see what you're looking for? <a href="#sell">We'll source it.</a></p></div></section>
 </div>
 
 <div id="rentSec">
@@ -392,37 +479,32 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   </div>
 </section>
 
-<section class="services" id="services">
+<section class="agentcta" id="sell">
   <div class="wrap">
-    <p class="eyebrow">WHAT WE DO</p>
-    <h2 class="stitle">Our Services</h2>
-    <p class="ssub">Whether you are buying locally or from abroad, we help you understand your options and the checks that may be needed.</p>
-    <div class="grid4">
-      <div class="svcc">
-        <p class="svc-price">$50</p>
-        <h4>Property advisory</h4>
-        <p>A structured call on what to buy, where, at what price — and exactly how the process works. The notes are yours to keep.</p>
-        <a class="svc-link" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20to%20book%20a%20property%20advisory%20call%20(%2450).">Book on WhatsApp →</a>
-      </div>
-      <div class="svcc hl">
-        <p class="svc-price">$250</p>
-        <h4>Verification report</h4>
-        <p>We visit, inspect and check the papers. You receive photos, video, documents and a written report before any money moves.</p>
-        <a class="svc-link" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20a%20verification%20report%20(%24250).">Book on WhatsApp →</a>
-      </div>
-      <div class="svcc">
-        <p class="svc-price">10%</p>
-        <h4>Build management</h4>
-        <p>Building back home? We manage builders, materials, payments and progress reports end to end — for 10% of the build cost.</p>
-        <a class="svc-link" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20to%20talk%20about%20build%20management.">Talk to us →</a>
-      </div>
-      <div class="svcc">
-        <p class="svc-price">Local</p>
-        <h4>Local services</h4>
-        <p>Buying or renting in Zimbabwe? We find, check and walk you to move-in day. Agents are welcome to refer clients.</p>
-        <a class="svc-link" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%20need%20help%20with%20property%20in%20Zimbabwe.">Get help →</a>
-      </div>
+    <p class="eyebrow">FOR AGENTS, DEVELOPERS &amp; SELLERS</p>
+    <h2 class="stitle">You have the stock. We have the buyers.</h2>
+    <p class="ssub">Homeland works with a small number of registered estate agents, land developers and direct sellers. We are not a classifieds board and we do not take public uploads. We bring you funded, briefed buyers across the diaspora, worldwide — people you will never reach through a Harare shopfront — and we work with you on commission.</p>
+    <div class="steps3">
+      <div class="step4"><div class="snum">1</div><h4>You send us stock</h4><p>Send what you are mandated to sell — houses, stands, farms, claims, commercial. We review it and only present what fits a live buyer brief.</p></div>
+      <div class="step4"><div class="snum">2</div><h4>We verify before we market</h4><p>Deeds Office search, seller identity, physical inspection. Until that is done the listing carries an honest "in verification" badge — we never label something verified when it isn't.</p></div>
+      <div class="step4"><div class="snum">3</div><h4>We split the commission</h4><p>If our buyer closes on your property, we agree the split in writing before marketing begins. Funds move through a registered conveyancer's trust account — never a personal account, not ours, not yours.</p></div>
     </div>
+    <p class="looking"><b>What we are looking for right now:</b> residential stands in Ruwa, Goromonzi, Harare South and the Bulawayo corridors · finished and near-finished family houses in Harare and Bulawayo · smallholdings and farms with real water · registered gold claims with verifiable claim numbers · industrial and commercial with existing income.</p>
+    <a class="btn btn-n" href="mailto:info@homelandpropertygroup.com?subject=I%20want%20to%20sell%20or%20list%20a%20property">Send us your stock</a>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap">
+    <p class="eyebrow">WHY HOMELAND</p>
+    <h2 class="stitle">Why Homeland</h2>
+    <p class="ssub">Every diasporan knows a story: the stand a relative "bought", the plot sold twice, the agent who vanished. Everything we do answers one question — why your money is safe here.</p>
+    <div class="grid3">
+      <div class="why-c"><div class="snum">1</div><h4>Papers before payment</h4><p>Deeds Office searches, seller identity checks and physical site inspections — completed and reported in writing before you commit a single dollar.</p></div>
+      <div class="why-c"><div class="snum">2</div><h4>Money moves through professionals</h4><p>Purchases close through registered conveyancers and estate agents. Your money never sits in a personal account — not a relative's, not a middleman's, not even ours.</p></div>
+      <div class="why-c"><div class="snum">3</div><h4>Eyes on your project</h4><p>Vetted builders, staged payments released only after inspection, and weekly photo reports to your WhatsApp — from foundation to keys.</p></div>
+    </div>
+    <p class="paidline"><b>Portals are paid by agents. Agents are paid by sellers. We are the only party in the chain paid by you</b> — so we answer to you alone.</p>
   </div>
 </section>
 
@@ -448,20 +530,20 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   </div>
 </section>
 
-<section class="agentcta" id="sell">
-  <div class="wrap">
-    <p class="eyebrow">SELL OR LIST WITH HOMELAND</p>
-    <h2 class="stitle">Want to sell your property?</h2>
-    <p class="ssub">Tell us about your house, stand, farm or commercial property. Our team will discuss the details with you and explain the next steps. Property owners and professional agents can contact us about listing opportunities.</p>
-    <a class="btn btn-n" href="mailto:info@homelandpropertygroup.com?subject=I%20want%20to%20sell%20or%20list%20a%20property">Enquire about selling or listing</a>
-  </div>
-</section>
 
 <section class="standard" id="about">
   <div class="wrap">
     <p class="eyebrow">ABOUT HOMELAND PROPERTY GROUP</p>
-    <h2 class="stitle">Property decisions deserve clear information</h2>
-    <p class="ssub">Homeland Property Group helps people in Zimbabwe and Zimbabweans living abroad explore property opportunities with better access to local information. We connect buyers, renters and sellers with property options, and offer on-the-ground checks and guidance so clients can ask informed questions before they commit.</p>
+    <h2 class="stitle">Your people on the ground.</h2>
+    <p class="ssub">Homeland Property Group exists for one person: the Zimbabwean abroad who wants to own something real back home — and wants to sleep at night while it happens.</p>
+    <p class="about-p">We are a one-stop property partner. We sell our own verified listings. We source properties we don't have. We verify anything before you pay for it. And we manage your purchase or your build while you watch from abroad — with weekly reports, staged payments and receipts for everything.</p>
+    <p class="about-p"><b>Portals serve agents. Agents serve sellers. We serve you — the buyer — and we're the only party in the chain paid by you.</b> That single fact shapes every recommendation we make, including the times we tell you not to buy.</p>
+    <div class="grid3">
+      <div class="why-c"><h4>Why we started</h4><p>Because too many Zimbabweans abroad have sent money home for a stand, a house or a claim — and received a story instead of a title deed. We built the checks we wished our own families had.</p></div>
+      <div class="why-c"><h4>How we are paid</h4><p>By you, the buyer, and by nobody else. No hidden seller kickbacks on your purchase. If a property does not stand up to our checks, we say so and you keep your money.</p></div>
+      <div class="why-c"><h4>How we work</h4><p>Every purchase closes through registered estate agents and conveyancers under Zimbabwean law, with funds held in a conveyancer's trust account — never a personal one, not even ours.</p></div>
+    </div>
+    <p class="about-fine">All property transactions close through registered estate agents and conveyancers in line with Zimbabwean law. Homeland Property Group acts as your consultant and owner's representative throughout.</p>
     <div class="std-cta">
       <a class="btn btn-g" href="#sale">Explore the marketplace</a>
       <a class="btn btn-n" href="#contact">Talk to Homeland</a>
@@ -469,13 +551,41 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   </div>
 </section>
 
+<section class="estimator" id="estimator">
+  <div class="wrap">
+    <p class="eyebrow">BUILDING BACK HOME</p>
+    <h2 class="stitle">Build cost estimator</h2>
+    <p class="ssub">A rough planning range for building in Zimbabwe today. Real quotes follow plans and site checks.</p>
+    <div class="est-box">
+      <div class="field">
+        <label for="cArea">Floor area (m²)</label>
+        <input type="number" id="cArea" value="120" min="0" oninput="calc()">
+      </div>
+      <div class="field">
+        <label for="cLvl">Finish level</label>
+        <select id="cLvl" onchange="calc()">
+          <option value="380">Standard — solid &amp; practical</option>
+          <option value="520" selected>Quality — modern family home</option>
+          <option value="750">Premium — executive finish</option>
+        </select>
+      </div>
+      <div class="est-out"><span id="estOut">—</span><small>estimated build range</small></div>
+    </div>
+    <p class="est-fine">Planning estimate only, based on typical current $/m² rates. Excludes land, borehole, solar, boundary walls and professional fees.</p>
+    <div class="std-cta">
+      <a class="btn btn-g" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20to%20discuss%20a%20build%20cost%20estimate.">Discuss my build</a>
+    </div>
+    <p class="est-fin"><b>Financing from abroad exists.</b> Zimbabwean banks including Stanbic, CBZ and CABS run diaspora home-loan and mortgage products for buying or building from outside the country. Ask us which route fits your purchase — we'll point you to the right desk.</p>
+  </div>
+</section>
+
 <section class="strip" id="contact">
   <div class="wrap strip-in">
     <div>
       <h3>Start with a free 15-minute call</h3>
-      <p>No obligation. Tell us what you're thinking and we'll tell you honestly what we can do.</p>
+      <p>Tell us what you want back home. We'll tell you what it really costs, what to avoid, and your honest next step — even if that step is "wait".</p>
     </div>
-    <a class="btn btn-g" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20to%20book%20a%20free%2015-minute%20call.">WhatsApp us</a>
+    <a class="btn btn-g" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20to%20book%20my%20free%2015-minute%20call.">Book my free call on WhatsApp</a>
   </div>
 </section>
 
@@ -484,15 +594,17 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
     <div class="f-grid">
       <div class="f-brand">
         <a class="logo" href="#"><img src="/logo-white.png" alt="Homeland Property Group"></a>
-        <p>Find property opportunities across Zimbabwe, understand what needs checking and make better-informed decisions wherever you live.</p>
+        <p>Verified property, honest advice and managed builds for Zimbabweans abroad. The only party in the chain paid by you.</p>
       </div>
       <div>
         <h5>Explore</h5>
         <a href="#sale" data-nav>Marketplace</a>
         <a href="#rent" data-nav>Properties to Rent</a>
+        <a href="#services" data-nav>Services &amp; prices</a>
         <a href="#sell" data-nav>Sell or list property</a>
+        <a href="#why" data-nav>Why Homeland</a>
         <a href="#guides" data-nav>Property guides</a>
-        <a href="#standard" data-nav>Property checks</a>
+        <a href="#estimator" data-nav>Build cost estimator</a>
         <a href="#about" data-nav>About Homeland</a>
       </div>
       <div>
@@ -551,7 +663,31 @@ function escapeAttr(value) {
     '&': '&amp;', '"': '&quot;', '<': '&lt;', '>': '&gt;'
   })[char]);
 }
-const fmtPrice = (p, kind) => kind === 'rent' ? '$' + Math.round(p).toLocaleString() + '/mo' : '$' + Math.round(p).toLocaleString();
+/* currency (prices in data are US$) */
+const RATES = { USD: { r: 1, s: 'US$' }, GBP: { r: 0.78, s: '£' }, ZAR: { r: 18.2, s: 'R' } };
+let CUR = 'USD';
+const money = (usd) => RATES[CUR].s + Math.round(usd * RATES[CUR].r).toLocaleString();
+const fmtPrice = (p, kind) => kind === 'rent' ? money(p) + '/mo' : money(p);
+function drawCur() {
+  const box = $('#curBox');
+  if (box) box.innerHTML = Object.keys(RATES).map((c) => `<button type="button" class="${CUR === c ? 'on' : ''}" data-cur="${c}" aria-pressed="${CUR === c}">${RATES[c].s}</button>`).join('');
+}
+function setCur(c) {
+  CUR = c;
+  drawCur();
+  renderGrids();
+  calc();
+}
+
+/* build cost estimator */
+function calc() {
+  const el = $('#cArea');
+  const out = $('#estOut');
+  if (!el || !out) return;
+  const a = +el.value || 0, r = +$('#cLvl').value;
+  if (!a) { out.textContent = '—'; return; }
+  out.textContent = money(a * r * 0.88) + ' – ' + money(a * r * 1.14);
+}
 
 function card(l) {
   const ph = (l.photos && l.photos[0]) ? l.photos[0].url : '';
@@ -682,6 +818,8 @@ document.addEventListener('click', (e) => {
     menuPanel.classList.remove('open');
     $('#menuToggle').setAttribute('aria-expanded', 'false');
   }
+  const cb = e.target.closest('#curBox button');
+  if (cb) { setCur(cb.dataset.cur); return; }
   const tab = e.target.closest('#tabs button');
   if (tab) {
     document.querySelectorAll('#tabs button').forEach((b) => b.classList.remove('on'));
@@ -741,7 +879,9 @@ window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
   renderCounts();
   renderLocs();
   renderCats();
+  drawCur();
   renderGrids();
+  calc();
   handleHash();
 })();
 </script>
