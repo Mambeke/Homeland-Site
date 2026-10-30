@@ -218,6 +218,23 @@ input,select{font-family:inherit;font-size:15px}
 .card-specs{font-size:13px;color:var(--soft)}
 .empty{grid-column:1/-1;text-align:center;color:var(--soft);padding:48px 0;font-size:15px}
 
+/* featured */
+.feat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:32px}
+.feat-grid .card-ph{aspect-ratio:16/11}
+.feat-grid .card-b{padding:14px 14px 16px;gap:3px}
+.feat-grid .card-loc{font-size:11.5px}
+.feat-grid .card h3{font-size:15px;line-height:1.3}
+.feat-grid .card-price{font-size:17px;margin-top:4px}
+.feat-grid .card-specs{font-size:12px}
+.ktag{position:absolute;bottom:10px;left:10px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+.ktag-s{background:rgba(27,111,181,.94);color:#fff}
+.ktag-r{background:rgba(245,166,35,.97);color:#231602}
+.feat-more{text-align:center;margin-top:26px}
+.feat-more a{color:var(--blue);font-weight:600}
+@media (max-width:1100px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:680px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:440px){.feat-grid{grid-template-columns:1fr}}
+
 /* categories */
 .cats{background:var(--grey);padding:56px 0}
 .cat-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:30px}
@@ -515,6 +532,17 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
     </div>
   </div>
 </section>
+
+<div id="featSec">
+<section class="band" id="featured">
+  <div class="wrap">
+    <p class="eyebrow">FEATURED PROPERTIES</p>
+    <h2 class="stitle">Featured properties</h2>
+    <p class="ssub">Five listings we're proudest of right now — hand-picked from the marketplace, each one checked on the ground.</p>
+  </div>
+</section>
+<section class="market"><div class="wrap"><div class="grid feat-grid" id="featGrid"><div class="empty">Loading listings…</div></div><p class="feat-more" id="featMore"></p></div></section>
+</div>
 
 <div id="saleSec">
 <section class="band" id="sale">
@@ -829,13 +857,14 @@ function calc() {
   out.textContent = money(a * r * 0.88) + ' – ' + money(a * r * 1.14);
 }
 
-function card(l) {
+function card(l, tag = false) {
   const ph = (l.photos && l.photos[0]) ? l.photos[0].url : '';
   const imageAlt = escapeAttr([l.title, l.loc, l.kind === 'rent' ? 'property for rent' : 'property for sale'].filter(Boolean).join(' — '));
   const specs = [l.beds != null ? l.beds + ' bed' : null, l.baths != null ? l.baths + ' bath' : null, l.size || null].filter(Boolean).join(' · ');
   const ver = l.verified === 'yes' ? '<span class="chip chip-v">Verified</span>' : '';
+  const ktag = tag ? (l.kind === 'rent' ? '<span class="ktag ktag-r">To Rent</span>' : '<span class="ktag ktag-s">For Sale</span>') : '';
   return `<a class="card" href="#${encodeURIComponent(l.ref || l.id)}">
-    <div class="card-ph">${ph ? `<img src="${ph}" loading="lazy" alt="${imageAlt}">` : ''}${l.ref ? `<span class="chip">${l.ref}</span>` : ''}${ver}</div>
+    <div class="card-ph">${ph ? `<img src="${ph}" loading="lazy" alt="${imageAlt}">` : ''}${l.ref ? `<span class="chip">${l.ref}</span>` : ''}${ver}${ktag}</div>
     <div class="card-b">
       <p class="card-loc">${l.loc}</p>
       <h3>${l.title}</h3>
@@ -868,8 +897,35 @@ function renderGrids() {
   $('#rentSec').style.display = state.tab === 'sale' ? 'none' : '';
   const sales = L.filter((l) => l.kind === 'sale' && match(l));
   const rents = L.filter((l) => l.kind === 'rent' && match(l));
-  $('#saleGrid').innerHTML = sales.length ? sales.map(card).join('') : '<div class="empty">' + emptyMsg('sale') + '</div>';
-  $('#rentGrid').innerHTML = rents.length ? rents.map(card).join('') : '<div class="empty">' + emptyMsg('rent') + '</div>';
+  $('#saleGrid').innerHTML = sales.length ? sales.map((l) => card(l)).join('') : '<div class="empty">' + emptyMsg('sale') + '</div>';
+  $('#rentGrid').innerHTML = rents.length ? rents.map((l) => card(l)).join('') : '<div class="empty">' + emptyMsg('rent') + '</div>';
+}
+
+/* Featured: 5 hand-picked listings — verified first, one per category, one rental slot
+   so both sale and rent are represented. Deterministic and stable. */
+function pickFeatured(list, n = 5) {
+  const sales = list.filter((l) => l.kind === 'sale');
+  const rents = list.filter((l) => l.kind === 'rent');
+  const out = [];
+  const rentPick = rents.find((r) => r.verified === 'yes') || rents[0];
+  if (rentPick) out.push(rentPick);
+  const verifiedSales = sales.filter((s) => s.verified === 'yes');
+  const pool = verifiedSales.length >= n - out.length ? verifiedSales : sales;
+  const seen = new Set(out.map((l) => l.cat));
+  for (const l of pool) { if (out.length >= n) break; if (!seen.has(l.cat)) { seen.add(l.cat); out.push(l); } }
+  for (const l of pool) { if (out.length >= n) break; if (!out.includes(l)) out.push(l); }
+  return out.slice(0, n);
+}
+function renderFeatured() {
+  const sec = $('#featSec'), grid = $('#featGrid');
+  if (!sec || !grid) return;
+  const feats = pickFeatured(L, 5);
+  if (!feats.length) { sec.style.display = 'none'; return; }
+  grid.innerHTML = feats.map((l) => card(l, true)).join('');
+  const more = $('#featMore');
+  if (more) more.innerHTML = L.length > feats.length
+    ? `Showing ${feats.length} of ${L.length} — <a href="/marketplace.html">browse the full Marketplace →</a>`
+    : '<a href="/marketplace.html">Browse the full Marketplace →</a>';
 }
 
 function renderCounts() {
@@ -1164,6 +1220,7 @@ window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
   renderLocs();
   renderCats();
   renderGrids();
+  renderFeatured();
   calc();
   handleHash();
 })();

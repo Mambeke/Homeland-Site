@@ -160,6 +160,23 @@ input,select{font-family:inherit;font-size:15px}
 .card-specs{font-size:13px;color:var(--soft)}
 .empty{grid-column:1/-1;text-align:center;color:var(--soft);padding:48px 0;font-size:15px}
 
+/* featured */
+.feat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:32px}
+.feat-grid .card-ph{aspect-ratio:16/11}
+.feat-grid .card-b{padding:14px 14px 16px;gap:3px}
+.feat-grid .card-loc{font-size:11.5px}
+.feat-grid .card h3{font-size:15px;line-height:1.3}
+.feat-grid .card-price{font-size:17px;margin-top:4px}
+.feat-grid .card-specs{font-size:12px}
+.ktag{position:absolute;bottom:10px;left:10px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+.ktag-s{background:rgba(27,111,181,.94);color:#fff}
+.ktag-r{background:rgba(245,166,35,.97);color:#231602}
+.feat-more{text-align:center;margin-top:26px}
+.feat-more a{color:var(--blue);font-weight:600}
+@media (max-width:1100px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:680px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:440px){.feat-grid{grid-template-columns:1fr}}
+
 /* categories */
 .cats{background:var(--grey);padding:56px 0}
 .cat-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:30px}
@@ -506,7 +523,7 @@ function card(l) {
 function renderGrid() {
   const list = state.tab === 'all' ? L : L.filter((l) => l.kind === state.tab);
   $('#mkGrid').innerHTML = list.length
-    ? list.map(card).join('')
+    ? list.map((l) => card(l)).join('')
     : '<div class="empty">No ' + (state.tab === 'rent' ? 'rentals' : 'properties for sale') + ' yet — we add new listings as they pass our checks. <a href="' + WA + encodeURIComponent('Hi — I\'m looking for property in Zimbabwe. What\'s available?') + '" target="_blank" rel="noopener">Ask us what\'s out there</a>.</div>';
 }
 
