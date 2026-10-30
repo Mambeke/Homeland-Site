@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Homeland Property Group | Zimbabwe Property, Checked on the Ground</title>
-<meta name="description" content="Explore Zimbabwe property for sale and rent. Homeland Property Group checks properties on the ground and offers diaspora advisory, verification reports and build management.">
+<meta name="description" content="Buy, rent or sell property in Zimbabwe with clearer information. Explore houses, urban and rural stands, farms, commercial property, mines, mining claims, hotels and lodges, with on-the-ground verification support.">
 <link rel="canonical" href="https://homeland.brandonmambeke.workers.dev/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Homeland Property Group">
 <meta property="og:title" content="Homeland Property Group | Zimbabwe Property, Checked on the Ground">
-<meta property="og:description" content="Zimbabwe property, checked on the ground. Explore sale and rental listings, property verification and build management.">
+<meta property="og:description" content="Find property to buy or rent across Zimbabwe, or ask us to help verify a property, mine or claim before you commit.">
 <meta property="og:url" content="https://homeland.brandonmambeke.workers.dev/">
 <meta property="og:image" content="https://homeland.brandonmambeke.workers.dev/hero.webp">
 <meta property="og:image:alt" content="Homeland Property Group — Zimbabwe property, checked on the ground">
 <meta property="og:locale" content="en_ZW">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Homeland Property Group | Zimbabwe Property">
-<meta name="twitter:description" content="Zimbabwe property, checked on the ground. Explore sale and rental listings, verification and build management.">
+<meta name="twitter:description" content="Find property to buy or rent across Zimbabwe, or ask us to help verify a property, mine or claim before you commit.">
 <meta name="twitter:image" content="https://homeland.brandonmambeke.workers.dev/hero.webp">
 <script type="application/ld+json">
 {
@@ -106,12 +106,28 @@ input,select{font-family:inherit;font-size:15px}
 .navlinks{display:flex;gap:26px;font-size:14.5px;font-weight:500;color:var(--ink)}
 .navlinks a:hover{color:var(--navy)}
 .nav .btn{padding:9px 18px;font-size:14px}
+.menu-wrap{position:relative;display:flex;align-items:center}
+.menu-toggle{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 13px;color:var(--navy);font-size:13px;font-weight:700;letter-spacing:.06em}
+.menu-toggle:hover,.menu-toggle[aria-expanded="true"]{border-color:var(--navy);background:var(--blue-l)}
+.menu-icon{display:grid;grid-template-columns:repeat(2,5px);gap:3px}
+.menu-icon i{width:5px;height:5px;border-radius:1px;background:var(--navy);display:block}
+.menu-panel{position:absolute;right:0;top:calc(100% + 12px);width:min(520px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 18px 45px rgba(9,30,55,.18);display:none;z-index:100}
+.menu-panel.open{display:block}
+.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.menu-item{display:block;padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.menu-item:hover{border-color:var(--gold);background:var(--cream)}
+.menu-item strong{display:block;color:var(--navy);font-size:14px}
+.menu-item span{display:block;color:var(--soft);font-size:12px;margin-top:4px;line-height:1.45}
+.menu-foot{display:flex;gap:16px;flex-wrap:wrap;padding:13px 3px 0;font-size:13px;font-weight:600;color:var(--blue)}
+.hero .sub{max-width:53ch}
+.hero .sub .mobile-break{display:none}
+@media (max-width:600px){.menu-panel{right:-2px;padding:11px}.menu-grid{gap:8px}.menu-item{padding:11px}.menu-item strong{font-size:13px}.menu-item span{font-size:11.5px}.menu-toggle{padding:9px 11px}.hero .wrap{padding-top:44px;padding-bottom:44px}.hero .sub{max-width:35ch;font-size:15px}.hero .sub .mobile-break{display:inline}}
 
 /* hero */
 .hero{position:relative;min-height:min(86vh,720px);display:flex;align-items:center;background:url('/hero.webp') center/cover no-repeat;color:#fff}
 .hero .wrap{width:100%;padding-top:64px;padding-bottom:64px}
 .hero .eyebrow{letter-spacing:.18em;font-size:12.5px;font-weight:700;color:var(--gold);margin-bottom:14px}
-.hero h1{font-size:clamp(24px,3vw,32px);line-height:1.22;max-width:24ch;font-weight:700;text-shadow:0 2px 18px rgba(9,30,55,.55)}
+.hero h1{font-size:clamp(34px,5.4vw,56px);line-height:1.12;max-width:15ch;font-weight:700;text-shadow:0 2px 18px rgba(9,30,55,.55)}
 .hero .sub{margin-top:16px;font-size:clamp(15px,1.6vw,18px);max-width:56ch;color:rgba(255,255,255,.94);text-shadow:0 1px 10px rgba(9,30,55,.5)}
 .searchcard{margin-top:34px;background:#fff;border-radius:14px;padding:18px;max-width:880px;box-shadow:0 18px 50px rgba(9,20,40,.28)}
 .tabs{display:flex;gap:6px;margin-bottom:14px}
@@ -275,15 +291,24 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="#" id="logoLink"><img src="/logo.png" alt="Homeland Property Group"></a>
-    <nav class="navlinks">
-      <a href="#sale" data-nav>For Sale</a>
-      <a href="#rent" data-nav>To Rent</a>
-      <a href="#standard" data-nav>Verify</a>
-      <a href="#services" data-nav>Services</a>
-      <a href="#about" data-nav>About</a>
-      <a href="#contact" data-nav>Contact</a>
-    </nav>
-    <a class="btn btn-g" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group">WhatsApp</a>
+    <div class="menu-wrap">
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteMenu">
+        <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span> MENU
+      </button>
+      <div class="menu-panel" id="siteMenu">
+        <div class="menu-grid">
+          <a class="menu-item" href="#sale" data-nav><strong>Marketplace</strong><span>Browse property for sale across Zimbabwe.</span></a>
+          <a class="menu-item" href="#rent" data-nav><strong>Rent a property</strong><span>Find rooms, homes, farms and commercial space.</span></a>
+          <a class="menu-item" href="#sell" data-nav><strong>Sell or list property</strong><span>Ask Homeland to help bring your property to buyers.</span></a>
+          <a class="menu-item" href="#standard" data-nav><strong>Property checks</strong><span>Understand documents, the land and what needs checking.</span></a>
+        </div>
+        <div class="menu-foot">
+          <a href="#guides" data-nav>Property guides &amp; updates</a>
+          <a href="#about" data-nav>About Homeland</a>
+          <a href="#contact" data-nav>Contact us</a>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -292,8 +317,9 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 
 <section class="hero">
   <div class="wrap">
-    <h1>Zimbabwe property,<br>checked on the ground.</h1>
-    <p class="sub">Houses, stands, farms and mines across Zimbabwe — verified documents, on-the-ground inspections, and transparent financial handling. From Zimbabwe to wherever you call home.</p>
+    <p class="eyebrow">HOMELAND PROPERTY GROUP</p>
+    <h1>Find, buy or rent property in Zimbabwe with confidence.</h1>
+    <p class="sub">Houses, stands, farms, commercial property, mines, hotels and lodges. Get local information and on-the-ground checks before you commit.</p>
     <div class="searchcard">
       <div class="tabs" id="tabs">
         <button data-tab="sale" class="on">Buy</button>
@@ -308,48 +334,28 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         <button class="btn btn-n" id="sGo">Search</button>
       </div>
     </div>
-
+    <div class="trust">
+      <span>Property opportunities across Zimbabwe</span>
+      <span>On-the-ground checks available</span>
+    </div>
   </div>
 </section>
 
-<section class="doors">
-  <div class="wrap door-row">
-    <a class="door" href="#standard">
-      <p class="door-tag">I'M IN THE DIASPORA</p>
-      <h3>I can't be there. Show me proof.</h3>
-      <p>We walk the property, check the papers and send you the evidence — before a cent moves.</p>
-      <span class="door-cta">See the verification service →</span>
-    </a>
-    <a class="door" href="#sale">
-      <p class="door-tag">I'M IN ZIMBABWE</p>
-      <h3>I'm buying or renting at home.</h3>
-      <p>Browse what's live — every listing walked and checked by us, not copied from an agent.</p>
-      <span class="door-cta">Browse the market →</span>
-    </a>
-  </div>
-</section>
 
-<section class="numbers">
-  <div class="wrap nwrap">
-    <div class="num"><b id="numCount">—</b><span>Live listings</span></div>
-    <div class="num"><b>100%</b><span>Checked on the ground</span></div>
-    <div class="num"><b>All</b><span>Papers &amp; permits reviewed</span></div>
-    <div class="num"><b>0</b><span>Guesswork</span></div>
-  </div>
-</section>
+
 
 <section class="standard" id="standard">
   <div class="wrap">
-    <p class="eyebrow">WHY HOMELAND</p>
-    <h2 class="stitle">The Homeland Standard</h2>
-    <p class="ssub">Buying property in a country you can't stand in is a trust problem. This is how we solve it.</p>
+    <p class="eyebrow">PROPERTY VERIFICATION</p>
+    <h2 class="stitle">Know what you are buying before you pay</h2>
+    <p class="ssub">Buying from abroad or in Zimbabwe can raise difficult questions. We help you check the property, understand the documents and see what has—and has not—been confirmed.</p>
     <div class="steps4">
-      <div class="step4"><div class="snum">1</div><h4>We go there</h4><p>Someone walks the property in person. You get what's real, not an agent's words.</p></div>
-      <div class="step4"><div class="snum">2</div><h4>We check the essentials</h4><p>Title deeds, rates &amp; taxes, permits, encumbrances, boundaries and the neighbours.</p></div>
-      <div class="step4"><div class="snum">3</div><h4>We send the evidence</h4><p>Photos, video and documents, with a written report you can keep and share.</p></div>
-      <div class="step4"><div class="snum">4</div><h4>Money moves properly</h4><p>Only through verified channels — staged, documented at every step.</p></div>
+      <div class="step4"><div class="snum">1</div><h4>Visit the property</h4><p>Arrange an on-the-ground visit to understand the property's condition, access and surroundings.</p></div>
+      <div class="step4"><div class="snum">2</div><h4>Ask the right questions</h4><p>Review available ownership documents and check relevant permits, boundaries and land-use concerns.</p></div>
+      <div class="step4"><div class="snum">3</div><h4>Receive clear findings</h4><p>Get photos, available documents and a written report showing what was checked and what still needs confirmation.</p></div>
+      <div class="step4"><div class="snum">4</div><h4>Make an informed decision</h4><p>Use the findings to decide your next steps and seek qualified legal advice where needed.</p></div>
     </div>
-    <p class="paidline">Portals are paid by agents. So are agent websites. <b>We are the only party in the chain paid by you.</b></p>
+    <p class="paidline"><b>Do not rely on photographs or promises alone.</b> Ask questions, check the documents and understand the risks before committing your money.</p>
     <div class="std-cta">
       <a class="btn btn-g" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20a%20verification%20report%20(%24250).">Get a verification report — $250</a>
       <a class="btn btn-o" href="#services">See how buying works</a>
@@ -360,8 +366,9 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <div id="saleSec">
 <section class="band" id="sale">
   <div class="wrap">
-    <h2 class="stitle">Properties for Sale</h2>
-    <p class="ssub">Every one walked, checked and priced by our team.</p>
+    <p class="eyebrow">HOMELAND MARKETPLACE</p>
+    <h2 class="stitle">Find property for sale in Zimbabwe</h2>
+    <p class="ssub">Browse available houses, stands, farms and commercial opportunities. Contact us to ask about a listing or request checks before you proceed.</p>
   </div>
 </section>
 <section class="market"><div class="wrap"><div class="grid" id="saleGrid"><div class="empty">Loading listings…</div></div></div></section>
@@ -370,8 +377,9 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <div id="rentSec">
 <section class="band" id="rent">
   <div class="wrap">
-    <h2 class="stitle">Properties to Rent</h2>
-    <p class="ssub">Ready to move in — inspected before they're listed.</p>
+    <p class="eyebrow">RENT IN ZIMBABWE</p>
+    <h2 class="stitle">Find a place to rent</h2>
+    <p class="ssub">Explore available rooms, houses, farms and commercial spaces. Ask us about the terms, location and details before arranging your next step.</p>
   </div>
 </section>
 <section class="market"><div class="wrap"><div class="grid" id="rentGrid"><div class="empty">Loading listings…</div></div></div></section>
@@ -379,7 +387,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 
 <section class="cats" id="cats">
   <div class="wrap">
-    <h2 class="stitle">Our Categories</h2>
+    <h2 class="stitle">Browse property by type</h2>
     <div class="cat-row" id="catRow"></div>
   </div>
 </section>
@@ -388,7 +396,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   <div class="wrap">
     <p class="eyebrow">WHAT WE DO</p>
     <h2 class="stitle">Our Services</h2>
-    <p class="ssub">Two kinds of clients, one standard. Pick your side.</p>
+    <p class="ssub">Whether you are buying locally or from abroad, we help you understand your options and the checks that may be needed.</p>
     <div class="grid4">
       <div class="svcc">
         <p class="svc-price">$50</p>
@@ -420,30 +428,44 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 
 <section class="guides" id="guides">
   <div class="wrap">
-    <h2 class="stitle">Know before you pay</h2>
-    <p class="ssub">Plain answers to the questions everyone asks.</p>
+    <p class="eyebrow">PROPERTY GUIDES &amp; UPDATES</p>
+    <h2 class="stitle">Understand Zimbabwe property before you commit</h2>
+    <p class="ssub">Straightforward information about buying from abroad, checking documents and understanding property risks in Zimbabwe.</p>
     <div class="grid3">
-      <div class="insc">
-        <h4>How to buy property in Zimbabwe from abroad</h4>
-        <p>Fix your budget and what you want, shortlist from our live market, commission a verification report on the property you like, then move the money through proper channels (banks and registered transfer methods — never cash to individuals). We walk you to the Deeds Office transfer and hand over the keys. Most transactions run 4–8 weeks once the report clears.</p>
+      <div class="insc open">
+        <h4>Buying property in Zimbabwe from abroad</h4>
+        <p>Start with your budget, preferred location and the type of property you need. Ask for the property's ownership documents and arrange independent checks before paying a deposit. Confirm the transaction process with a qualified Zimbabwean legal practitioner and use properly documented payment and transfer arrangements. Do not assume a listing or document has been verified unless the checks and findings are clearly explained to you.</p>
       </div>
       <div class="insc">
-        <h4>What "checked on the ground" actually means</h4>
-        <p>A person we're accountable to stands on the property: physical state, water and power, access and boundaries, neighbours, and the paperwork — title deeds, rates and taxes, permits, and any encumbrances on the title. You get photos, video and the documents, plus a written report stating exactly what we confirmed and what we couldn't.</p>
+        <h4>What to check before buying a stand</h4>
+        <p>Do not judge a stand by its price or pegs alone. Ask what type of land it is, who is authorised to sell it, what ownership or allocation documents exist, whether subdivision and development approvals apply, and whether the stand has access to roads and services. Rural, peri-urban and urban land can have different legal and planning requirements. Get the relevant documents checked by qualified professionals before you pay.</p>
       </div>
       <div class="insc">
-        <h4>Building in Zimbabwe without being there</h4>
-        <p>Remote builds fail when nobody on site answers to the owner. Our build management takes that job: vetted builders, materials bought and checked, payments released stage by stage, and photo reports after every stage — for 10% of the build cost. You approve each stage before the next one is paid.</p>
+        <h4>Considering a mine or mining claim?</h4>
+        <p>A mine is a business as well as a site. Before investing, ask for the relevant mining rights and permits, ownership and transfer records, production history, operating costs, equipment and liabilities, safety position, and available financial records. Site visits and independent technical, legal and financial reviews can help you understand what is being offered. Past output or profit claims should be supported by evidence and do not guarantee future returns.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="agentcta" id="about">
+<section class="agentcta" id="sell">
   <div class="wrap">
-    <h2 class="stitle">Are you an agent, developer or seller?</h2>
-    <p class="ssub">List with us. We check every property before it goes live, and we only work with people we can vouch for — that's what our clients pay for.</p>
-    <a class="btn btn-n" href="mailto:info@homelandpropertygroup.com?subject=Listing%20a%20property%20with%20Homeland">List your property with us</a>
+    <p class="eyebrow">SELL OR LIST WITH HOMELAND</p>
+    <h2 class="stitle">Want to sell your property?</h2>
+    <p class="ssub">Tell us about your house, stand, farm or commercial property. Our team will discuss the details with you and explain the next steps. Property owners and professional agents can contact us about listing opportunities.</p>
+    <a class="btn btn-n" href="mailto:info@homelandpropertygroup.com?subject=I%20want%20to%20sell%20or%20list%20a%20property">Enquire about selling or listing</a>
+  </div>
+</section>
+
+<section class="standard" id="about">
+  <div class="wrap">
+    <p class="eyebrow">ABOUT HOMELAND PROPERTY GROUP</p>
+    <h2 class="stitle">Property decisions deserve clear information</h2>
+    <p class="ssub">Homeland Property Group helps people in Zimbabwe and Zimbabweans living abroad explore property opportunities with better access to local information. We connect buyers, renters and sellers with property options, and offer on-the-ground checks and guidance so clients can ask informed questions before they commit.</p>
+    <div class="std-cta">
+      <a class="btn btn-g" href="#sale">Explore the marketplace</a>
+      <a class="btn btn-n" href="#contact">Talk to Homeland</a>
+    </div>
   </div>
 </section>
 
@@ -462,14 +484,16 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
     <div class="f-grid">
       <div class="f-brand">
         <a class="logo" href="#"><img src="/logo-white.png" alt="Homeland Property Group"></a>
-        <p>Zimbabwe property, checked on the ground. Diaspora verification services and a live local market — one standard, two sides.</p>
+        <p>Find property opportunities across Zimbabwe, understand what needs checking and make better-informed decisions wherever you live.</p>
       </div>
       <div>
         <h5>Explore</h5>
-        <a href="#sale" data-nav>Properties for Sale</a>
+        <a href="#sale" data-nav>Marketplace</a>
         <a href="#rent" data-nav>Properties to Rent</a>
-        <a href="#standard" data-nav>Verification service</a>
-        <a href="#services" data-nav>Our Services</a>
+        <a href="#sell" data-nav>Sell or list property</a>
+        <a href="#guides" data-nav>Property guides</a>
+        <a href="#standard" data-nav>Property checks</a>
+        <a href="#about" data-nav>About Homeland</a>
       </div>
       <div>
         <h5>Contact</h5>
@@ -567,8 +591,7 @@ function renderGrids() {
 }
 
 function renderCounts() {
-  const n = L.length;
-  $('#numCount').textContent = n;
+  // Listing totals are not displayed as homepage claims.
 }
 
 function renderLocs() {
@@ -648,6 +671,17 @@ function handleHash() {
 
 /* ---------- events ---------- */
 document.addEventListener('click', (e) => {
+  const menuToggle = e.target.closest('#menuToggle');
+  const menuPanel = $('#siteMenu');
+  if (menuToggle) {
+    const isOpen = menuPanel.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    return;
+  }
+  if (menuPanel && !e.target.closest('#siteMenu') && !e.target.closest('#menuToggle')) {
+    menuPanel.classList.remove('open');
+    $('#menuToggle').setAttribute('aria-expanded', 'false');
+  }
   const tab = e.target.closest('#tabs button');
   if (tab) {
     document.querySelectorAll('#tabs button').forEach((b) => b.classList.remove('on'));
@@ -675,11 +709,15 @@ document.addEventListener('click', (e) => {
     thumb.classList.add('on');
   }
   const nav = e.target.closest('[data-nav]');
-  if (nav && !$('#view-detail').hidden) {
-    e.preventDefault();
-    closeDetail();
-    setTimeout(() => document.querySelector(nav.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }), 30);
-    return;
+  if (nav) {
+    if (menuPanel) menuPanel.classList.remove('open');
+    if ($('#menuToggle')) $('#menuToggle').setAttribute('aria-expanded', 'false');
+    if (!$('#view-detail').hidden) {
+      e.preventDefault();
+      closeDetail();
+      setTimeout(() => document.querySelector(nav.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }), 30);
+      return;
+    }
   }
   if (e.target.closest('#dBack')) closeDetail();
   if (e.target.closest('#logoLink') || e.target.closest('footer .logo')) {
