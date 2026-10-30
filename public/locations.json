@@ -12,145 +12,3695 @@
     "Masvingo"
   ],
   "places": [
-    { "name": "Harare", "province": "Harare" },
-    { "name": "Harare CBD", "province": "Harare" },
-    { "name": "Harare North", "province": "Harare" },
-    { "name": "Harare South", "province": "Harare" },
-    { "name": "Harare East", "province": "Harare" },
-    { "name": "Harare West", "province": "Harare" },
-    { "name": "Avondale", "province": "Harare" },
-    { "name": "Avondale West", "province": "Harare" },
-    { "name": "Borrowdale", "province": "Harare" },
-    { "name": "Borrowdale West", "province": "Harare" },
-    { "name": "Burnside", "province": "Harare" },
-    { "name": "Budiriro", "province": "Harare" },
-    { "name": "Chisipite", "province": "Harare" },
-    { "name": "Dalby Park", "province": "Harare" },
-    { "name": "Darwendale", "province": "Harare" },
-    { "name": "Eastlea", "province": "Harare" },
-    { "name": "Elton", "province": "Harare" },
-    { "name": "Freetown", "province": "Harare" },
-    { "name": "Glen Avon", "province": "Harare" },
-    { "name": "Glen Lorne", "province": "Harare" },
-    { "name": "Glen Norah", "province": "Harare" },
-    { "name": "Greendale", "province": "Harare" },
-    { "name": "Greystone Park", "province": "Harare" },
-    { "name": "Harewood", "province": "Harare" },
-    { "name": "Haysfield", "province": "Harare" },
-    { "name": "Hatfield", "province": "Harare" },
-    { "name": "Highlands", "province": "Harare" },
-    { "name": "Highfield", "province": "Harare" },
-    { "name": "Hillside", "province": "Harare" },
-    { "name": "Kananda", "province": "Harare" },
-    { "name": "Kuwadzana", "province": "Harare" },
-    { "name": "Mabvuku", "province": "Harare" },
-    { "name": "Mabvazuva", "province": "Harare" },
-    { "name": "Marlborough", "province": "Harare" },
-    { "name": "Matsheumhlope", "province": "Harare" },
-    { "name": "Mbare", "province": "Harare" },
-    { "name": "Mount Pleasant", "province": "Harare" },
-    { "name": "Mt Pleasant Heights", "province": "Harare" },
-    { "name": "Msasa", "province": "Harare" },
-    { "name": "Munhishi", "province": "Harare" },
-    { "name": "Munhombwe", "province": "Harare" },
-    { "name": "Mumbi", "province": "Harare" },
-    { "name": "Newlands", "province": "Harare" },
-    { "name": "Nyamukuba", "province": "Harare" },
-    { "name": "Old Harare", "province": "Harare" },
-    { "name": "Pomona", "province": "Harare" },
-    { "name": "Queens Park", "province": "Harare" },
-    { "name": "Queens Park East", "province": "Harare" },
-    { "name": "St Clair", "province": "Harare" },
-    { "name": "Sunnyside", "province": "Harare" },
-    { "name": "Umwinsidale", "province": "Harare" },
-    { "name": "Waterfalls", "province": "Harare" },
-    { "name": "Warren Park", "province": "Harare" },
-    { "name": "Westgate", "province": "Harare" },
-    { "name": "Bulawayo", "province": "Bulawayo" },
-    { "name": "Bulawayo CBD", "province": "Bulawayo" },
-    { "name": "Belvedere", "province": "Bulawayo" },
-    { "name": "Belfield", "province": "Bulawayo" },
-    { "name": "Belmont", "province": "Bulawayo" },
-    { "name": "Brooklyn", "province": "Bulawayo" },
-    { "name": "Dargle", "province": "Bulawayo" },
-    { "name": "Glenmore", "province": "Bulawayo" },
-    { "name": "Glenrosa", "province": "Bulawayo" },
-    { "name": "Hillcrest", "province": "Bulawayo" },
-    { "name": "Hilltop", "province": "Bulawayo" },
-    { "name": "Illovo", "province": "Bulawayo" },
-    { "name": "Kanyama", "province": "Bulawayo" },
-    { "name": "Kenilworth", "province": "Bulawayo" },
-    { "name": "Maeklan", "province": "Bulawayo" },
-    { "name": "Mabelreign", "province": "Bulawayo" },
-    { "name": "Mayfair", "province": "Bulawayo" },
-    { "name": "Mayowood", "province": "Bulawayo" },
-    { "name": "Mount Edgecombe", "province": "Bulawayo" },
-    { "name": "Northbrook", "province": "Bulawayo" },
-    { "name": "Parklands", "province": "Bulawayo" },
-    { "name": "Radcliffe", "province": "Bulawayo" },
-    { "name": "Siyanyama", "province": "Bulawayo" },
-    { "name": "Suburbs", "province": "Bulawayo" },
-    { "name": "Tavistock", "province": "Bulawayo" },
-    { "name": "Chitungwiza", "province": "Mashonaland East" },
-    { "name": "Chivhu", "province": "Mashonaland East" },
-    { "name": "Chiredzi", "province": "Mashonaland East" },
-    { "name": "Chikomba", "province": "Mashonaland East" },
-    { "name": "Bindura", "province": "Mashonaland East" },
-    { "name": "Marondera", "province": "Mashonaland East" },
-    { "name": "Ruwa", "province": "Mashonaland East" },
-    { "name": "Domboshava", "province": "Mashonaland East" },
-    { "name": "Goromonzi", "province": "Mashonaland East" },
-    { "name": "Chisumbiriro", "province": "Mashonaland East" },
-    { "name": "Nyabira", "province": "Mashonaland East" },
-    { "name": "Dete", "province": "Mashonaland East" },
-    { "name": "Mvurwi", "province": "Mashonaland East" },
-    { "name": "Chirundu", "province": "Mashonaland East" },
-    { "name": "Murehwa", "province": "Mashonaland East" },
-    { "name": "Kadoma", "province": "Mashonaland West" },
-    { "name": "Kwekwe", "province": "Mashonaland West" },
-    { "name": "Chinhoyi", "province": "Mashonaland West" },
-    { "name": "Shamva", "province": "Mashonaland West" },
-    { "name": "Zvishavane", "province": "Mashonaland West" },
-    { "name": "Bindira", "province": "Mashonaland West" },
-    { "name": "Chikuni", "province": "Mashonaland West" },
-    { "name": "Mazowe", "province": "Mashonaland Central" },
-    { "name": "Mvuma", "province": "Mashonaland Central" },
-    { "name": "Chikore", "province": "Mashonaland Central" },
-    { "name": "Mutare", "province": "Manicaland" },
-    { "name": "Chipinge", "province": "Manicaland" },
-    { "name": "Shurugwi", "province": "Manicaland" },
-    { "name": "Nyanga", "province": "Manicaland" },
-    { "name": "Chimanimani", "province": "Manicaland" },
-    { "name": "Dondo", "province": "Manicaland" },
-    { "name": "Muzarabani", "province": "Manicaland" },
-    { "name": "Inyathi", "province": "Manicaland" },
-    { "name": "Gweru", "province": "Midlands" },
-    { "name": "Mberengwa", "province": "Midlands" },
-    { "name": "Gokwe", "province": "Midlands" },
-    { "name": "Shongwe", "province": "Midlands" },
-    { "name": "Chirwa", "province": "Midlands" },
-    { "name": "Kariba", "province": "Matabeleland North" },
-    { "name": "Hwange", "province": "Matabeleland North" },
-    { "name": "Lupane", "province": "Matabeleland North" },
-    { "name": "Tsholotsho", "province": "Matabeleland North" },
-    { "name": "Wankie", "province": "Matabeleland North" },
-    { "name": "Karoi", "province": "Matabeleland North" },
-    { "name": "Gwanda", "province": "Matabeleland North" },
-    { "name": "Binga", "province": "Matabeleland North" },
-    { "name": "Plumtree", "province": "Matabeleland North" },
-    { "name": "Umguza", "province": "Matabeleland North" },
-    { "name": "Victoria Falls", "province": "Matabeleland North" },
-    { "name": "Hurungwe", "province": "Matabeleland North" },
-    { "name": "Beitbridge", "province": "Matabeleland North" },
-    { "name": "Ncazi", "province": "Matabeleland South" },
-    { "name": "Duma", "province": "Matabeleland South" },
-    { "name": "Masvingo", "province": "Masvingo" },
-    { "name": "Chivi", "province": "Masvingo" },
-    { "name": "Dande", "province": "Masvingo" },
-    { "name": "Zumbo", "province": "Masvingo" },
-    { "name": "Gutu", "province": "Masvingo" },
-    { "name": "Mutokosya", "province": "Masvingo" },
-    { "name": "Gokongwe", "province": "Masvingo" },
-    { "name": "Mhangura", "province": "Masvingo" }
+    {
+      "id": "harare-harare",
+      "name": "Harare",
+      "province": "Harare",
+      "type": "city",
+      "aliases": [
+        "Sara"
+      ],
+      "verified": "confirmed",
+      "src": "PCZ,WIK",
+      "note": "Capital city; Sara = former name (pre-1982)"
+    },
+    {
+      "id": "harare-harare-cbd",
+      "name": "Harare CBD",
+      "province": "Harare",
+      "type": "zone",
+      "aliases": [
+        "Harare City Centre"
+      ],
+      "verified": "confirmed",
+      "src": "PB,PCZ"
+    },
+    {
+      "id": "harare-harare-north",
+      "name": "Harare North",
+      "province": "Harare",
+      "type": "zone",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "harare-harare-south",
+      "name": "Harare South",
+      "province": "Harare",
+      "type": "zone",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "harare-harare-east",
+      "name": "Harare East",
+      "province": "Harare",
+      "type": "zone",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "harare-harare-west",
+      "name": "Harare West",
+      "province": "Harare",
+      "type": "zone",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "harare-alexandra-park",
+      "name": "Alexandra Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-adylinn",
+      "name": "Adylinn",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-arcadia",
+      "name": "Arcadia",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-ardbennie",
+      "name": "Ardbennie",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-arlington",
+      "name": "Arlington",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-ashdown-park",
+      "name": "Ashdown Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-aspindale-park",
+      "name": "Aspindale Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-athlone",
+      "name": "Athlone",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-avenues",
+      "name": "Avenues",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-avondale",
+      "name": "Avondale",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-avondale-the-ridge",
+      "name": "Avondale - The Ridge",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-avondale-west",
+      "name": "Avondale West",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-avonlea",
+      "name": "Avonlea",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-ballantyne-park",
+      "name": "Ballantyne Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-belgravia",
+      "name": "Belgravia",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-belvedere",
+      "name": "Belvedere",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-bloomingdale",
+      "name": "Bloomingdale",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-bluff-hill",
+      "name": "Bluff Hill",
+      "province": "Harare",
+      "type": "suburb",
+      "aliases": [
+        "Bluffhill"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-borrowdale",
+      "name": "Borrowdale",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-borrowdale-brooke",
+      "name": "Borrowdale Brooke",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-borrowdale-west",
+      "name": "Borrowdale West",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-braeside",
+      "name": "Braeside",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-brookeview",
+      "name": "Brookeview",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-budiriro",
+      "name": "Budiriro",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-burnside",
+      "name": "Burnside",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-carrick-creagh-estate",
+      "name": "Carrick Creagh Estate",
+      "province": "Harare",
+      "type": "suburb",
+      "aliases": [
+        "Carrick Creagh"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-chadcombe",
+      "name": "Chadcombe",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-charlotte-brooke",
+      "name": "Charlotte Brooke",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-chisipite",
+      "name": "Chisipite",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-cold-comfort",
+      "name": "Cold Comfort",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-colne-valley",
+      "name": "Colne Valley",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-cranborne",
+      "name": "Cranborne",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-crowborough",
+      "name": "Crowborough",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-crowhill-views",
+      "name": "Crowhill Views",
+      "province": "Harare",
+      "type": "suburb",
+      "aliases": [
+        "Crowhill"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-dawnview-park",
+      "name": "Dawnview Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-donnybrook",
+      "name": "Donnybrook",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-dzivarasekwa",
+      "name": "Dzivarasekwa",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-eastlea",
+      "name": "Eastlea",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-eastview",
+      "name": "Eastview",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-emerald-hill",
+      "name": "Emerald Hill",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-epworth",
+      "name": "Epworth",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-fairview",
+      "name": "Fairview",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-falcon-park",
+      "name": "Falcon Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-glaudina",
+      "name": "Glaudina",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-glen-forest",
+      "name": "Glen Forest",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-glen-lorne",
+      "name": "Glen Lorne",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-glen-norah",
+      "name": "Glen Norah",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-glen-view",
+      "name": "Glen View",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-gletwin-park",
+      "name": "Gletwin Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-goodhope",
+      "name": "Goodhope",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-granary-park",
+      "name": "Granary Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-graniteside",
+      "name": "Graniteside",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-greencroft",
+      "name": "Greencroft",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-greendale",
+      "name": "Greendale",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-greendale-north",
+      "name": "Greendale North",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-greystone-park",
+      "name": "Greystone Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-groom-bridge",
+      "name": "Groom Bridge",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-gunhill",
+      "name": "Gunhill",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-hatcliffe",
+      "name": "Hatcliffe",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-hatfield",
+      "name": "Hatfield",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-highlands",
+      "name": "Highlands",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-highfield",
+      "name": "Highfield",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-hillside",
+      "name": "Hillside",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-hogerty-hill",
+      "name": "Hogerty Hill",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-houghton-park",
+      "name": "Houghton Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-kambanji",
+      "name": "Kambanji",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-kamfinsa",
+      "name": "Kamfinsa",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-kensington",
+      "name": "Kensington",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-kuwadzana",
+      "name": "Kuwadzana",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-lewisam",
+      "name": "Lewisam",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-lochinvar",
+      "name": "Lochinvar",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-mabelreign",
+      "name": "Mabelreign",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-mabvuku",
+      "name": "Mabvuku",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-mabvazuva",
+      "name": "Mabvazuva",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-madokero-estates",
+      "name": "Madokero Estates",
+      "province": "Harare",
+      "type": "suburb",
+      "aliases": [
+        "Madokero"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-mainway-meadows",
+      "name": "Mainway Meadows",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-mandara",
+      "name": "Mandara",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-manresa",
+      "name": "Manresa",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-maranatha",
+      "name": "Maranatha",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-marimba-park",
+      "name": "Marimba Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-marlborough",
+      "name": "Marlborough",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-matidoda",
+      "name": "Matidoda",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-mbare",
+      "name": "Mbare",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-meyrick-park",
+      "name": "Meyrick Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-milton-park",
+      "name": "Milton Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-monavale",
+      "name": "Monavale",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-mount-pleasant",
+      "name": "Mount Pleasant",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-mount-pleasant-heights",
+      "name": "Mount Pleasant Heights",
+      "province": "Harare",
+      "type": "suburb",
+      "aliases": [
+        "Mt Pleasant Heights"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-msasa",
+      "name": "Msasa",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-msasa-park",
+      "name": "Msasa Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-mufakose",
+      "name": "Mufakose",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-newlands",
+      "name": "Newlands",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-northwood",
+      "name": "Northwood",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-park-meadowlands",
+      "name": "Park Meadowlands",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-parktown",
+      "name": "Parktown",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-pomona",
+      "name": "Pomona",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-prospect",
+      "name": "Prospect",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-queensdale",
+      "name": "Queensdale",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-queens-park",
+      "name": "Queens Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-queens-park-east",
+      "name": "Queens Park East",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "harare-quinnington",
+      "name": "Quinnington",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-rainham",
+      "name": "Rainham",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-rhodesville",
+      "name": "Rhodesville",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-rockview",
+      "name": "Rockview",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-rolf-valley",
+      "name": "Rolf Valley",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-rydale-ridge",
+      "name": "Rydale Ridge",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-rydale-ridge-park",
+      "name": "Rydale Ridge Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-sandton-park",
+      "name": "Sandton Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-sentosa",
+      "name": "Sentosa",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-shawasha-hills",
+      "name": "Shawasha Hills",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-snake-park",
+      "name": "Snake Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-southerton",
+      "name": "Southerton",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-southlea-park",
+      "name": "Southlea Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-southview-park",
+      "name": "Southview Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-spitzkop",
+      "name": "Spitzkop",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-st-martins",
+      "name": "St. Martins",
+      "province": "Harare",
+      "type": "suburb",
+      "aliases": [
+        "St Martins"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-stoneridge",
+      "name": "Stoneridge",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-strathaven",
+      "name": "Strathaven",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-sunningdale",
+      "name": "Sunningdale",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-sunridge",
+      "name": "Sunridge",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-the-grange",
+      "name": "The Grange",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-tynwald",
+      "name": "Tynwald",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-umwinsidale",
+      "name": "Umwinsidale",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-upper-hillside",
+      "name": "Upper Hillside",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-vainona",
+      "name": "Vainona",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-waterfalls",
+      "name": "Waterfalls",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-warren-park",
+      "name": "Warren Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-westgate",
+      "name": "Westgate",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-westlea",
+      "name": "Westlea",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-whitecliff",
+      "name": "Whitecliff",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-willowvale",
+      "name": "Willowvale",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-workington",
+      "name": "Workington",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "harare-zimre-park",
+      "name": "Zimre Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB",
+      "note": "Just outside the city boundary near Ruwa; portals list it as Harare East"
+    },
+    {
+      "id": "harare-sunway-city",
+      "name": "Sunway City",
+      "province": "Harare",
+      "type": "estate",
+      "aliases": [
+        "Sunway"
+      ],
+      "verified": "confirmed",
+      "src": "PB,PCZ",
+      "note": "IDC-planned township, ~11 km from CBD along the Harare-Mutare highway (Ventersburg)"
+    },
+    {
+      "id": "harare-lake-chivero",
+      "name": "Lake Chivero",
+      "province": "Harare",
+      "type": "area",
+      "aliases": [
+        "Chivero"
+      ],
+      "verified": "confirmed",
+      "src": "PB",
+      "note": "Lake and surrounding area, north Harare"
+    },
+    {
+      "id": "harare-dalby-park",
+      "name": "Dalby Park",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-darwendale",
+      "name": "Darwendale",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-elton",
+      "name": "Elton",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-freetown",
+      "name": "Freetown",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-glen-avon",
+      "name": "Glen Avon",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-harewood",
+      "name": "Harewood",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-haysfield",
+      "name": "Haysfield",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-kananda",
+      "name": "Kananda",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-kambuzuma",
+      "name": "Kambuzuma",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-munhishi",
+      "name": "Munhishi",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-munhombwe",
+      "name": "Munhombwe",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-mumbi",
+      "name": "Mumbi",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-nyamukuba",
+      "name": "Nyamukuba",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-old-harare",
+      "name": "Old Harare",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-st-clair",
+      "name": "St Clair",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-sunnyside",
+      "name": "Sunnyside",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-zindoga",
+      "name": "Zindoga",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "harare-matsheumhlope",
+      "name": "Matsheumhlope",
+      "province": "Harare",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PCZ",
+      "note": "Main Harare suburb; the name is also used for a Bulawayo area"
+    },
+    {
+      "id": "harare-norton",
+      "name": "Norton",
+      "province": "Harare",
+      "type": "town",
+      "aliases": [
+        "Norton Manor"
+      ],
+      "verified": "confirmed",
+      "src": "KNW",
+      "note": "Satellite town within the City of Harare"
+    },
+    {
+      "id": "harare-norton-knowe",
+      "name": "Norton Knowe",
+      "province": "Harare",
+      "parent": "Norton",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "bulawayo-bulawayo",
+      "name": "Bulawayo",
+      "province": "Bulawayo",
+      "type": "city",
+      "aliases": [
+        "Byo",
+        "Salisbury"
+      ],
+      "verified": "confirmed",
+      "src": "PCZ,WIK",
+      "note": "Salisbury = former name (pre-1983)"
+    },
+    {
+      "id": "bulawayo-bulawayo-cbd",
+      "name": "Bulawayo CBD",
+      "province": "Bulawayo",
+      "type": "zone",
+      "aliases": [
+        "Bulawayo City Centre",
+        "Byo CBD"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-ascot",
+      "name": "Ascot",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-barham-green",
+      "name": "Barham Green",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-barbourfields",
+      "name": "Barbourfields",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-belvedere",
+      "name": "Belvedere",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "aliases": [
+        "Bellevue"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-belfield",
+      "name": "Belfield",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-belmont",
+      "name": "Belmont",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-belmont-east",
+      "name": "Belmont East",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-bradfield",
+      "name": "Bradfield",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-brooklyn",
+      "name": "Brooklyn",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-buena-vista",
+      "name": "Buena Vista",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-burnside",
+      "name": "Burnside",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-cowdray-park",
+      "name": "Cowdray Park",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-dargle",
+      "name": "Dargle",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-donnington",
+      "name": "Donnington",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-douglasdale",
+      "name": "Douglasdale",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-emganwini",
+      "name": "Emganwini",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-entumbane",
+      "name": "Entumbane",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-famona",
+      "name": "Famona",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-fortunes-gate",
+      "name": "Fortunes Gate",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-four-winds",
+      "name": "Four Winds",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-glenmore",
+      "name": "Glenmore",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-glenrosa",
+      "name": "Glenrosa",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-glengarry",
+      "name": "Glengarry",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-greenhill",
+      "name": "Greenhill",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-hillcrest",
+      "name": "Hillcrest",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-hillside",
+      "name": "Hillside",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "aliases": [
+        "Hillside Byo"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-hilltop",
+      "name": "Hilltop",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-hopeville",
+      "name": "Hopeville",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-illovo",
+      "name": "Illovo",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-ilanda",
+      "name": "Ilanda",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-kanyama",
+      "name": "Kanyama",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-kensington",
+      "name": "Kensington",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "aliases": [
+        "Kensington Byo"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-kenilworth",
+      "name": "Kenilworth",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-kelvin",
+      "name": "Kelvin",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-killarney",
+      "name": "Killarney",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-kingsdale",
+      "name": "Kingsdale",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-kumalo",
+      "name": "Kumalo",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-lobengula",
+      "name": "Lobengula",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-luveve",
+      "name": "Luveve",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-maeklan",
+      "name": "Maeklan",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-mabelreign",
+      "name": "Mabelreign",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-magwegwe",
+      "name": "Magwegwe",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-mahatshula",
+      "name": "Mahatshula",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-malindela",
+      "name": "Malindela",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-manningdale",
+      "name": "Manningdale",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-mayfair",
+      "name": "Mayfair",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-mayowood",
+      "name": "Mayowood",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-morningside",
+      "name": "Morningside",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "aliases": [
+        "Morningside Byo"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-mpopoma",
+      "name": "Mpopoma",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-mount-edgecombe",
+      "name": "Mount Edgecombe",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-mzilikazi",
+      "name": "Mzilikazi",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-newton-east",
+      "name": "Newton East",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-newton-west",
+      "name": "Newton West",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-nguboyenja",
+      "name": "Nguboyenja",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-njube",
+      "name": "Njube",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-nketa",
+      "name": "Nketa",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-nkulumane",
+      "name": "Nkulumane",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-north-end",
+      "name": "North End",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "aliases": [
+        "Northend"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-northbrook",
+      "name": "Northbrook",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-north-trenance",
+      "name": "North Trenance",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-orange-grove",
+      "name": "Orange Grove",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-paddonhurst",
+      "name": "Paddonhurst",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-parklands",
+      "name": "Parklands",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-pumula",
+      "name": "Pumula",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-pumula-south",
+      "name": "Pumula South",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-queens-park",
+      "name": "Queens Park",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-queens-park-west",
+      "name": "Queens Park West",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-radcliffe",
+      "name": "Radcliffe",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-rangemore",
+      "name": "Rangemore",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-richmond",
+      "name": "Richmond",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-riverside",
+      "name": "Riverside",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-riverside-north",
+      "name": "Riverside North",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-riverside-south",
+      "name": "Riverside South",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-selbourne-park",
+      "name": "Selbourne Park",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-siyanyama",
+      "name": "Siyanyama",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-sizinda",
+      "name": "Sizinda",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-southwold",
+      "name": "Southwold",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-steeldale",
+      "name": "Steeldale",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-sunning-hill",
+      "name": "Sunning Hill",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-tavistock",
+      "name": "Tavistock",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-thorngrove",
+      "name": "Thorngrove",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-tshabalala",
+      "name": "Tshabalala",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-upper-rangemore",
+      "name": "Upper Rangemore",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-waterford",
+      "name": "Waterford",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-willsgrove",
+      "name": "Willsgrove",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW,PB-list"
+    },
+    {
+      "id": "bulawayo-woodlands",
+      "name": "Woodlands",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-woodville",
+      "name": "Woodville",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "aliases": [
+        "Woodville Park"
+      ],
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-worringham",
+      "name": "Worringham",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB"
+    },
+    {
+      "id": "bulawayo-matsheumhlope",
+      "name": "Matsheumhlope",
+      "province": "Bulawayo",
+      "type": "suburb",
+      "verified": "confirmed",
+      "src": "PB",
+      "note": "Name also used for a Harare suburb; this is the Bulawayo one"
+    },
+    {
+      "id": "bulawayo-nyamandlovu",
+      "name": "Nyamandlovu",
+      "province": "Bulawayo",
+      "type": "rural centre",
+      "verified": "confirmed",
+      "src": "PB",
+      "note": "Growth point SW of Bulawayo; distinct from Nyamandhlovu District in Matabeleland North"
+    },
+    {
+      "id": "mashonaland-east-chitungwiza",
+      "name": "Chitungwiza",
+      "province": "Mashonaland East",
+      "type": "city",
+      "aliases": [
+        "Chitu"
+      ],
+      "verified": "confirmed",
+      "src": "PCZ,WIK"
+    },
+    {
+      "id": "mashonaland-east-marondera",
+      "name": "Marondera",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ,WIK"
+    },
+    {
+      "id": "mashonaland-east-ruwa",
+      "name": "Ruwa",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ,WIK"
+    },
+    {
+      "id": "mashonaland-east-domboshava",
+      "name": "Domboshava",
+      "province": "Mashonaland East",
+      "type": "settlement",
+      "verified": "confirmed",
+      "src": "WIK,KNW",
+      "note": "Village/growth point N of Harare; not a Harare suburb"
+    },
+    {
+      "id": "mashonaland-east-murehwa",
+      "name": "Murehwa",
+      "province": "Mashonaland East",
+      "type": "town",
+      "aliases": [
+        "Murewa"
+      ],
+      "verified": "confirmed",
+      "src": "PCZ,WIK"
+    },
+    {
+      "id": "mashonaland-east-mutoko",
+      "name": "Mutoko",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-east-chivhu",
+      "name": "Chivhu",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-east-chikomba",
+      "name": "Chikomba",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-east-macheke",
+      "name": "Macheke",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-east-chirundu",
+      "name": "Chirundu",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "mashonaland-east-mvurwi",
+      "name": "Mvurwi",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ,KNW"
+    },
+    {
+      "id": "mashonaland-east-dete",
+      "name": "Dete",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW",
+      "note": "Mashonaland East Dete (Mvurwi area); distinct from Dete/Dett in Matabeleland North"
+    },
+    {
+      "id": "mashonaland-east-wedza",
+      "name": "Wedza",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "MAP",
+      "note": "Hwedza; ~50 km S of Marondera"
+    },
+    {
+      "id": "mashonaland-east-goromonzi",
+      "name": "Goromonzi",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "mashonaland-east-nyabira",
+      "name": "Nyabira",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "mashonaland-east-chisumbiriro",
+      "name": "Chisumbiriro",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-east-beatrice",
+      "name": "Beatrice",
+      "province": "Mashonaland East",
+      "type": "growth point",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-east-mount-hampden",
+      "name": "Mount Hampden",
+      "province": "Mashonaland East",
+      "type": "growth point",
+      "verified": "confirmed",
+      "src": "WIK,PB",
+      "note": "Satellite town on the Harare-Mutare road; portals list it under Harare"
+    },
+    {
+      "id": "mashonaland-east-tafara",
+      "name": "Tafara",
+      "province": "Mashonaland East",
+      "type": "settlement",
+      "verified": "confirmed",
+      "src": "WIK,PB",
+      "note": "S of the city near Ruwa; portals list it under Harare"
+    },
+    {
+      "id": "mashonaland-east-kotwa",
+      "name": "Kotwa",
+      "province": "Mashonaland East",
+      "type": "growth point",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-east-nyamapanda",
+      "name": "Nyamapanda",
+      "province": "Mashonaland East",
+      "type": "growth point",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-east-mutawatawa",
+      "name": "Mutawatawa",
+      "province": "Mashonaland East",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-east-juru",
+      "name": "Juru",
+      "province": "Mashonaland East",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-east-sadza",
+      "name": "Sadza",
+      "province": "Mashonaland East",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "MAP",
+      "note": "Near Wedza"
+    },
+    {
+      "id": "mashonaland-east-mahusekwa",
+      "name": "Mahusekwa",
+      "province": "Mashonaland East",
+      "type": "rural centre",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Near Chikomba"
+    },
+    {
+      "id": "mashonaland-east-bromley",
+      "name": "Bromley",
+      "province": "Mashonaland East",
+      "type": "growth point",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-east-arcturus",
+      "name": "Arcturus",
+      "province": "Mashonaland East",
+      "type": "estate",
+      "verified": "confirmed",
+      "src": "WIK",
+      "note": "Estate near Marondera"
+    },
+    {
+      "id": "mashonaland-east-rocky-spruit",
+      "name": "Rocky Spruit",
+      "province": "Mashonaland East",
+      "type": "rural centre",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-east-shinga",
+      "name": "Shinga",
+      "province": "Mashonaland East",
+      "type": "rural centre",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-east-wilton",
+      "name": "Wilton",
+      "province": "Mashonaland East",
+      "type": "rural centre",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-east-damofalls",
+      "name": "Damofalls",
+      "province": "Mashonaland East",
+      "parent": "Ruwa",
+      "type": "estate",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-east-st-mary-s",
+      "name": "St. Mary's",
+      "province": "Mashonaland East",
+      "parent": "Chitungwiza",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-east-zengeza",
+      "name": "Zengeza",
+      "province": "Mashonaland East",
+      "parent": "Chitungwiza",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-east-seke",
+      "name": "Seke",
+      "province": "Mashonaland East",
+      "parent": "Chitungwiza",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-east-makoni",
+      "name": "Makoni",
+      "province": "Mashonaland East",
+      "parent": "Chitungwiza",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-east-manyame",
+      "name": "Manyame",
+      "province": "Mashonaland East",
+      "parent": "Chitungwiza",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-east-chikwanha",
+      "name": "Chikwanha",
+      "province": "Mashonaland East",
+      "parent": "Chitungwiza",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-chinhoyi",
+      "name": "Chinhoyi",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "mashonaland-west-kadoma",
+      "name": "Kadoma",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "mashonaland-west-kwekwe",
+      "name": "Kwekwe",
+      "province": "Mashonaland West",
+      "type": "town",
+      "aliases": [
+        "KweKwe"
+      ],
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "mashonaland-west-zvishavane",
+      "name": "Zvishavane",
+      "province": "Mashonaland West",
+      "type": "town",
+      "aliases": [
+        "Zvishabane"
+      ],
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "mashonaland-west-shamva",
+      "name": "Shamva",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "mashonaland-west-bindira",
+      "name": "Bindira",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-chikuni",
+      "name": "Chikuni",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-bindura",
+      "name": "Bindura",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW",
+      "note": "Capital of Mashonaland West; CORRECTED from Mashonaland East"
+    },
+    {
+      "id": "mashonaland-west-chegutu",
+      "name": "Chegutu",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "mashonaland-west-mwenezi",
+      "name": "Mwenezi",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-zvimba",
+      "name": "Zvimba",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-sanyati",
+      "name": "Sanyati",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PIN,GRK"
+    },
+    {
+      "id": "mashonaland-west-banket",
+      "name": "Banket",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Mining town, Kwekwe area"
+    },
+    {
+      "id": "mashonaland-west-murombedzi",
+      "name": "Murombedzi",
+      "province": "Mashonaland West",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-raffingora",
+      "name": "Raffingora",
+      "province": "Mashonaland West",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-tengwe",
+      "name": "Tengwe",
+      "province": "Mashonaland West",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-chakari",
+      "name": "Chakari",
+      "province": "Mashonaland West",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-lions-den",
+      "name": "Lions Den",
+      "province": "Mashonaland West",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Developing area near Kwekwe"
+    },
+    {
+      "id": "mashonaland-west-mhondoro",
+      "name": "Mhondoro",
+      "province": "Mashonaland West",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "WIK",
+      "note": "Mhondoro-Ngezi District HQ; Rio Tinto mine, St. Michael's High"
+    },
+    {
+      "id": "mashonaland-west-ngezi",
+      "name": "Ngezi",
+      "province": "Mashonaland West",
+      "type": "rural centre",
+      "verified": "community",
+      "src": "MIN,GRK",
+      "note": "Mhondoro-Ngezi District; mine + recreational park (Kadoma area)"
+    },
+    {
+      "id": "mashonaland-west-alaska",
+      "name": "Alaska",
+      "province": "Mashonaland West",
+      "type": "rural centre",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Game management area, Chikuni area"
+    },
+    {
+      "id": "mashonaland-west-torwood",
+      "name": "Torwood",
+      "province": "Mashonaland West",
+      "parent": "Kwekwe",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-fitchlea",
+      "name": "Fitchlea",
+      "province": "Mashonaland West",
+      "parent": "Kwekwe",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-chicago",
+      "name": "Chicago",
+      "province": "Mashonaland West",
+      "parent": "Kwekwe",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-mbizo",
+      "name": "Mbizo",
+      "province": "Mashonaland West",
+      "parent": "Kwekwe",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-amaveni",
+      "name": "Amaveni",
+      "province": "Mashonaland West",
+      "parent": "Kwekwe",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-newtown",
+      "name": "Newtown",
+      "province": "Mashonaland West",
+      "parent": "Kwekwe",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-west-rutendo",
+      "name": "Rutendo",
+      "province": "Mashonaland West",
+      "parent": "Kwekwe",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-central-mazowe",
+      "name": "Mazowe",
+      "province": "Mashonaland Central",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ,WIK"
+    },
+    {
+      "id": "mashonaland-central-guruve",
+      "name": "Guruve",
+      "province": "Mashonaland Central",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-central-centenary",
+      "name": "Centenary",
+      "province": "Mashonaland Central",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PIN,WIK"
+    },
+    {
+      "id": "mashonaland-central-concession",
+      "name": "Concession",
+      "province": "Mashonaland Central",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PIN,WIK"
+    },
+    {
+      "id": "mashonaland-central-mount-darwin",
+      "name": "Mount Darwin",
+      "province": "Mashonaland Central",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "WIK",
+      "note": "Mountain town, NE Harare; capital of Mount Darwin District"
+    },
+    {
+      "id": "mashonaland-central-madziwa",
+      "name": "Madziwa",
+      "province": "Mashonaland Central",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-central-kanyemba",
+      "name": "Kanyemba",
+      "province": "Mashonaland Central",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-central-rushinga",
+      "name": "Rushinga",
+      "province": "Mashonaland Central",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW",
+      "note": "Mbire District"
+    },
+    {
+      "id": "mashonaland-central-mbire",
+      "name": "Mbire",
+      "province": "Mashonaland Central",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-central-chikore",
+      "name": "Chikore",
+      "province": "Mashonaland Central",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "mashonaland-central-dotito",
+      "name": "Dotito",
+      "province": "Mashonaland Central",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Guruve area"
+    },
+    {
+      "id": "mashonaland-central-mukumbura",
+      "name": "Mukumbura",
+      "province": "Mashonaland Central",
+      "type": "rural centre",
+      "verified": "confirmed",
+      "src": "WIK"
+    },
+    {
+      "id": "mashonaland-central-glendale",
+      "name": "Glendale",
+      "province": "Mashonaland Central",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Near Guruve"
+    },
+    {
+      "id": "mashonaland-central-tengenenge",
+      "name": "Tengenenge",
+      "province": "Mashonaland Central",
+      "type": "village",
+      "aliases": [
+        "Tengenenge Tsa"
+      ],
+      "verified": "community",
+      "src": "KNW",
+      "note": "Sculpture arts village"
+    },
+    {
+      "id": "mashonaland-central-mushumbi-pools",
+      "name": "Mushumbi Pools",
+      "province": "Mashonaland Central",
+      "type": "rural area",
+      "verified": "confirmed",
+      "src": "WIK",
+      "note": "Game management area, Madziwa area"
+    },
+    {
+      "id": "manicaland-mutare",
+      "name": "Mutare",
+      "province": "Manicaland",
+      "type": "city",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "manicaland-rusape",
+      "name": "Rusape",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-chipinge",
+      "name": "Chipinge",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "manicaland-chimanimani",
+      "name": "Chimanimani",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-nyanga",
+      "name": "Nyanga",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "manicaland-buhera",
+      "name": "Buhera",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-birchenough-bridge",
+      "name": "Birchenough Bridge",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-penhalonga",
+      "name": "Penhalonga",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-dondo",
+      "name": "Dondo",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "manicaland-shurugwi",
+      "name": "Shurugwi",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "manicaland-chisumbanje",
+      "name": "Chisumbanje",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW",
+      "note": "Buhera District"
+    },
+    {
+      "id": "manicaland-zimunya",
+      "name": "Zimunya",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-muzarabani",
+      "name": "Muzarabani",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ",
+      "note": "CORRECTED: stays Manicaland (Mutare area)"
+    },
+    {
+      "id": "manicaland-juliasdale",
+      "name": "Juliasdale",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "WIK",
+      "note": "Resort town, Nyanga District"
+    },
+    {
+      "id": "manicaland-checheche",
+      "name": "Checheche",
+      "province": "Manicaland",
+      "type": "town",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Mining town near Mutare"
+    },
+    {
+      "id": "manicaland-inyathi",
+      "name": "Inyathi",
+      "province": "Manicaland",
+      "type": "rural centre",
+      "verified": "confirmed",
+      "src": "PCZ",
+      "note": "Mutare area"
+    },
+    {
+      "id": "manicaland-odzi",
+      "name": "Odzi",
+      "province": "Manicaland",
+      "type": "rural centre",
+      "verified": "confirmed",
+      "src": "KNW",
+      "note": "Odzi River area"
+    },
+    {
+      "id": "manicaland-nyazura",
+      "name": "Nyazura",
+      "province": "Manicaland",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-hauna",
+      "name": "Hauna",
+      "province": "Manicaland",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-vumba",
+      "name": "Vumba",
+      "province": "Manicaland",
+      "type": "rural centre",
+      "verified": "confirmed",
+      "src": "PB",
+      "note": "Vumba Range area"
+    },
+    {
+      "id": "manicaland-honde-valley",
+      "name": "Honde Valley",
+      "province": "Manicaland",
+      "type": "area",
+      "aliases": [
+        "Honde"
+      ],
+      "verified": "community",
+      "src": "KNW",
+      "note": "Resort/farming area on the Mutare-Rusape road"
+    },
+    {
+      "id": "manicaland-murambinda",
+      "name": "Murambinda",
+      "province": "Manicaland",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-nyanyadzi",
+      "name": "Nyanyadzi",
+      "province": "Manicaland",
+      "type": "village",
+      "verified": "confirmed",
+      "src": "WIK",
+      "note": "Chimanimani District, Mutare-Birchenough Bridge road"
+    },
+    {
+      "id": "manicaland-mount-selinda",
+      "name": "Mount Selinda",
+      "province": "Manicaland",
+      "type": "village",
+      "verified": "confirmed",
+      "src": "WIK",
+      "note": "Near Chirinda Forest, Mozambique border"
+    },
+    {
+      "id": "manicaland-burma-valley",
+      "name": "Burma Valley",
+      "province": "Manicaland",
+      "type": "area",
+      "verified": "community",
+      "src": "WIK",
+      "note": "Bvumba range road/valley area"
+    },
+    {
+      "id": "manicaland-middle-sabi",
+      "name": "Middle Sabi",
+      "province": "Manicaland",
+      "type": "rural area",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Game management area along the Sabi River"
+    },
+    {
+      "id": "manicaland-dangamvura",
+      "name": "Dangamvura",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-chikanga",
+      "name": "Chikanga",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-greenside",
+      "name": "Greenside",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-fairbridge-park",
+      "name": "Fairbridge Park",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-murambi",
+      "name": "Murambi",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-palmerston",
+      "name": "Palmerston",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-fern-valley",
+      "name": "Fern Valley",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-florida",
+      "name": "Florida",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-yeovil",
+      "name": "Yeovil",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-sakubva",
+      "name": "Sakubva",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "manicaland-hobhouse",
+      "name": "Hobhouse",
+      "province": "Manicaland",
+      "parent": "Mutare",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "midlands-gweru",
+      "name": "Gweru",
+      "province": "Midlands",
+      "type": "city",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "midlands-mberengwa",
+      "name": "Mberengwa",
+      "province": "Midlands",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "midlands-gokwe",
+      "name": "Gokwe",
+      "province": "Midlands",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "midlands-shongwe",
+      "name": "Shongwe",
+      "province": "Midlands",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "midlands-chirwa",
+      "name": "Chirwa",
+      "province": "Midlands",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "midlands-mvuma",
+      "name": "Mvuma",
+      "province": "Midlands",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "MAP,GRK,PIN",
+      "note": "CORRECTED from Mashonaland Central: Chirumhanzu District, Midlands (Athens Mine)"
+    },
+    {
+      "id": "midlands-redcliff",
+      "name": "Redcliff",
+      "province": "Midlands",
+      "type": "town",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "midlands-lalapanzi",
+      "name": "Lalapanzi",
+      "province": "Midlands",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "midlands-silobela",
+      "name": "Silobela",
+      "province": "Midlands",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Shongwe area"
+    },
+    {
+      "id": "midlands-zhombe",
+      "name": "Zhombe",
+      "province": "Midlands",
+      "type": "rural centre",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Gokwe area"
+    },
+    {
+      "id": "midlands-mataga",
+      "name": "Mataga",
+      "province": "Midlands",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Mberengwa area"
+    },
+    {
+      "id": "midlands-kopje",
+      "name": "Kopje",
+      "province": "Midlands",
+      "parent": "Gweru",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "midlands-athlone",
+      "name": "Athlone",
+      "province": "Midlands",
+      "parent": "Gweru",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "midlands-nehosho",
+      "name": "Nehosho",
+      "province": "Midlands",
+      "parent": "Gweru",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "midlands-mkoba",
+      "name": "Mkoba",
+      "province": "Midlands",
+      "parent": "Gweru",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "midlands-senga",
+      "name": "Senga",
+      "province": "Midlands",
+      "parent": "Gweru",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "matabeleland-north-victoria-falls",
+      "name": "Victoria Falls",
+      "province": "Matabeleland North",
+      "type": "city",
+      "aliases": [
+        "Vic Falls"
+      ],
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "matabeleland-north-hwange",
+      "name": "Hwange",
+      "province": "Matabeleland North",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "matabeleland-north-lupane",
+      "name": "Lupane",
+      "province": "Matabeleland North",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "matabeleland-north-kariba",
+      "name": "Kariba",
+      "province": "Matabeleland North",
+      "type": "town",
+      "aliases": [
+        "Kariba Dam"
+      ],
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "matabeleland-north-binga",
+      "name": "Binga",
+      "province": "Matabeleland North",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "matabeleland-north-tsholotsho",
+      "name": "Tsholotsho",
+      "province": "Matabeleland North",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "matabeleland-north-karoi",
+      "name": "Karoi",
+      "province": "Matabeleland North",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "matabeleland-north-gwanda",
+      "name": "Gwanda",
+      "province": "Matabeleland North",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "matabeleland-south-plumtree",
+      "name": "Plumtree",
+      "province": "Matabeleland South",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "WIKI,KNW",
+      "note": "Border town ~100km SW of Bulawayo (Matabeleland South, ex-Bulilimamangwe)"
+    },
+    {
+      "id": "matabeleland-north-wankie",
+      "name": "Wankie",
+      "province": "Matabeleland North",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "matabeleland-north-beitbridge",
+      "name": "Beitbridge",
+      "province": "Matabeleland North",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "matabeleland-north-dete",
+      "name": "Dete",
+      "province": "Matabeleland North",
+      "parent": "Hwange",
+      "type": "town",
+      "aliases": [
+        "Dett"
+      ],
+      "verified": "confirmed",
+      "src": "MIN",
+      "note": "Hwange District; distinct from Dete in Mashonaland East"
+    },
+    {
+      "id": "matabeleland-north-umguza",
+      "name": "Umguza",
+      "province": "Matabeleland North",
+      "type": "rural centre",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "matabeleland-north-hurungwe",
+      "name": "Hurungwe",
+      "province": "Matabeleland North",
+      "type": "rural centre",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "matabeleland-north-gwayi",
+      "name": "Gwayi",
+      "province": "Matabeleland North",
+      "type": "growth point",
+      "verified": "confirmed",
+      "src": "MAP",
+      "note": "Gwayi-Shangani Dam area"
+    },
+    {
+      "id": "matabeleland-north-kamativi",
+      "name": "Kamativi",
+      "province": "Matabeleland North",
+      "type": "growth point",
+      "verified": "confirmed",
+      "src": "MAP",
+      "note": "Lithium mining community, ~90 km SE of Hwange"
+    },
+    {
+      "id": "matabeleland-north-cross-dete",
+      "name": "Cross Dete",
+      "province": "Matabeleland North",
+      "type": "growth point",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Junction area, Dete road"
+    },
+    {
+      "id": "matabeleland-north-nkayi",
+      "name": "Nkayi",
+      "province": "Matabeleland North",
+      "type": "rural centre",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Hwange area"
+    },
+    {
+      "id": "matabeleland-north-nyamandhlovu",
+      "name": "Nyamandhlovu",
+      "province": "Matabeleland North",
+      "type": "rural centre",
+      "verified": "community",
+      "src": "KNW",
+      "note": "District growth point; distinct from the Nyamandlovu area near Bulawayo"
+    },
+    {
+      "id": "matabeleland-south-bulilima",
+      "name": "Bulilima",
+      "province": "Matabeleland South",
+      "type": "town",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "matabeleland-south-mzingwane",
+      "name": "Mzingwane",
+      "province": "Matabeleland South",
+      "type": "rural centre",
+      "verified": "community",
+      "src": "KNW",
+      "note": "District centre"
+    },
+    {
+      "id": "matabeleland-south-ncazi",
+      "name": "Ncazi",
+      "province": "Matabeleland South",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "matabeleland-south-duma",
+      "name": "Duma",
+      "province": "Matabeleland South",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "matabeleland-south-mangwe",
+      "name": "Mangwe",
+      "province": "Matabeleland South",
+      "type": "rural centre",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Game management area"
+    },
+    {
+      "id": "matabeleland-south-mphoengs",
+      "name": "Mphoengs",
+      "province": "Matabeleland South",
+      "type": "rural centre",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Mining area, Mzingwane"
+    },
+    {
+      "id": "matabeleland-south-makonde",
+      "name": "Makonde",
+      "province": "Matabeleland South",
+      "type": "rural centre",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Mzingwane District; CORRECTED from Mashonaland West"
+    },
+    {
+      "id": "masvingo-masvingo",
+      "name": "Masvingo",
+      "province": "Masvingo",
+      "type": "city",
+      "verified": "confirmed",
+      "src": "PCZ"
+    },
+    {
+      "id": "masvingo-chiredzi",
+      "name": "Chiredzi",
+      "province": "Masvingo",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "WIK",
+      "note": "CORRECTED from Mashonaland East: Chiredzi District, Masvingo Province"
+    },
+    {
+      "id": "masvingo-gutu",
+      "name": "Gutu",
+      "province": "Masvingo",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-chivi",
+      "name": "Chivi",
+      "province": "Masvingo",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-dande",
+      "name": "Dande",
+      "province": "Masvingo",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-zumbo",
+      "name": "Zumbo",
+      "province": "Masvingo",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-mutokosya",
+      "name": "Mutokosya",
+      "province": "Masvingo",
+      "type": "town",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-gokongwe",
+      "name": "Gokongwe",
+      "province": "Masvingo",
+      "type": "town",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Gokongwe Hills area"
+    },
+    {
+      "id": "masvingo-mhangura",
+      "name": "Mhangura",
+      "province": "Masvingo",
+      "type": "town",
+      "verified": "confirmed",
+      "src": "KNW",
+      "note": "Chiredzi District; CORRECTED: stays Masvingo"
+    },
+    {
+      "id": "masvingo-triangle",
+      "name": "Triangle",
+      "province": "Masvingo",
+      "type": "growth point",
+      "verified": "confirmed",
+      "src": "WIK",
+      "note": "Near Chiredzi"
+    },
+    {
+      "id": "masvingo-zaka",
+      "name": "Zaka",
+      "province": "Masvingo",
+      "type": "growth point",
+      "verified": "confirmed",
+      "src": "GRK",
+      "note": "On the Chiredzi-Masvingo road"
+    },
+    {
+      "id": "masvingo-bikita",
+      "name": "Bikita",
+      "province": "Masvingo",
+      "type": "town",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Lithium mining town"
+    },
+    {
+      "id": "masvingo-mkwasine",
+      "name": "Mkwasine",
+      "province": "Masvingo",
+      "type": "rural area",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Game management area"
+    },
+    {
+      "id": "masvingo-mashava",
+      "name": "Mashava",
+      "province": "Masvingo",
+      "type": "rural area",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Iron mine / GMA"
+    },
+    {
+      "id": "masvingo-hippo-valley",
+      "name": "Hippo Valley",
+      "province": "Masvingo",
+      "parent": "Chiredzi",
+      "type": "rural area",
+      "verified": "confirmed",
+      "src": "WIK",
+      "note": "GMA near Chiredzi (Hippo Valley Estates)"
+    },
+    {
+      "id": "masvingo-rutenga",
+      "name": "Rutenga",
+      "province": "Masvingo",
+      "type": "rural area",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Game management area"
+    },
+    {
+      "id": "masvingo-neshuro",
+      "name": "Neshuro",
+      "province": "Masvingo",
+      "type": "rural area",
+      "verified": "community",
+      "src": "KNW",
+      "note": "Game management area"
+    },
+    {
+      "id": "masvingo-mucheke",
+      "name": "Mucheke",
+      "province": "Masvingo",
+      "parent": "Masvingo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-rujeko",
+      "name": "Rujeko",
+      "province": "Masvingo",
+      "parent": "Masvingo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-runyararo",
+      "name": "Runyararo",
+      "province": "Masvingo",
+      "parent": "Masvingo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-rhodene",
+      "name": "Rhodene",
+      "province": "Masvingo",
+      "parent": "Masvingo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-target-kopje",
+      "name": "Target Kopje",
+      "province": "Masvingo",
+      "parent": "Masvingo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-eastvale",
+      "name": "Eastvale",
+      "province": "Masvingo",
+      "parent": "Masvingo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-victoria-ranch",
+      "name": "Victoria Ranch",
+      "province": "Masvingo",
+      "parent": "Masvingo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    },
+    {
+      "id": "masvingo-clipsham",
+      "name": "Clipsham",
+      "province": "Masvingo",
+      "parent": "Masvingo",
+      "type": "suburb",
+      "verified": "community",
+      "src": "KNW"
+    }
   ]
 }

@@ -725,8 +725,17 @@ const state = { tab: 'sale', loc: '', cat: '', min: null, max: null, locSel: nul
 
 /* ---------- location intelligence: typed search over Zimbabwe geography ---------- */
 let GEO = { provinces: [], places: [] };
+let GEO_INDEX = [];   // places pre-normalised for fast matching (built at load)
 const normLoc = (s) => (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
-
+const buildGeoIndex = () => {
+  GEO_INDEX = GEO.places.map((pl) => {
+    const all = [pl.name, ...(pl.aliases || [])].map(normLoc).filter(Boolean);
+    return Object.assign({}, pl, {
+      terms: all.filter((t) => t.length >= 3),       // used for suggestions (incl. short nicknames like "Byo")
+      locTerms: all.filter((t) => t.length >= 4)     // used to match listing locations (no short nicknames)
+    });
+  });
+};
 function lev(a, b) {
   if (a === b) return 0;
   const m = a.length, n = b.length;
@@ -757,30 +766,34 @@ function jaroWinkler(a, b) {
   for (let i = 0; i < Math.min(4, la, lb); i++) { if (a[i] === b[i]) pw++; else break; }
   return jaro + pw * 0.1 * (1 - jaro);
 }
-/* Score a query against the geography. Places: exact(100) > prefix(90) > substring(80) > word-prefix(50) > fuzzy.
-   Fuzzy accepts Levenshtein<=2 (for words 4+ chars) or Jaro-Winkler>=0.87. */
+/* Score one query term against one canonical name/alias. Tiers: exact(100) > prefix(90) > substring(80) > word-prefix(50) > fuzzy.
+   Fuzzy accepts Jaro-Winkler>=0.85 or Levenshtein<=3 (words 5+ chars) — e.g. "betrige" -> "Beitbridge". */
+function termScore(q, t) {
+  if (t === q) return 100;
+  if (t.startsWith(q)) return 90;
+  if (t.includes(q)) return 80;
+  if (q.length >= 4 && t.split(' ').some((w) => w.startsWith(q))) return 50;
+  const lw = jaroWinkler(q, t);
+  if (lw >= 0.85 || (lev(q, t) <= 3 && Math.min(q.length, t.length) >= 5)) return 55 + lw * 25;
+  return 0;
+}
+/* Rank all places (each canonical place scored once, across its name + aliases — no duplicate rows). */
 function suggest(raw) {
   const q = normLoc(raw);
   if (!q) return { places: [], provs: [] };
   const provs = GEO.provinces.filter((p) => { const n = normLoc(p); return n === q || (q.length >= 3 && (n.startsWith(q) || n.includes(q))); });
   const places = [];
-  GEO.places.forEach((pl) => {
-    const n = normLoc(pl.name);
+  GEO_INDEX.forEach((pl) => {
     let score = 0;
-    if (n === q) score = 100;
-    else if (n.startsWith(q)) score = 90;
-    else if (n.includes(q)) score = 80;
-    else if (q.length >= 4 && n.split(' ').some((w) => w.startsWith(q))) score = 50;
-    else {
-      const lw = jaroWinkler(q, n);
-      if (lw >= 0.85 || (lev(q, n) <= 3 && Math.min(q.length, n.length) >= 5)) score = 55 + lw * 25;
-    }
-    if (score > 0) places.push({ name: pl.name, province: pl.province, score });
+    for (const t of pl.terms) { score = Math.max(score, termScore(q, t)); if (score === 100) break; }
+    if (score > 0) places.push({ id: pl.id, name: pl.name, province: pl.province, parent: pl.parent || '', score });
   });
   places.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
   return { places: places.slice(0, 7), provs: provs.slice(0, 3) };
 }
-/* Filter a listing against a chosen location selection. */
+/* Filter a listing against a chosen location selection.
+   Place = the area itself (loc must contain the name/alias) so an area with no listings shows a
+   clear empty state; province/text = province-wide. */
 function locMatch(l, sel) {
   if (!sel) return true;
   const lc = normLoc(l.loc), pc = normLoc(l.province);
@@ -788,9 +801,8 @@ function locMatch(l, sel) {
     const p = normLoc(sel.name);
     return pc.includes(p) || lc.includes(p);
   }
-  const n = normLoc(sel.name);
-  if (lc.includes(n)) return true;
-  if (sel.province) { const p = normLoc(sel.province); if (pc.includes(p)) return true; }
+  if (lc.includes(normLoc(sel.name))) return true;
+  if (sel.terms && sel.terms.some((t) => lc.includes(t))) return true;
   return false;
 }
 
@@ -850,17 +862,23 @@ function match(l) {
   return true;
 }
 
+function emptyMsg(kind) {
+  const base = kind === 'rent' ? 'No rentals' : 'No properties';
+  if (state.locSel) {
+    const where = state.locSel.kind === 'province' ? state.locSel.name : state.locSel.name;
+    const widen = state.locSel.kind === 'place' ? 'a nearby area or the whole ' + state.locSel.province : 'a nearby area';
+    const wa = WA + encodeURIComponent("Hi — I'm looking for " + (kind === 'rent' ? 'property to rent' : 'property to buy') + " in " + where + ". Can you source it for me?");
+    return base + ' in ' + where + ' right now — try ' + widen + ', clear a filter, or <a href="' + wa + '" target="_blank" rel="noopener">ask us to source it on WhatsApp</a>.';
+  }
+  return base + ' match your search — try clearing a filter.';
+}
 function renderGrids() {
   $('#saleSec').style.display = state.tab === 'rent' ? 'none' : '';
   $('#rentSec').style.display = state.tab === 'sale' ? 'none' : '';
   const sales = L.filter((l) => l.kind === 'sale' && match(l));
   const rents = L.filter((l) => l.kind === 'rent' && match(l));
-  $('#saleGrid').innerHTML = sales.length
-    ? sales.map(card).join('')
-    : '<div class="empty">No properties match your search — try clearing a filter.</div>';
-  $('#rentGrid').innerHTML = rents.length
-    ? rents.map(card).join('')
-    : '<div class="empty">No rentals match your search — try clearing a filter.</div>';
+  $('#saleGrid').innerHTML = sales.length ? sales.map(card).join('') : '<div class="empty">' + emptyMsg('sale') + '</div>';
+  $('#rentGrid').innerHTML = rents.length ? rents.map(card).join('') : '<div class="empty">' + emptyMsg('rent') + '</div>';
 }
 
 function renderCounts() {
@@ -880,7 +898,7 @@ let locTimer = null, locActive = -1, locBlurTimer = null;
 function renderPanel(raw) {
   const q = normLoc(raw);
   if (q.length < 2) { locPanel.hidden = true; return; }
-  if (!GEO.places.length) {
+  if (!GEO_INDEX.length) {
     locPanel.innerHTML = '<div class="loc-none">Loading Zimbabwe locations…</div>';
     locPanel.hidden = false;
     return;
@@ -893,7 +911,11 @@ function renderPanel(raw) {
   }
   if (places.length) {
     if (places[0].score < 80 && !provs.length) html += `<div class="loc-note">Did you mean</div>`;
-    places.forEach((pl) => { html += `<button type="button" class="loc-opt" data-p="place" data-name="${pl.name}" data-prov="${pl.province}"><span class="ln">${pl.name}</span><span class="lp">${pl.province}</span></button>`; });
+    places.forEach((pl) => {
+      const sub = pl.parent ? pl.parent + ', ' + pl.province : pl.province;
+      const plRec = GEO_INDEX.find((x) => x.id === pl.id) || {};
+      html += `<button type="button" class="loc-opt" data-p="place" data-name="${pl.name}" data-prov="${pl.province}" data-parent="${pl.parent}" data-aliases="${escapeAttr((plRec.aliases || []).join('|'))}"><span class="ln">${pl.name}</span><span class="lp">${sub}</span></button>`;
+    });
   }
   if (!html) {
     html = `<div class="loc-none">No place in our list matches “${raw}” yet.</div>
@@ -909,7 +931,12 @@ function pickLoc(o) {
     state.locSel = { kind: 'province', name };
     locInput.value = name;
   } else {
-    state.locSel = { kind: 'place', name, province: prov };
+    const aliases = (o.dataset.aliases ? o.dataset.aliases.split('|').filter(Boolean) : []);
+    state.locSel = {
+      kind: 'place', name, province: prov,
+      parent: o.dataset.parent || '',
+      terms: [normLoc(name), ...aliases.map(normLoc)].filter((t) => t.length >= 4)
+    };
     locInput.value = name + ', ' + prov;
   }
   state.loc = locInput.value;
@@ -976,7 +1003,13 @@ function resolveLocSel(raw) {
   const exactProv = s.provs.find((p) => normLoc(p) === q);
   if (exactProv) return { kind: 'province', name: exactProv };
   const best = s.places[0];
-  if (best && best.score >= 58) return { kind: 'place', name: best.name, province: best.province };
+  if (best && best.score >= 58) {
+    const pl = GEO_INDEX.find((x) => x.id === best.id) || {};
+    return {
+      kind: 'place', name: best.name, province: best.province, parent: best.parent || '',
+      terms: [pl.name, ...(pl.aliases || [])].map(normLoc).filter((t) => t.length >= 4)
+    };
+  }
   return { kind: 'text', name: raw };
 }
 
@@ -1146,7 +1179,7 @@ window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
   }
   try {
     const g = await fetch('/locations.json');
-    if (g.ok) GEO = await g.json();
+    if (g.ok) { GEO = await g.json(); buildGeoIndex(); }
   } catch (err) { /* suggestions degrade to text matching */ }
   if (locInput.value.trim().length >= 2) renderPanel(locInput.value.trim());
   renderCounts();
