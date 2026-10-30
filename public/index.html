@@ -312,6 +312,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   .grid,.grid4{grid-template-columns:repeat(2,1fr)}
   .steps4{grid-template-columns:repeat(2,1fr)}
   .grid3{grid-template-columns:1fr}
+  .why-row{grid-template-columns:1fr}
   .nwrap{grid-template-columns:repeat(2,1fr);gap:26px}
   .d-grid{grid-template-columns:1fr}
   .navlinks{display:none}
@@ -345,6 +346,10 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 .why-c{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:24px}
 .why-c h4{font-size:17px;color:var(--navy);margin-bottom:10px;font-family:'Playfair Display',serif}
 .why-c p{font-size:14px;color:var(--soft)}
+.why-row{display:grid;grid-template-columns:1.02fr .98fr;gap:34px;align-items:center;margin-top:34px}
+.why-cards{display:grid;gap:16px}
+.why-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px;border:1px solid var(--line);box-shadow:0 20px 44px rgba(12,60,104,.16);display:block}
+@media (max-width:980px){.why-row{grid-template-columns:1fr;gap:26px}}
 
 /* seller steps */
 .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
@@ -479,12 +484,14 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <section class="why" id="why">
   <div class="wrap">
     <p class="eyebrow">WHY HOMELAND</p>
-    <h2 class="stitle">Why Homeland</h2>
     <p class="ssub">Every diasporan knows a story: the stand a relative "bought", the plot sold twice, the agent who vanished. Everything we do answers one question — why your money is safe here.</p>
-    <div class="grid3">
+    <div class="why-row">
+      <div class="why-cards">
       <div class="why-c"><div class="snum">1</div><h4>Papers before payment</h4><p>Deeds Office searches, seller identity checks and physical site inspections — completed and reported in writing before you commit a single dollar.</p></div>
       <div class="why-c"><div class="snum">2</div><h4>Money moves through professionals</h4><p>Purchases close through registered conveyancers and estate agents. Your money never sits in a personal account — not a relative's, not a middleman's, not even ours.</p></div>
-      <div class="why-c"><div class="snum">3</div><h4>Eyes on your project</h4><p>Vetted builders, staged payments released only after inspection, and weekly photo reports to your WhatsApp — from foundation to keys.</p></div>
+        <div class="why-c"><div class="snum">3</div><h4>Eyes on your project</h4><p>Vetted builders, staged payments released only after inspection, and weekly photo reports to your WhatsApp — from foundation to keys.</p></div>
+      </div>
+      <div class="why-img"><img src="/why-house.jpg" alt="A beautiful family home in a quiet suburb" loading="lazy"></div>
     </div>
     <p class="paidline"><b>Portals are paid by agents. Agents are paid by sellers. We are the only party in the chain paid by you</b> — so we answer to you alone.</p>
   </div>
