@@ -103,8 +103,17 @@ input,select{font-family:inherit;font-size:15px}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:18px}
 .logo{display:flex;align-items:center;gap:10px;white-space:nowrap}
 .logo img{height:42px;width:auto;display:block}
-.navlinks{display:flex;gap:26px;font-size:14.5px;font-weight:500;color:var(--ink)}
+.navlinks{display:flex;align-items:center;gap:24px;font-size:14.5px;font-weight:500;color:var(--ink)}
+.navlinks > a{padding:6px 0}
 .navlinks a:hover{color:var(--navy)}
+.caret{font-size:10px;color:var(--soft);margin-left:3px}
+.nitem{position:relative}
+.nitem .dd{position:absolute;top:calc(100% + 12px);left:-16px;min-width:235px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 45px rgba(9,30,55,.16);padding:8px;opacity:0;visibility:hidden;transform:translateY(8px);transition:.16s;z-index:100}
+.nitem .dd:before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.nitem:hover .dd{opacity:1;visibility:visible;transform:translateY(0)}
+.nitem .dd a{display:block;padding:9px 12px;border-radius:8px;font-size:13.5px;white-space:nowrap}
+.nitem .dd a:hover{background:var(--cream);color:var(--navy)}
+.nitem .dd .dd-all{margin-top:5px;padding-top:10px;border-top:1px solid var(--line);color:var(--blue);font-weight:600}
 .nav .btn{padding:9px 18px;font-size:14px}
 .menu-wrap{position:relative;display:flex;align-items:center}
 .menu-toggle{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 13px;color:var(--navy);font-size:13px;font-weight:700;letter-spacing:.06em}
@@ -119,6 +128,7 @@ input,select{font-family:inherit;font-size:15px}
 .menu-item strong{display:block;color:var(--navy);font-size:14px}
 .menu-item span{display:block;color:var(--soft);font-size:12px;margin-top:4px;line-height:1.45}
 .menu-foot{display:flex;gap:16px;flex-wrap:wrap;padding:13px 3px 0;font-size:13px;font-weight:600;color:var(--blue)}
+@media (min-width:981px){.menu-wrap{display:none}}
 .hero .sub{max-width:53ch}
 .hero .sub .mobile-break{display:none}
 @media (max-width:600px){.menu-panel{right:-2px;padding:11px}.menu-grid{gap:8px}.menu-item{padding:11px}.menu-item strong{font-size:13px}.menu-item span{font-size:11.5px}.menu-toggle{padding:9px 11px}.hero .wrap{padding-top:44px;padding-bottom:44px}.hero .sub{max-width:35ch;font-size:15px}.hero .sub .mobile-break{display:inline}}
@@ -283,8 +293,6 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 .curbox{display:flex;gap:3px;border:1px solid var(--line);border-radius:8px;padding:3px}
 .curbox button{border:none;background:transparent;color:var(--soft);font-weight:700;font-size:12.5px;padding:6px 9px;border-radius:6px}
 .curbox button.on{background:var(--navy);color:#fff}
-.navwa{white-space:nowrap}
-@media (max-width:600px){.navwa{display:none}}
 
 /* service bullets */
 .svc-b{list-style:none;margin:6px 0 0;flex:1}
@@ -337,6 +345,47 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="#" id="logoLink"><img src="/logo.png" alt="Homeland Property Group"></a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="#top" data-nav>Home</a>
+      <div class="nitem">
+        <a href="#sale" data-nav>For Sale <span class="caret">▾</span></a>
+        <div class="dd">
+          <a href="#sale" data-cat="Houses" data-kind="sale">Houses for Sale</a>
+          <a href="#sale" data-cat="Urban Stands" data-kind="sale">Urban Stands</a>
+          <a href="#sale" data-cat="Rural Stands" data-kind="sale">Rural Stands &amp; Farms</a>
+          <a href="#sale" data-cat="Mines" data-kind="sale">Mines &amp; Claims</a>
+          <a href="#sale" data-cat="Hotels" data-kind="sale">Hotels &amp; Lodges</a>
+          <a href="#sale" data-cat="Commercial &amp; Other" data-kind="sale">Commercial &amp; Industrial</a>
+          <a class="dd-all" href="#sale" data-cat="" data-kind="sale">All properties for sale →</a>
+        </div>
+      </div>
+      <div class="nitem">
+        <a href="#rent" data-nav>To Rent <span class="caret">▾</span></a>
+        <div class="dd">
+          <a href="#rent" data-cat="Houses" data-kind="rent">Houses to Rent</a>
+          <a href="#rent" data-cat="Commercial &amp; Other" data-kind="rent">Commercial to Rent</a>
+          <a class="dd-all" href="#rent" data-cat="" data-kind="rent">All rentals →</a>
+        </div>
+      </div>
+      <div class="nitem">
+        <a href="#services" data-nav>Our Services <span class="caret">▾</span></a>
+        <div class="dd">
+          <a href="#services">Advisory Session — from $50</a>
+          <a href="#services">Verification Report — from $250</a>
+          <a href="#services">Full Turnkey Purchase</a>
+          <a href="#services">Build Management</a>
+          <a href="#estimator">Build Cost Estimator</a>
+        </div>
+      </div>
+      <div class="nitem">
+        <a href="#about" data-nav>About <span class="caret">▾</span></a>
+        <div class="dd">
+          <a href="#about">About Homeland</a>
+          <a href="#sell">For Agents &amp; Sellers</a>
+        </div>
+      </div>
+      <a href="#contact" data-nav>Contact</a>
+    </nav>
     <div class="navr">
       <div class="menu-wrap">
         <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteMenu">
@@ -358,7 +407,6 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         </div>
       </div>
       <div class="curbox" id="curBox" role="group" aria-label="Choose currency"></div>
-      <a class="btn btn-g navwa" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20to%20talk%20to%20Homeland%20Property%20Group.">WhatsApp Us</a>
     </div>
   </div>
 </header>
@@ -366,7 +414,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 <!-- ============ MAIN VIEW ============ -->
 <div id="view-main">
 
-<section class="hero">
+<section class="hero" id="top">
   <div class="wrap">
     <p class="eyebrow">HOMELAND PROPERTY GROUP</p>
     <h1>Own property back home,<br>without flying home.</h1>
@@ -820,6 +868,18 @@ document.addEventListener('click', (e) => {
   }
   const cb = e.target.closest('#curBox button');
   if (cb) { setCur(cb.dataset.cur); return; }
+  const nc = e.target.closest('.navlinks a[data-cat]');
+  if (nc) {
+    e.preventDefault();
+    state.cat = nc.dataset.cat;
+    state.tab = nc.dataset.kind;
+    document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === state.tab));
+    $('#sCat').value = state.cat;
+    renderGrids();
+    const goGrid = () => document.querySelector(state.tab === 'rent' ? '#rent' : '#sale').scrollIntoView({ behavior: 'smooth' });
+    if (!$('#view-detail').hidden) { closeDetail(); setTimeout(goGrid, 30); } else goGrid();
+    return;
+  }
   const tab = e.target.closest('#tabs button');
   if (tab) {
     document.querySelectorAll('#tabs button').forEach((b) => b.classList.remove('on'));
