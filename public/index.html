@@ -394,17 +394,6 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 .about-p{max-width:74ch;margin:16px auto 0;font-size:15.5px;color:#33424e;text-align:center}
 .about-fine{margin:30px auto 0;text-align:center;font-size:13px;color:var(--soft);max-width:72ch}
 
-/* estimator */
-.estimator{background:var(--grey);padding:64px 0}
-.est-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;justify-content:center;margin:38px auto 0;max-width:880px}
-.est-box .field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px}
-.est-box .field input,.est-box .field select{padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;min-width:180px}
-.est-out{display:flex;flex-direction:column;min-width:230px}
-#estOut{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--navy);line-height:1.2}
-.est-out small{color:var(--soft);font-size:12px;margin-top:4px}
-.est-fine{text-align:center;font-size:12.5px;color:var(--soft);margin-top:16px}
-.est-fin{max-width:70ch;margin:28px auto 0;background:var(--blue-l);border-radius:12px;padding:18px 22px;font-size:14.5px;text-align:center;color:var(--ink)}
-.est-fin b{color:var(--navy)}
 </style>
 </head>
 <body>
@@ -647,33 +636,6 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 
 
 
-<section class="estimator" id="estimator">
-  <div class="wrap">
-    <p class="eyebrow">BUILDING BACK HOME</p>
-    <h2 class="stitle">Build cost estimator</h2>
-    <p class="ssub">A rough planning range for building in Zimbabwe today. Real quotes follow plans and site checks.</p>
-    <div class="est-box">
-      <div class="field">
-        <label for="cArea">Floor area (m²)</label>
-        <input type="number" id="cArea" value="120" min="0" oninput="calc()">
-      </div>
-      <div class="field">
-        <label for="cLvl">Finish level</label>
-        <select id="cLvl" onchange="calc()">
-          <option value="380">Standard — solid &amp; practical</option>
-          <option value="520" selected>Quality — modern family home</option>
-          <option value="750">Premium — executive finish</option>
-        </select>
-      </div>
-      <div class="est-out"><span id="estOut">—</span><small>estimated build range</small></div>
-    </div>
-    <p class="est-fine">Planning estimate only, based on typical current $/m² rates. Excludes land, borehole, solar, boundary walls and professional fees.</p>
-    <div class="std-cta">
-      <a class="btn btn-g" target="_blank" rel="noopener" href="https://wa.me/27685302223?text=Hi%20—%20I%27d%20like%20to%20discuss%20a%20build%20cost%20estimate.">Discuss my build</a>
-    </div>
-    <p class="est-fin"><b>Financing from abroad exists.</b> Zimbabwean banks including Stanbic, CBZ and CABS run diaspora home-loan and mortgage products for buying or building from outside the country. Ask us which route fits your purchase — we'll point you to the right desk.</p>
-  </div>
-</section>
 
 <section class="strip" id="contact">
   <div class="wrap strip-in">
@@ -701,7 +663,6 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         <a href="#sell" data-nav>Sell or list property</a>
         <a href="#why" data-nav>Why Homeland</a>
         <a href="#guides" data-nav>Property guides</a>
-        <a href="#estimator" data-nav>Build cost estimator</a>
         <a href="/about" data-nav>About Homeland</a>
       </div>
       <div>
@@ -951,15 +912,6 @@ let CUR = 'USD';
 const money = (usd) => RATES[CUR].s + Math.round(usd * RATES[CUR].r).toLocaleString();
 const fmtPrice = (p, kind) => kind === 'rent' ? money(p) + '/mo' : money(p);
 
-/* build cost estimator */
-function calc() {
-  const el = $('#cArea');
-  const out = $('#estOut');
-  if (!el || !out) return;
-  const a = +el.value || 0, r = +$('#cLvl').value;
-  if (!a) { out.textContent = '—'; return; }
-  out.textContent = money(a * r * 0.88) + ' – ' + money(a * r * 1.14);
-}
 
 function card(l, tag = false) {
   const ph = (l.photos && l.photos[0]) ? l.photos[0].url : '';
@@ -1375,7 +1327,6 @@ window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
   renderCats();
   renderGrids();
   renderFeatured();
-  calc();
   handleHash();
 })();
 </script>
