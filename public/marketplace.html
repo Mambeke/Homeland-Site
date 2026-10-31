@@ -874,7 +874,7 @@ function card(l) {
   const specs = [l.beds != null ? l.beds + ' bed' : null, l.baths != null ? l.baths + ' bath' : null, l.size || null].filter(Boolean).join(' · ');
   const ver = l.verified === 'yes' ? '<span class="chip chip-v">Verified</span>' : '';
   return `<a class="card" href="#${encodeURIComponent(l.ref || l.id)}">
-    <div class="card-ph">${ph ? `<img src="${ph}" loading="lazy" alt="${imageAlt}">` : ''}${l.ref ? `<span class="chip">${l.ref}</span>` : ''}${ver}</div>
+    <div class="card-ph">${ph ? `<img src="${ph}" loading="lazy" alt="${imageAlt}">` : ''}${ver}</div>
     <div class="card-b">
       <p class="card-loc">${l.loc}</p>
       <h3>${l.title}</h3>
