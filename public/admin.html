@@ -13,6 +13,7 @@
 body{font-family:Inter,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--grey);line-height:1.55}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer}
+[hidden]{display:none !important}
 input,select,textarea{font-family:inherit;font-size:14.5px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;width:100%}
 textarea{resize:vertical;min-height:90px}
 label{font-size:12.5px;font-weight:600;color:var(--soft);display:block;margin:14px 0 5px;text-transform:uppercase;letter-spacing:.05em}
@@ -34,6 +35,7 @@ label{font-size:12.5px;font-weight:600;color:var(--soft);display:block;margin:14
 .login-card input{width:100%}
 .login-card .btn{width:100%;margin-top:18px;padding:13px}
 .err{color:#B4232A;font-size:13.5px;margin-top:10px;min-height:18px}
+.err.info{color:var(--blue)}
 .hint{font-size:12.5px;color:var(--soft);margin-top:14px;line-height:1.5}
 
 /* app bar */
@@ -48,6 +50,7 @@ label{font-size:12.5px;font-weight:600;color:var(--soft);display:block;margin:14
 /* dashboard */
 main{padding:28px 0 70px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.stats.editor{grid-template-columns:repeat(3,1fr)}
 .stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
 .stat b{display:block;font-family:'Playfair Display',serif;font-size:26px;color:var(--navy)}
 .stat span{font-size:12.5px;color:var(--soft);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
@@ -82,7 +85,10 @@ tr:last-child td{border-bottom:none}
 .msg.ok{color:var(--ok)}
 .msg.bad{color:#B4232A}
 .filehint{font-size:12.5px;color:var(--soft);margin-top:5px}
-@media (max-width:760px){.f-grid{grid-template-columns:1fr}.f-2{grid-column:auto}.stats{grid-template-columns:repeat(2,1fr)}table{font-size:12.5px}th:nth-child(3),td:nth-child(3){display:none}.appbar .who{display:none}}
+.staff-add{display:grid;grid-template-columns:1.2fr 1fr auto;gap:12px;align-items:end;margin-top:14px}
+.staff-add .btn{white-space:nowrap}
+.editor-status{min-width:140px}
+@media (max-width:760px){.f-grid{grid-template-columns:1fr}.f-2{grid-column:auto}.stats,.stats.editor{grid-template-columns:repeat(2,1fr)}table{font-size:12.5px}th:nth-child(3),td:nth-child(3){display:none}.appbar .who{display:none}.staff-add{grid-template-columns:1fr}.staff-add .btn{width:100%}}
 </style>
 </head>
 <body>
@@ -93,10 +99,13 @@ tr:last-child td{border-bottom:none}
     <div class="mark">H</div>
     <h1>Staff sign in</h1>
     <p>Homeland Property Group — staff access</p>
-    <input type="email" id="email" placeholder="Work email" autocomplete="email" spellcheck="false">
-    <button class="btn btn-n" id="loginBtn">Sign in</button>
-    <div class="err" id="loginErr"></div>
-    <p class="hint">Only staff accounts can sign in. If your email is not recognised, contact the owner.</p>
+    <input type="email" id="email" placeholder="Work email" autocomplete="email" spellcheck="false" required>
+    <input type="text" id="code" placeholder="6-digit email code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" hidden style="margin-top:10px">
+    <button class="btn btn-n" id="loginBtn" type="button">Send verification code</button>
+    <button class="btn btn-o" id="resendBtn" type="button" hidden>Send a new code</button>
+    <button class="btn btn-o" id="changeEmailBtn" type="button" hidden>Use another email</button>
+    <div class="err" id="loginErr" aria-live="polite"></div>
+    <p class="hint" id="loginHint">Enter an authorised staff email. A one-time code will be sent to that inbox.</p>
   </div>
 </div>
 
@@ -124,6 +133,20 @@ tr:last-child td{border-bottom:none}
       <div class="stat"><b id="stPhotos">–</b><span>Photos</span></div>
     </div>
 
+    <section class="panel" id="staffPanel" hidden>
+      <h2>Assistant editors <span id="staffCount" style="font-family:Inter;font-size:13px;color:var(--soft);font-weight:500"></span></h2>
+      <p class="filehint">Add up to three editors. They verify their own email and can change listing availability only — not prices, details, photos, or listings.</p>
+      <form id="staffForm" class="staff-add">
+        <div><label for="staffEmail">Assistant email *</label><input id="staffEmail" type="email" required autocomplete="email" placeholder="assistant@example.com"></div>
+        <div><label for="staffName">Name</label><input id="staffName" type="text" maxlength="100" autocomplete="name" placeholder="Assistant name"></div>
+        <button class="btn btn-n" type="submit" id="staffAddBtn">Add editor</button>
+      </form>
+      <div class="msg" id="staffMsg" role="status" aria-live="polite"></div>
+      <div style="overflow-x:auto">
+        <table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th></th></tr></thead><tbody id="staffRows"></tbody></table>
+      </div>
+    </section>
+
     <!-- FORM PANEL -->
     <div class="panel" id="formPanel" hidden>
       <h2 id="formTitle">Add a listing <button class="btn btn-o btn-sm" id="formClose">Close</button></h2>
@@ -150,7 +173,7 @@ tr:last-child td{border-bottom:none}
           <div class="f-full"><label>Description</label><textarea id="fDesc" placeholder="What should a buyer know?"></textarea></div>
           <div class="f-full"><label>Amenities / features (comma separated)</label><input id="fAmen" placeholder="Borehole water, Solar backup, Walled &amp; gated"></div>
           <div class="f-full"><label>Photos</label>
-            <input type="file" id="fPhotos" accept="image/*" multiple>
+            <input type="file" id="fPhotos" accept="image/jpeg,image/png,image/webp,image/gif,image/avif,image/heic,image/heif" multiple>
             <p class="filehint">Add photos for this listing. When editing, tick “remove” on a thumbnail to delete that photo.</p>
             <div class="ph-prev" id="prevNew"></div>
             <div class="ph-prev" id="prevOld"></div>
@@ -167,9 +190,11 @@ tr:last-child td{border-bottom:none}
     <!-- LIST PANEL -->
     <div class="panel">
       <h2>Listings <span id="listCount" style="font-family:Inter;font-size:13px;color:var(--soft);font-weight:500"></span></h2>
+      <p class="filehint" id="editorHint" hidden>Editor access: change listing availability only. Save each change below.</p>
+      <div class="msg" id="editorMsg" role="status" aria-live="polite"></div>
       <div style="overflow-x:auto">
         <table>
-          <thead><tr><th>Ref</th><th>Title</th><th>Location</th><th>Price</th><th>Type</th><th>Status</th><th>Photos</th><th></th></tr></thead>
+          <thead><tr id="listingHead"><th>Ref</th><th>Title</th><th>Location</th><th>Price</th><th>Type</th><th>Status</th><th>Photos</th><th></th></tr></thead>
           <tbody id="rows"></tbody>
         </table>
       </div>
@@ -177,40 +202,61 @@ tr:last-child td{border-bottom:none}
   </main>
 </div>
 
+<script src="/security.js"></script>
 <script>
 const API = '/api/admin';
-let TOKEN = sessionStorage.getItem('hp_staff_token') || '';
 let signedInEmail = '';
+let signedInRole = 'editor';
 let LISTINGS = [];
 let editingPhotos = []; // existing photos of the listing being edited
 
 const $ = (s) => document.querySelector(s);
-const key = () => ({ 'X-Staff-Token': TOKEN });
+const { escapeHTML, escapeAttr, safeImageURL } = globalThis.HomelandSecurity;
 const fmt = (p, k) => (k === 'rent' ? '$' + Math.round(p).toLocaleString() + '/mo' : '$' + Math.round(p).toLocaleString());
 
-/* ---------- login ---------- */
-async function emailLogin(email) {
+/* ---------- email one-time-code login ---------- */
+let loginStep = 'email';
+let loginBusy = false;
+
+async function requestEmailCode(email) {
   try {
     const r = await fetch('/api/staff/login', {
       method: 'POST',
+      credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
     });
-    if (r.status === 429) return { ok: false, msg: 'Too many attempts — wait a few minutes.' };
     const j = await r.json().catch(() => ({}));
-    if (!r.ok || !j.ok) return { ok: false, msg: j.error || 'That email does not have staff access.' };
-    TOKEN = j.token;
+    if (!r.ok || !j.ok) return { ok: false, msg: j.error || 'Could not request a verification code.' };
+    return { ok: true, msg: j.message || 'If this email has staff access, a verification code has been sent.' };
+  } catch (e) { return { ok: false, msg: 'Could not reach the server.' }; }
+}
+
+async function verifyEmailCode(email, code) {
+  try {
+    const r = await fetch('/api/staff/verify', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, code }),
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.ok) return { ok: false, msg: j.error || 'Invalid or expired verification code.' };
     signedInEmail = j.email;
-    sessionStorage.setItem('hp_staff_token', TOKEN);
+    signedInRole = j.role === 'admin' ? 'admin' : 'editor';
     return { ok: true };
   } catch (e) { return { ok: false, msg: 'Could not reach the server.' }; }
 }
 
 async function sessionOk() {
   try {
-    const r = await fetch('/api/staff/me', { headers: { 'X-Staff-Token': TOKEN } });
+    const r = await fetch('/api/staff/me', { credentials: 'same-origin', cache: 'no-store' });
     const j = await r.json().catch(() => ({}));
-    if (r.ok && j.ok) { signedInEmail = j.email; return true; }
+    if (r.ok && j.ok) {
+      signedInEmail = j.email;
+      signedInRole = j.role === 'admin' ? 'admin' : 'editor';
+      return true;
+    }
   } catch (e) { /* ignore */ }
   return false;
 }
@@ -218,35 +264,93 @@ async function sessionOk() {
 async function enterApp() {
   $('#login').hidden = true;
   $('#app').hidden = false;
-  $('#who').textContent = signedInEmail ? 'Signed in as ' + signedInEmail : '';
+  const isAdmin = signedInRole === 'admin';
+  $('#who').textContent = signedInEmail ? `Signed in as ${signedInEmail} · ${isAdmin ? 'Admin' : 'Editor'}` : '';
+  $('.stats').classList.toggle('editor', !isAdmin);
+  $('#stPhotos').closest('.stat').hidden = !isAdmin;
+  $('#addBtn').hidden = !isAdmin;
+  $('#staffPanel').hidden = !isAdmin;
+  $('#editorHint').hidden = isAdmin;
   await loadAll();
+  if (isAdmin) await loadStaff();
+}
+
+function setLoginBusy(busy) {
+  loginBusy = busy;
+  $('#loginBtn').disabled = busy;
+  $('#resendBtn').disabled = busy;
+  $('#changeEmailBtn').disabled = busy;
 }
 
 $('#loginBtn').addEventListener('click', doLogin);
 $('#email').addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
-async function doLogin() {
-  const email = $('#email').value.trim().toLowerCase();
+$('#code').addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
+$('#code').addEventListener('input', () => { $('#code').value = $('#code').value.replace(/\D/g, '').slice(0, 6); });
+$('#resendBtn').addEventListener('click', async () => {
+  if (loginBusy) return;
   $('#loginErr').textContent = '';
-  if (!email) { $('#loginErr').textContent = 'Enter your work email.'; return; }
-  $('#loginBtn').disabled = true;
-  const res = await emailLogin(email);
-  $('#loginBtn').disabled = false;
+  setLoginBusy(true);
+  const res = await requestEmailCode($('#email').value.trim().toLowerCase());
+  setLoginBusy(false);
+  $('#loginErr').textContent = res.ok ? 'If this email has staff access, a new code has been sent.' : res.msg;
+  $('#loginErr').classList.toggle('info', res.ok);
+});
+$('#changeEmailBtn').addEventListener('click', () => {
+  loginStep = 'email';
+  $('#email').disabled = false;
+  $('#code').value = '';
+  $('#code').hidden = true;
+  $('#resendBtn').hidden = true;
+  $('#changeEmailBtn').hidden = true;
+  $('#loginBtn').textContent = 'Send verification code';
+  $('#loginHint').textContent = 'Enter an authorised staff email. A one-time code will be sent to that inbox.';
+  $('#loginErr').textContent = '';
+  $('#loginErr').classList.remove('info');
+  $('#email').focus();
+});
+
+async function doLogin() {
+  if (loginBusy) return;
+  $('#loginErr').textContent = '';
+  $('#loginErr').classList.remove('info');
+  const email = $('#email').value.trim().toLowerCase();
+  if (loginStep === 'email') {
+    if (!$('#email').reportValidity()) return;
+    setLoginBusy(true);
+    const res = await requestEmailCode(email);
+    setLoginBusy(false);
+    if (!res.ok) { $('#loginErr').textContent = res.msg; return; }
+    loginStep = 'code';
+    $('#email').disabled = true;
+    $('#code').hidden = false;
+    $('#resendBtn').hidden = false;
+    $('#changeEmailBtn').hidden = false;
+    $('#loginBtn').textContent = 'Verify code';
+    $('#loginHint').textContent = 'If this email has staff access, a code has been sent. Enter the 6-digit code. Codes expire after 10 minutes.';
+    $('#loginErr').textContent = res.msg;
+    $('#loginErr').classList.add('info');
+    $('#code').focus();
+    return;
+  }
+
+  const code = $('#code').value.trim();
+  if (!/^\d{6}$/.test(code)) { $('#loginErr').textContent = 'Enter the 6-digit code from your email.'; return; }
+  setLoginBusy(true);
+  const res = await verifyEmailCode(email, code);
+  setLoginBusy(false);
   if (res.ok) enterApp();
   else $('#loginErr').textContent = res.msg;
 }
 
-$('#outBtn').addEventListener('click', () => {
-  const t = TOKEN;
-  if (t) fetch('/api/staff/logout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: t }) }).catch(() => {});
-  sessionStorage.removeItem('hp_staff_token');
-  TOKEN = '';
+$('#outBtn').addEventListener('click', async () => {
+  try { await fetch('/api/staff/logout', { method: 'POST', credentials: 'same-origin' }); } catch (e) { /* cookie also expires */ }
   location.reload();
 });
 
 /* ---------- data ---------- */
 async function loadAll() {
-  const r = await fetch(API + '/listings', { headers: key() });
-  if (!r.ok) { sessionStorage.removeItem('hp_staff_token'); location.reload(); return; }
+  const r = await fetch(API + '/listings', { credentials: 'same-origin', cache: 'no-store' });
+  if (!r.ok) { await fetch('/api/staff/logout', { method: 'POST', credentials: 'same-origin' }).catch(() => {}); location.reload(); return; }
   LISTINGS = await r.json();
   renderRows();
   renderStats();
@@ -262,16 +366,37 @@ function renderStats() {
 }
 
 function renderRows() {
-  const pill = (s) => `<span class="pill pill-${s}">${s === 'avail' ? 'available' : s}</span>`;
+  const head = $('#listingHead');
+  if (signedInRole === 'editor') {
+    head.innerHTML = '<th>Ref</th><th>Title</th><th>Location</th><th>Availability</th><th></th>';
+    $('#rows').innerHTML = LISTINGS.map((l) => {
+      const status = l.status === 'avail' ? 'available' : (['available', 'hidden', 'sold'].includes(l.status) ? l.status : 'hidden');
+      const option = (value, label) => `<option value="${value}" ${status === value ? 'selected' : ''}>${label}</option>`;
+      const soldLabel = l.kind === 'rent' ? 'Rented' : 'Sold';
+      return `<tr data-id="${escapeAttr(l.id)}">
+        <td style="font-weight:600;color:var(--navy)">${escapeHTML(l.ref || '—')}</td>
+        <td style="max-width:280px">${escapeHTML(l.title)}</td>
+        <td>${escapeHTML(l.loc)}</td>
+        <td><select class="editor-status" data-status aria-label="Availability for ${escapeAttr(l.title)}">
+          ${option('available', 'Available')}${option('hidden', 'Hidden')}${option('sold', soldLabel)}
+        </select></td>
+        <td><button class="btn btn-o btn-sm" data-act="status">Save status</button></td>
+      </tr>`;
+    }).join('');
+    return;
+  }
+
+  head.innerHTML = '<th>Ref</th><th>Title</th><th>Location</th><th>Price</th><th>Type</th><th>Status</th><th>Photos</th><th></th>';
+  const pill = (s) => `<span class="pill pill-${escapeAttr(s)}">${escapeHTML(s === 'avail' ? 'available' : s)}</span>`;
   $('#rows').innerHTML = LISTINGS.map((l) => `
-    <tr data-id="${l.id}">
-      <td style="font-weight:600;color:var(--navy)">${l.ref || '—'}</td>
-      <td style="max-width:280px">${l.title}</td>
-      <td>${l.loc}${l.province ? `<br><small style="color:#7a8a99">${l.province}</small>` : ''}</td>
-      <td style="font-weight:600">${fmt(l.price, l.kind)}</td>
-      <td><span class="pill pill-kind">${l.kind}</span></td>
+    <tr data-id="${escapeAttr(l.id)}">
+      <td style="font-weight:600;color:var(--navy)">${escapeHTML(l.ref || '—')}</td>
+      <td style="max-width:280px">${escapeHTML(l.title)}</td>
+      <td>${escapeHTML(l.loc)}${l.province ? `<br><small style="color:#7a8a99">${escapeHTML(l.province)}</small>` : ''}</td>
+      <td style="font-weight:600">${escapeHTML(fmt(l.price, l.kind))}</td>
+      <td><span class="pill pill-kind">${escapeHTML(l.kind)}</span></td>
       <td>${pill(l.status)}</td>
-      <td><div class="thumbs">${(l.photos || []).slice(0, 4).map((p) => `<img src="${p.url}" alt="">`).join('')}</div></td>
+      <td><div class="thumbs">${(l.photos || []).slice(0, 4).map((p) => { const url = safeImageURL(p.url); return url ? `<img src="${escapeAttr(url)}" alt="">` : ''; }).join('')}</div></td>
       <td><div class="actions">
         <button class="btn btn-o btn-sm" data-act="edit">Edit</button>
         <button class="btn btn-o btn-sm" data-act="toggle">${l.status === 'available' ? 'Hide' : 'Show'}</button>
@@ -279,6 +404,71 @@ function renderRows() {
       </div></td>
     </tr>`).join('');
 }
+
+async function loadStaff() {
+  if (signedInRole !== 'admin') return;
+  const msg = $('#staffMsg');
+  try {
+    const r = await fetch(API + '/staff', { credentials: 'same-origin', cache: 'no-store' });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || ('HTTP ' + r.status));
+    const editors = Array.isArray(j.editors) ? j.editors : [];
+    const limit = Number(j.maxEditors) || 3;
+    $('#staffCount').textContent = `${editors.length} of ${limit}`;
+    $('#staffAddBtn').disabled = editors.length >= limit;
+    $('#staffRows').innerHTML = editors.length ? editors.map((editor) => `
+      <tr><td>${escapeHTML(editor.name || '—')}</td><td>${escapeHTML(editor.email)}</td><td>Editor</td>
+      <td><button type="button" class="btn btn-r btn-sm" data-remove="${escapeAttr(editor.email)}">Remove</button></td></tr>`).join('')
+      : '<tr><td colspan="4" style="color:var(--soft)">No assistant editors added yet.</td></tr>';
+  } catch (err) {
+    msg.textContent = 'Could not load assistant editors: ' + err.message;
+    msg.className = 'msg bad';
+  }
+}
+
+$('#staffForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (signedInRole !== 'admin' || !$('#staffEmail').reportValidity()) return;
+  $('#staffAddBtn').disabled = true;
+  $('#staffMsg').textContent = 'Adding editor…';
+  $('#staffMsg').className = 'msg';
+  try {
+    const r = await fetch(API + '/staff', {
+      method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: $('#staffEmail').value.trim(), name: $('#staffName').value.trim() }),
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || ('HTTP ' + r.status));
+    $('#staffForm').reset();
+    $('#staffMsg').textContent = 'Editor added. They can now sign in using a code sent to their email.';
+    $('#staffMsg').className = 'msg ok';
+    await loadStaff();
+  } catch (err) {
+    $('#staffMsg').textContent = err.message;
+    $('#staffMsg').className = 'msg bad';
+    $('#staffAddBtn').disabled = false;
+  }
+});
+
+$('#staffRows').addEventListener('click', async (e) => {
+  const btn = e.target.closest('button[data-remove]');
+  if (!btn || signedInRole !== 'admin') return;
+  const email = btn.dataset.remove;
+  if (!confirm(`Remove editor access for ${email}? Their active sessions will be revoked.`)) return;
+  btn.disabled = true;
+  try {
+    const r = await fetch(API + '/staff/' + encodeURIComponent(email), { method: 'DELETE', credentials: 'same-origin' });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || ('HTTP ' + r.status));
+    $('#staffMsg').textContent = 'Editor access removed.';
+    $('#staffMsg').className = 'msg ok';
+    await loadStaff();
+  } catch (err) {
+    $('#staffMsg').textContent = err.message;
+    $('#staffMsg').className = 'msg bad';
+    btn.disabled = false;
+  }
+});
 
 /* ---------- form ---------- */
 function openForm(l) {
@@ -313,10 +503,10 @@ function renderPhotoPreview() {
   const files = $('#fPhotos').files;
   $('#prevNew').innerHTML = [...files].map((f, i) => {
     const url = URL.createObjectURL(f);
-    return `<div class="p"><img src="${url}" data-new="${i}" alt=""><button type="button" class="rm" data-rmnew="${i}">×</button></div>`;
+    return `<div class="p"><img src="${escapeAttr(url)}" data-new="${i}" alt=""><button type="button" class="rm" data-rmnew="${i}">×</button></div>`;
   }).join('');
   $('#prevOld').innerHTML = editingPhotos.map((p) =>
-    `<div class="p"><img src="${p.url}" alt=""><button type="button" class="rm" data-rmold="${p.id}" title="Remove this photo on save">×</button></div>`).join('');
+    `<div class="p"><img src="${escapeAttr(safeImageURL(p.url))}" alt=""><button type="button" class="rm" data-rmold="${escapeAttr(p.id)}" title="Remove this photo on save">×</button></div>`).join('');
 }
 
 $('#fPhotos').addEventListener('change', renderPhotoPreview);
@@ -368,7 +558,7 @@ $('#form').addEventListener('submit', async (e) => {
   $('#formMsg').textContent = 'Saving…';
   $('#formMsg').className = 'msg';
   try {
-    const r = await fetch(API + '/listings', { method: id ? 'PUT' : 'POST', headers: { 'X-Staff-Token': TOKEN }, body: fd });
+    const r = await fetch(API + '/listings', { method: id ? 'PUT' : 'POST', credentials: 'same-origin', body: fd });
     const j = await r.json().catch(() => ({}));
     if (!r.ok) throw new Error(j.error || ('HTTP ' + r.status));
     $('#formMsg').textContent = 'Saved ✓';
@@ -391,6 +581,31 @@ $('#rows').addEventListener('click', async (e) => {
   if (!l) return;
   const act = btn.dataset.act;
 
+  if (act === 'status' && signedInRole === 'editor') {
+    const status = tr.querySelector('[data-status]').value;
+    btn.disabled = true;
+    $('#editorMsg').textContent = 'Updating availability…';
+    $('#editorMsg').className = 'msg';
+    try {
+      const r = await fetch(API + '/listings/' + encodeURIComponent(l.id) + '/status', {
+        method: 'PATCH', credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status }),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(j.error || ('HTTP ' + r.status));
+      $('#editorMsg').textContent = 'Availability updated.';
+      $('#editorMsg').className = 'msg ok';
+      await loadAll();
+    } catch (err) {
+      $('#editorMsg').textContent = err.message;
+      $('#editorMsg').className = 'msg bad';
+      btn.disabled = false;
+    }
+    return;
+  }
+
+  if (signedInRole !== 'admin') return;
   if (act === 'edit') { openForm(l); return; }
 
   if (act === 'toggle') {
@@ -414,7 +629,7 @@ $('#rows').addEventListener('click', async (e) => {
     fd.append('amenities', (l.amenities || []).join(', '));
     fd.append('verified', l.verified || '');
     fd.append('specs', JSON.stringify(l.specs || {}));
-    const r = await fetch(API + '/listings', { method: 'PUT', headers: { 'X-Staff-Token': TOKEN }, body: fd });
+    const r = await fetch(API + '/listings', { method: 'PUT', credentials: 'same-origin', body: fd });
     if (!r.ok) { alert('Could not update.'); return; }
     loadAll();
     return;
@@ -422,18 +637,20 @@ $('#rows').addEventListener('click', async (e) => {
 
   if (act === 'del') {
     if (!confirm(`Delete "${l.title}" (${l.ref || 'no ref'}) and its photos? This cannot be undone.`)) return;
-    const r = await fetch(API + '/listings/' + l.id, { method: 'DELETE', headers: key() });
+    const r = await fetch(API + '/listings/' + l.id, { method: 'DELETE', credentials: 'same-origin' });
     if (!r.ok) { alert('Could not delete.'); return; }
     loadAll();
   }
 });
 
 /* ---------- boot ---------- */
-if (TOKEN) {
-  sessionOk().then((ok) => { if (ok) enterApp(); else { sessionStorage.removeItem('hp_staff_token'); TOKEN = ''; $('#login').hidden = false; } });
-} else {
-  $('#login').hidden = false;
-}
+sessionOk().then((ok) => {
+  if (ok) enterApp();
+  else {
+    fetch('/api/staff/logout', { method: 'POST', credentials: 'same-origin' }).catch(() => {});
+    $('#login').hidden = false;
+  }
+});
 </script>
 </body>
 </html>

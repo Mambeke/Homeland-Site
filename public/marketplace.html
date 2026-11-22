@@ -524,7 +524,9 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
   <div style="height:60px"></div>
 </div>
 
+<script src="/security.js"></script>
 <script>
+const { escapeHTML, escapeAttr, safeImageURL } = globalThis.HomelandSecurity;
 const WA = 'https://wa.me/27685302223?text=';
 let L = [];
 const state = { tab: 'all', loc: '', locSel: null, types: [], priceBands: [] };
@@ -569,7 +571,7 @@ function initPicker(btnId, labelId, panelId, listId, hintId, defaultLabel, onCha
   function setItems(next) {
     const keep = selected();
     items = next;
-    list.innerHTML = items.map((it) => `<label class="td-row"><input type="checkbox" value="${it.v}"><span>${it.label}</span></label>`).join('');
+    list.innerHTML = items.map((it) => `<label class="td-row"><input type="checkbox" value="${escapeAttr(it.v)}"><span>${escapeHTML(it.label)}</span></label>`).join('');
     list.querySelectorAll('input').forEach((i) => { i.checked = keep.includes(i.value); });
     updateLabel();
     if (!panel.hidden) syncHint();
@@ -607,11 +609,6 @@ function initPicker(btnId, labelId, panelId, listId, hintId, defaultLabel, onCha
 }
 
 const $ = (s) => document.querySelector(s);
-function escapeAttr(value) {
-  return String(value ?? '').replace(/[&"<>]/g, (char) => ({
-    '&': '&amp;', '"': '&quot;', '<': '&lt;', '>': '&gt;'
-  })[char]);
-}
 
 /* currency (prices in data are US$) — same rates as homepage */
 const RATES = { USD: { r: 1, s: 'US$' }, GBP: { r: 0.78, s: '£' }, ZAR: { r: 18.2, s: 'R' } };
@@ -739,19 +736,20 @@ function mRenderPanel(raw) {
   let html = '';
   if (provs.length) {
     html += `<div class="loc-note">Provinces</div>`;
-    provs.forEach((p) => { html += `<button type="button" class="loc-opt" data-p="prov" data-name="${p}"><span class="ln">${p}</span><span class="lp">All areas in the province</span></button>`; });
+    provs.forEach((p) => { html += `<button type="button" class="loc-opt" data-p="prov" data-name="${escapeAttr(p)}"><span class="ln">${escapeHTML(p)}</span><span class="lp">All areas in the province</span></button>`; });
   }
   if (places.length) {
     if (places[0].score < 80 && !provs.length) html += `<div class="loc-note">Did you mean</div>`;
     places.forEach((pl) => {
       const sub = pl.parent ? pl.parent + ', ' + pl.province : pl.province;
       const plRec = GEO_INDEX.find((x) => x.id === pl.id) || {};
-      html += `<button type="button" class="loc-opt" data-p="place" data-name="${pl.name}" data-prov="${pl.province}" data-parent="${pl.parent}" data-aliases="${escapeAttr((plRec.aliases || []).join('|'))}"><span class="ln">${pl.name}</span><span class="lp">${sub}</span></button>`;
+      html += `<button type="button" class="loc-opt" data-p="place" data-name="${escapeAttr(pl.name)}" data-prov="${escapeAttr(pl.province)}" data-parent="${escapeAttr(pl.parent)}" data-aliases="${escapeAttr((plRec.aliases || []).join('|'))}"><span class="ln">${escapeHTML(pl.name)}</span><span class="lp">${escapeHTML(sub)}</span></button>`;
     });
   }
   if (!html) {
-    html = `<div class="loc-none">No place in our list matches “${raw}” yet.</div>
-      <a class="loc-src" href="${WA + encodeURIComponent(`Hi — I'm looking for property in ${raw}. Can you source it for me?`)}" target="_blank" rel="noopener">We can source it for you — ask on WhatsApp →</a>`;
+    const sourceLink = escapeAttr(WA + encodeURIComponent(`Hi — I'm looking for property in ${raw}. Can you source it for me?`));
+    html = `<div class="loc-none">No place in our list matches “${escapeHTML(raw)}” yet.</div>
+      <a class="loc-src" href="${sourceLink}" target="_blank" rel="noopener">We can source it for you — ask on WhatsApp →</a>`;
   }
   mLocPanel.innerHTML = html;
   mLocPanel.hidden = false;
@@ -869,17 +867,17 @@ function mMatch(l) {
 }
 
 function card(l) {
-  const ph = (l.photos && l.photos[0]) ? l.photos[0].url : '';
+  const ph = safeImageURL((l.photos && l.photos[0]) ? l.photos[0].url : '');
   const imageAlt = escapeAttr([l.title, l.loc, l.kind === 'rent' ? 'property for rent' : 'property for sale'].filter(Boolean).join(' — '));
   const specs = [l.beds != null ? l.beds + ' bed' : null, l.baths != null ? l.baths + ' bath' : null, l.size || null].filter(Boolean).join(' · ');
   const ver = l.verified === 'yes' ? '<span class="chip chip-v">Verified</span>' : '';
   return `<a class="card" href="#${encodeURIComponent(l.ref || l.id)}">
-    <div class="card-ph">${ph ? `<img src="${ph}" loading="lazy" alt="${imageAlt}">` : ''}${ver}</div>
+    <div class="card-ph">${ph ? `<img src="${escapeAttr(ph)}" loading="lazy" alt="${imageAlt}">` : ''}${ver}</div>
     <div class="card-b">
-      <p class="card-loc">${l.loc}</p>
-      <h3>${l.title}</h3>
+      <p class="card-loc">${escapeHTML(l.loc)}</p>
+      <h3>${escapeHTML(l.title)}</h3>
       <p class="card-price">${fmtPrice(l.price, l.kind)}</p>
-      ${specs ? `<p class="card-specs">${specs}</p>` : ''}
+      ${specs ? `<p class="card-specs">${escapeHTML(specs)}</p>` : ''}
     </div>
   </a>`;
 }
@@ -918,15 +916,15 @@ function openDetail(id) {
   if (l.beds != null) specs.push([l.beds + '', 'Bedrooms']);
   if (l.baths != null) specs.push([l.baths + '', 'Bathrooms']);
   if (l.size) specs.push([l.size, 'Size']);
-  $('#dSpecs').innerHTML = specs.map((s) => `<div class="d-spec">${s[0]}<small>${s[1]}</small></div>`).join('');
+  $('#dSpecs').innerHTML = specs.map((s) => `<div class="d-spec">${escapeHTML(s[0])}<small>${escapeHTML(s[1])}</small></div>`).join('');
   const ex = Object.entries(l.specs || {});
-  $('#dExtras').innerHTML = ex.length ? ex.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('') : '';
+  $('#dExtras').innerHTML = ex.length ? ex.map(([k, v]) => `<tr><td>${escapeHTML(k)}</td><td>${escapeHTML(v)}</td></tr>`).join('') : '';
   $('#dExtras').hidden = !ex.length;
   $('#dDesc').textContent = l.desc || '';
-  $('#dAmen').innerHTML = (l.amenities || []).map((a) => `<span>${a}</span>`).join('');
+  $('#dAmen').innerHTML = (l.amenities || []).map((a) => `<span>${escapeHTML(a)}</span>`).join('');
   const phs = l.photos || [];
-  $('#dMain').src = phs[0] ? phs[0].url : '';
-  $('#dThumbs').innerHTML = phs.map((p, i) => `<img src="${p.url}" class="${i === 0 ? 'on' : ''}" data-i="${i}" alt="">`).join('');
+  $('#dMain').src = phs[0] ? safeImageURL(phs[0].url) : '';
+  $('#dThumbs').innerHTML = phs.map((p, i) => `<img src="${escapeAttr(safeImageURL(p.url))}" class="${i === 0 ? 'on' : ''}" data-i="${i}" alt="">`).join('');
   $('#dWa').href = WA + encodeURIComponent(`Hi — I'm interested in ${l.ref || 'a property'}: ${l.title} (${l.loc}).`);
   $('#dVerify').href = WA + encodeURIComponent(`Hi — I'd like a verification report ($250) for ${l.ref || ''} ${l.title} (${l.loc}).`);
   $('#view-main').hidden = true;
@@ -989,7 +987,7 @@ document.addEventListener('click', (e) => {
   if (thumb) {
     const l = L.find((x) => !$('#view-detail').hidden && $('#dTitle').textContent === x.title);
     const phs = l ? l.photos : [];
-    $('#dMain').src = phs[+thumb.dataset.i].url;
+    $('#dMain').src = safeImageURL(phs[+thumb.dataset.i].url);
     document.querySelectorAll('.d-thumbs img').forEach((t) => t.classList.remove('on'));
     thumb.classList.add('on');
   }

@@ -2,6 +2,9 @@
   "name": "homeland",
   "main": "src/worker.js",
   "compatibility_date": "2026-10-29",
+  "vars": {
+    "STAFF_AUTH_FROM": "staff@mail.homelandpropertygroup.co.zw"
+  },
   "assets": {
     "directory": "./public",
     "binding": "ASSETS"
