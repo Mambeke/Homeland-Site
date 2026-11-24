@@ -446,6 +446,39 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
   .s-row .type-wrap .td-btn{min-height:29px;padding-top:0;font-size:14px}
   .s-go{height:42px;font-size:14px}
 }
+
+/* Refined mobile hero and featured property presentation */
+@media(max-width:700px){
+  .hero{padding-top:26px;padding-bottom:24px}
+  .hero .wrap{padding-top:26px;padding-bottom:24px}
+  .hero h1{font-size:34px;line-height:1.13;max-width:none;letter-spacing:-.035em}
+  .hero .sub{max-width:100%;font-size:16px;line-height:1.55;margin-top:13px}
+  .search-wrap{margin-top:12px}
+  .s-tabs{justify-content:flex-start;gap:8px;margin:0 0 9px}
+  .s-tabs button{min-width:0;min-height:34px;height:34px;padding:6px 15px;font-size:12px;font-weight:600;border-radius:7px}
+  .searchbox{background:transparent!important;box-shadow:none!important;border-radius:0!important;padding:0!important}
+  .s-row{display:grid;grid-template-columns:minmax(0,1fr);gap:11px;padding:0!important;background:transparent!important}
+  .s-row .loc-wrap,.s-row .type-wrap{width:100%;min-height:64px;padding:8px 13px!important;background:rgba(255,255,255,.97)!important;border:1px solid rgba(220,228,236,.95)!important;border-radius:9px!important}
+  .s-row .loc-wrap input{height:30px;font-size:15px}
+  .s-row .type-wrap .td-btn{min-height:32px;font-size:15px;font-weight:500}
+  .s-row .td-btn .caret{font-size:21px!important;line-height:1;color:var(--blue);font-weight:400!important;margin-left:auto}
+  .s-go{height:42px;margin-top:1px}
+  .feat-grid{margin-top:9px}
+  .feat-grid > *{flex:0 0 90%!important}
+  .feat-grid .card-b{padding:16px 16px 18px}
+  .feat-grid .card h3{font-size:17px}
+  .feat-grid .card-price{font-size:19px}
+}
+#featured-sale .stitle,#featured-rent-heading .stitle{display:table;white-space:nowrap;text-align:left;font-size:clamp(22px,3vw,30px);line-height:1.25;margin:0 0 12px;position:relative}
+#featured-sale .stitle:after,#featured-rent-heading .stitle:after{content:"";display:block;width:48%;height:3px;background:var(--gold);margin-top:7px}
+#featured-sale .wrap,#featured-rent-heading .wrap,.featured-intro .wrap{text-align:left}
+#featured-sale .ssub,#featured-rent-heading .ssub,.featured-intro .ssub{text-align:left;margin-left:0;margin-right:0}
+.swipe-hint{font-style:italic;margin-top:5px!important;margin-bottom:0}
+#featured-sale .feat-grid,#featured-rent .feat-grid{margin-top:8px}
+@media(max-width:700px){
+  #featured-sale .stitle,#featured-rent-heading .stitle{font-size:22px}
+  .swipe-hint{font-size:12px}
+}
 </style>
 </head>
 <body>
@@ -462,7 +495,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
     <a class="logo" href="#" id="logoLink"><img src="/logo.svg" alt="Homeland Property Group"></a>
     <nav class="navlinks" aria-label="Main navigation">
       <div class="nitem">
-        <a href="/marketplace.html?kind=sale" data-nav>Properties for Sale <span class="caret">▾</span></a>
+        <a href="/marketplace.html?kind=sale" data-nav>Properties for Sale <span class="caret">›</span></a>
         <div class="dd">
           <a href="/marketplace.html?kind=sale&amp;type=Houses" data-cat="Houses" data-kind="sale">Houses for Sale</a>
           <a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-cat="Urban Stands" data-kind="sale">Urban Stands</a>
@@ -474,7 +507,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
         </div>
       </div>
       <div class="nitem">
-        <a href="/marketplace.html?kind=rent" data-nav>Properties for Rent <span class="caret">▾</span></a>
+        <a href="/marketplace.html?kind=rent" data-nav>Properties for Rent <span class="caret">›</span></a>
         <div class="dd">
           <a href="#rent" data-cat="Houses" data-kind="rent">Houses to Rent</a>
           <a href="#rent" data-cat="Commercial &amp; Other" data-kind="rent">Commercial to Rent</a>
@@ -511,7 +544,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
 <section class="hero" id="top">
   <div class="wrap">
     <h1>Discover property opportunities<br>across Zimbabwe.</h1>
-    <p class="sub">Explore homes, stands, farms and commercial properties for sale or rent. Search by location, property type and budget, then speak with our team when you are ready to take the next step.</p>
+    <p class="sub">Explore homes, stands, farms and commercial properties for sale or rent.</p>
     <div class="search-wrap">
       <div class="s-tabs" id="tabs">
         <button data-tab="sale" class="on">For Sale</button>
