@@ -404,6 +404,33 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
 .hero h1{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:600;letter-spacing:-.025em}
 .feat-grid{touch-action:pan-x;cursor:grab}.feat-grid:active{cursor:grabbing}.feat-grid > *{flex:0 0 calc((100% - 36px)/3)}.swipe-hint{display:none;margin-top:12px;color:var(--soft);font-size:13px;font-weight:600}.featured-intro{padding-top:20px;padding-bottom:12px}
 @media(max-width:700px){.swipe-hint{display:block}.feat-grid > *{flex:0 0 82%}.nav .btn-wa{display:none}.feat-outer{padding:0 18px}}
+
+/* Mobile search: clear field hierarchy, generous touch targets and breathing room */
+@media(max-width:700px){
+  .search-wrap{margin-top:24px;width:100%}
+  .s-tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:0 0 12px}
+  .s-tabs button,.s-tabs .s-mk{min-width:0;min-height:46px;padding:11px 8px;border-radius:9px;font-size:13px}
+  .searchbox{border-radius:14px;overflow:visible}
+  .s-row{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:14px}
+  .s-row .loc-wrap,.s-row .type-wrap{display:flex;flex-wrap:wrap;align-items:center;min-width:0;width:100%;min-height:70px;padding:8px 12px;border:1px solid #DCE4EC;border-radius:10px;background:#FBFCFE}
+  .s-row .loc-wrap{gap:2px}
+  .s-row .loc-wrap::before,.s-row .type-wrap::before{display:block;flex:0 0 100%;font-size:10px;line-height:1.2;font-weight:700;letter-spacing:.09em;color:#68798A}
+  .s-row .loc-wrap::before{content:"LOCATION"}
+  .s-row .type-wrap:not(.no-sep)::before{content:"PROPERTY TYPE"}
+  .s-row .type-wrap.no-sep::before{content:"PRICE RANGE"}
+  .s-row .loc-wrap input{flex:1 1 auto;width:100%;min-width:0;height:32px;padding:4px 30px 4px 0;border:0;background:transparent;font-size:15px;color:var(--ink);box-shadow:none}
+  .s-row .loc-wrap input:focus{outline:0}
+  .s-row .type-wrap .td-btn{min-height:34px;padding:2px 0 0;gap:12px;font-size:15px;font-weight:600}
+  .s-row .td-btn .td-lab{white-space:normal;line-height:1.3}
+  .s-row .td-btn .caret{font-size:13px;color:var(--blue)}
+  .s-row .loc-x{right:9px;top:43px}
+  .s-row .td-panel{left:0;right:0;top:calc(100% + 7px);width:100%;max-width:none;border-radius:12px;box-shadow:0 14px 34px rgba(9,30,55,.2);z-index:90}
+  .s-row .td-list{max-height:min(48vh,320px);padding:8px}
+  .s-row .td-row{min-height:46px;padding:12px 10px;gap:12px;font-size:14px;white-space:normal}
+  .s-row .td-row input{width:19px;height:19px}
+  .s-row .loc-panel{left:0;right:0;top:calc(100% + 6px);min-width:0;width:100%;max-height:260px;border-radius:12px;z-index:95}
+  .s-go{width:100%;height:52px;margin:0;padding:0 18px;border-radius:10px;font-size:15px;font-weight:700;letter-spacing:.01em}
+}
 </style>
 </head>
 <body>
@@ -468,8 +495,8 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
 
 <section class="hero" id="top">
   <div class="wrap">
-    <h1>Find the right property<br>in Zimbabwe.</h1>
-    <p class="sub">Explore houses, residential stands, farms and commercial properties for sale or rent across Zimbabwe. Find a property that fits your needs and speak with our team for assistance.</p>
+    <h1>Discover property opportunities<br>across Zimbabwe.</h1>
+    <p class="sub">Explore homes, stands, farms and commercial properties for sale or rent. Search by location, property type and budget, then speak with our team when you are ready to take the next step.</p>
     <div class="search-wrap">
       <div class="s-tabs" id="tabs">
         <button data-tab="sale" class="on">For Sale</button>
