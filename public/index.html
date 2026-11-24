@@ -395,6 +395,17 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 .about-p{max-width:74ch;margin:16px auto 0;font-size:15.5px;color:#33424e;text-align:center}
 .about-fine{margin:30px auto 0;text-align:center;font-size:13px;color:var(--soft);max-width:72ch}
 
+
+/* Expandable property categories in the mobile menu */
+.mobile-submenu{border-bottom:1px solid var(--line)}
+.mobile-submenu > summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+.mobile-submenu > summary::-webkit-details-marker{display:none}
+.mobile-submenu > summary .mobile-chevron{display:inline-block;color:var(--navy);font-size:16px;transition:transform .2s}
+.mobile-submenu[open] > summary .mobile-chevron{transform:rotate(180deg)}
+.mobile-submenu-links{display:grid;padding:2px 0 8px 14px;background:var(--cream)}
+.mobile-submenu-links a{display:block;padding:11px 12px;color:var(--navy);font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+.mobile-submenu-links a:last-child{border-bottom:0}
+.mobile-submenu-links a:hover,.mobile-submenu-links a:focus-visible{color:var(--blue);text-decoration:underline}
 </style>
 </head>
 <body>
@@ -442,8 +453,8 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         </button>
         <div class="menu-panel" id="siteMenu">
           <nav class="menu-grid" aria-label="Mobile navigation">
-            <a class="menu-item" href="/marketplace.html?kind=sale" data-nav><strong>For Sale</strong></a>
-            <a class="menu-item" href="/marketplace.html?kind=rent" data-nav><strong>To Rent</strong></a>
+            <details class="mobile-submenu"><summary class="menu-item"><strong>For Sale</strong><span class="mobile-chevron" aria-hidden="true">▾</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
+            <details class="mobile-submenu"><summary class="menu-item"><strong>To Rent</strong><span class="mobile-chevron" aria-hidden="true">▾</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=rent&amp;type=Houses" data-nav>Houses to Rent</a><a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial to Rent</a><a href="/marketplace.html?kind=rent" data-nav>All Rentals</a></div></details>
             <a class="menu-item" href="/marketplace.html" data-nav><strong>All Properties</strong></a>
             <a class="menu-item" href="/about" data-nav><strong>About</strong></a>
             <a class="menu-item menu-advisor" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener"><strong>Speak to an Advisor</strong></a>
