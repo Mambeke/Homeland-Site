@@ -490,6 +490,28 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
  .hero h1{font-size:20px!important;line-height:1.22!important;max-width:none!important;letter-spacing:-.02em!important;white-space:normal}
  .s-tabs button.on{background:#168A4A!important;border-color:#168A4A!important;color:#fff!important}
 }
+
+/* Hero hierarchy: lift the message and give the search controls their own space */
+@media(max-width:700px){
+  .hero .wrap{padding-top:12px!important;padding-bottom:24px!important}
+  .hero h1{margin-top:0!important;margin-bottom:0!important}
+  .hero .sub{margin-top:10px!important;margin-bottom:0!important}
+  .search-wrap{margin-top:28px!important}
+  .s-tabs{margin-bottom:13px!important;gap:10px!important}
+  .s-tabs button{min-height:36px!important;height:36px!important}
+  .s-row{gap:12px!important}
+}
+/* Stronger, wider downward chevrons that read as expandable controls */
+.caret,.mobile-chevron{
+  font-family:Arial Black,Arial,sans-serif!important;
+  font-size:25px!important;
+  font-weight:900!important;
+  -webkit-text-stroke:.8px currentColor;
+  transform:scaleX(1.28) translateY(-1px);
+  transform-origin:center;
+  line-height:1!important;
+  display:inline-block;
+}
 </style>
 </head>
 <body>
