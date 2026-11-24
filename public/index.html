@@ -469,14 +469,14 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
   .feat-grid .card h3{font-size:17px}
   .feat-grid .card-price{font-size:19px}
 }
-#featured-sale .stitle,#featured-rent-heading .stitle{display:table;white-space:nowrap;text-align:left;font-size:clamp(22px,3vw,30px);line-height:1.25;margin:0 0 12px;position:relative}
+#featured-sale .stitle,#rent .stitle{display:table;white-space:nowrap;text-align:left;font-size:clamp(22px,3vw,30px);line-height:1.25;margin:0 0 12px;position:relative}
 #featured-sale .stitle:after,#featured-rent-heading .stitle:after{content:"";display:block;width:48%;height:3px;background:var(--gold);margin-top:7px}
 #featured-sale .wrap,#featured-rent-heading .wrap,.featured-intro .wrap{text-align:left}
 #featured-sale .ssub,#featured-rent-heading .ssub,.featured-intro .ssub{text-align:left;margin-left:0;margin-right:0}
 .swipe-hint{font-style:italic;margin-top:5px!important;margin-bottom:0}
 #featured-sale .feat-grid,#featured-rent .feat-grid{margin-top:8px}
 @media(max-width:700px){
-  #featured-sale .stitle,#featured-rent-heading .stitle{font-size:22px}
+  #featured-sale .stitle,#featured-rent-heading .stitle{font-size:20px}
   .swipe-hint{font-size:12px}
 }
 </style>
@@ -559,14 +559,14 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
             <div class="loc-panel" id="locPanel" hidden></div>
           </div>
           <div class="type-wrap">
-            <button type="button" class="td-btn" id="hTypeBtn" aria-haspopup="true" aria-expanded="false"><span id="hTypeLabel" class="td-lab">All types</span><span class="caret">▾</span></button>
+            <button type="button" class="td-btn" id="hTypeBtn" aria-haspopup="true" aria-expanded="false"><span id="hTypeLabel" class="td-lab">All types</span><span class="caret">›</span></button>
             <div class="td-panel" id="hTypePanel" hidden>
               <div class="td-list" id="hTypeList"></div>
               <div class="td-hint" id="hTypeHint" hidden></div>
             </div>
           </div>
           <div class="type-wrap no-sep">
-            <button type="button" class="td-btn" id="hPriceBtn" aria-haspopup="true" aria-expanded="false"><span id="hPriceLabel" class="td-lab">Price Range</span><span class="caret">▾</span></button>
+            <button type="button" class="td-btn" id="hPriceBtn" aria-haspopup="true" aria-expanded="false"><span id="hPriceLabel" class="td-lab">Price Range</span><span class="caret">›</span></button>
             <div class="td-panel" id="hPricePanel" hidden>
               <div class="td-list" id="hPriceList"></div>
             </div>
