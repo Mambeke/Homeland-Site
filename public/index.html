@@ -431,6 +431,21 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
   .s-row .loc-panel{left:0;right:0;top:calc(100% + 6px);min-width:0;width:100%;max-height:260px;border-radius:12px;z-index:95}
   .s-go{width:100%;height:52px;margin:0;padding:0 18px;border-radius:10px;font-size:15px;font-weight:700;letter-spacing:.01em}
 }
+
+/* Mobile hero search: compact tabs and separate, lighter field rows */
+@media(max-width:700px){
+  .hero{padding-bottom:30px}
+  .search-wrap{margin-top:15px}
+  .s-tabs{display:flex;align-items:center;gap:8px;margin:0 0 9px}
+  .s-tabs button{flex:0 1 auto;width:auto;min-width:104px;min-height:36px;height:36px;padding:7px 16px;border-radius:8px;font-size:12px;font-weight:700;box-shadow:none}
+  .searchbox{background:rgba(255,255,255,.97);padding:0;border-radius:13px;box-shadow:0 8px 22px rgba(4,25,45,.14)}
+  .s-row{gap:8px;padding:10px}
+  .s-row .loc-wrap,.s-row .type-wrap{min-height:60px;padding:6px 11px;border-radius:9px;background:#fff}
+  .s-row .loc-wrap::before,.s-row .type-wrap::before{font-size:9px;line-height:1.1}
+  .s-row .loc-wrap input{height:28px;font-size:14px}
+  .s-row .type-wrap .td-btn{min-height:29px;padding-top:0;font-size:14px}
+  .s-go{height:42px;font-size:14px}
+}
 </style>
 </head>
 <body>
@@ -501,7 +516,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
       <div class="s-tabs" id="tabs">
         <button data-tab="sale" class="on">For Sale</button>
         <button data-tab="rent">For Rent</button>
-        <a class="s-mk" href="/marketplace.html">View Properties</a>
+        
       </div>
       <div class="searchbox">
         <div class="s-row">
@@ -530,21 +545,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
   </div>
 </section>
 
-<section class="why" id="why">
-  <div class="wrap">
-    <p class="eyebrow">WHY HOMELAND</p>
-    <p class="ssub">Property decisions deserve clear information and careful attention. We aim to make finding, evaluating and transacting property in Zimbabwe more straightforward.</p>
-    <div class="why-row">
-      <div class="why-cards">
-      <div class="why-c"><div class="snum">1</div><h4>Clear property information</h4><p>We help clients understand listing details, ownership documentation and the steps involved in a property transaction.</p></div>
-      <div class="why-c"><div class="snum">2</div><h4>Professional guidance</h4><p>We encourage appropriate legal, valuation and conveyancing support so clients can make informed decisions at every stage.</p></div>
-        <div class="why-c"><div class="snum">3</div><h4>Support throughout the process</h4><p>From the first enquiry to viewings and transaction coordination, our team helps keep the process clear and organised.</p></div>
-      </div>
-      <div class="why-img"><img src="/why-house.jpg" alt="A Zimbabwean brick home with a SOLD by Homeland Property sign in the garden" loading="lazy"></div>
-    </div>
-    <p class="paidline"><b>Local knowledge. Clear communication. Property opportunities across Zimbabwe.</b> We help connect people with properties and the information they need to move forward.</p>
-  </div>
-</section>
+
 
 <div id="featSec">
 <section class="band" id="featured-sale"><div class="wrap"><p class="eyebrow">EXPLORE PROPERTY</p><h2 class="stitle">Featured properties for sale</h2><p class="ssub">Explore selected homes, stands, farms and commercial opportunities available across Zimbabwe.</p><p class="swipe-hint">Swipe to the right for more properties →</p></div></section>
