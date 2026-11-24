@@ -353,6 +353,11 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 .btn-wa{background:#168A4A!important;color:#fff!important;border-color:#168A4A!important;white-space:nowrap}.btn-wa:hover{background:#11733D!important;border-color:#11733D!important}
 
 .btn-wa{background:#168A4A!important;color:#fff!important;border-color:#168A4A!important;white-space:nowrap}.btn-wa:hover{background:#11733D!important;border-color:#11733D!important}.menu-item.menu-advisor.btn-wa{display:block;padding:13px 14px;border-radius:9px;margin-top:8px}
+
+/* Brand scale and clear dropdown affordance */
+.logo img{height:58px;width:auto;display:block}@media(max-width:600px){.logo img{height:60px}}
+.caret{font-size:22px!important;font-weight:800!important;line-height:1!important;color:var(--navy)!important;display:inline-block;transform:translateY(-1px)}
+.mobile-chevron{font-size:22px!important;font-weight:800!important;line-height:1;color:var(--navy)!important}
 </style>
 </head>
 <body>
@@ -370,7 +375,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
     <a class="logo" href="/" id="logoLink"><img src="/logo.svg" alt="Homeland Property Group"></a>
     <nav class="navlinks" aria-label="Main navigation">
       <div class="nitem">
-        <a href="/marketplace.html?kind=sale" data-nav>Properties for Sale <span class="caret">▾</span></a>
+        <a href="/marketplace.html?kind=sale" data-nav>Properties for Sale <span class="caret">⌄</span></a>
         <div class="dd">
           <a href="/marketplace.html?kind=sale&amp;type=Houses">Houses for Sale</a>
           <a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land">Urban Stands</a>
@@ -382,7 +387,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         </div>
       </div>
       <div class="nitem">
-        <a href="/marketplace.html?kind=rent" data-nav>Properties for Rent <span class="caret">▾</span></a>
+        <a href="/marketplace.html?kind=rent" data-nav>Properties for Rent <span class="caret">⌄</span></a>
         <div class="dd">
           <a href="/marketplace.html?kind=rent&amp;type=Houses">Houses to Rent</a>
           <a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories">Commercial to Rent</a>
@@ -399,8 +404,8 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         </button>
         <div class="menu-panel" id="siteMenu">
           <nav class="menu-grid" aria-label="Mobile navigation">
-            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Sale</strong><span class="mobile-chevron" aria-hidden="true">▾</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
-            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Rent</strong><span class="mobile-chevron" aria-hidden="true">▾</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=rent&amp;type=Houses" data-nav>Houses to Rent</a><a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial to Rent</a><a href="/marketplace.html?kind=rent" data-nav>All Rentals</a></div></details>
+            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Sale</strong><span class="mobile-chevron" aria-hidden="true">⌄</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
+            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Rent</strong><span class="mobile-chevron" aria-hidden="true">⌄</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=rent&amp;type=Houses" data-nav>Houses to Rent</a><a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial to Rent</a><a href="/marketplace.html?kind=rent" data-nav>All Rentals</a></div></details>
             <a class="menu-item" href="/about" data-nav><strong>About</strong></a>
             <a class="menu-item menu-advisor btn-wa" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener"><strong>Speak to an Advisor</strong></a>
           </nav>
@@ -435,14 +440,14 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         <div class="loc-panel" id="mLocPanel" hidden></div>
       </div>
       <div class="type-wrap">
-        <button type="button" class="td-btn" id="mTypeBtn" aria-haspopup="true" aria-expanded="false"><span id="mTypeLabel" class="td-lab">All types</span><span class="caret">▾</span></button>
+        <button type="button" class="td-btn" id="mTypeBtn" aria-haspopup="true" aria-expanded="false"><span id="mTypeLabel" class="td-lab">All types</span><span class="caret">⌄</span></button>
         <div class="td-panel" id="mTypePanel" hidden>
           <div class="td-list" id="mTypeList"></div>
           <div class="td-hint" id="mTypeHint" hidden></div>
         </div>
       </div>
       <div class="type-wrap no-sep">
-        <button type="button" class="td-btn" id="mPriceBtn" aria-haspopup="true" aria-expanded="false"><span id="mPriceLabel" class="td-lab">Price Range</span><span class="caret">▾</span></button>
+        <button type="button" class="td-btn" id="mPriceBtn" aria-haspopup="true" aria-expanded="false"><span id="mPriceLabel" class="td-lab">Price Range</span><span class="caret">⌄</span></button>
         <div class="td-panel" id="mPricePanel" hidden>
           <div class="td-list" id="mPriceList"></div>
         </div>
