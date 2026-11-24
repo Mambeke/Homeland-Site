@@ -57,7 +57,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="/favicon.png">
 <style>
 :root{
@@ -93,8 +93,8 @@ input,select{font-family:inherit;font-size:15px}
 .nav{position:sticky;top:36px;background:#fff;border-bottom:1px solid var(--line);z-index:50}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:18px}
 .logo{display:flex;align-items:center;gap:10px;white-space:nowrap}
-.logo img{height:42px;width:auto;display:block}
-@media (max-width:600px){.logo img{height:48px}}
+.logo img{height:56px;width:auto;display:block}
+@media (max-width:600px){.logo img{height:58px}}
 .navlinks{display:flex;align-items:center;gap:24px;font-size:14.5px;font-weight:500;color:var(--ink)}
 .navlinks > a{padding:6px 0}
 .navlinks a:hover{color:var(--navy)}
@@ -397,6 +397,13 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 .mobile-submenu-links a{display:block;padding:11px 12px;color:var(--navy);font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
 .mobile-submenu-links a:last-child{border-bottom:0}
 .mobile-submenu-links a:hover,.mobile-submenu-links a:focus-visible{color:var(--blue);text-decoration:underline}
+
+/* Homepage visual refinements */
+h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+.btn-wa{background:#168A4A;color:#fff;border-color:#168A4A;white-space:nowrap}.btn-wa:hover{background:#11733D;border-color:#11733D;color:#fff}.nav .btn-wa{padding:10px 16px;font-size:13.5px}
+.hero h1{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:600;letter-spacing:-.025em}
+.feat-grid{touch-action:pan-x;cursor:grab}.feat-grid:active{cursor:grabbing}.feat-grid > *{flex:0 0 calc((100% - 36px)/3)}.swipe-hint{display:none;margin-top:12px;color:var(--soft);font-size:13px;font-weight:600}.featured-intro{padding-top:20px;padding-bottom:12px}
+@media(max-width:700px){.swipe-hint{display:block}.feat-grid > *{flex:0 0 82%}.nav .btn-wa{display:none}.feat-outer{padding:0 18px}}
 </style>
 </head>
 <body>
@@ -433,7 +440,8 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
         </div>
       </div>
 <a href="/about" data-nav>About</a>
-      <a href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener">Speak to an Advisor</a>
+      <a href="/blog.html" data-nav>Blog</a>
+      <a class="btn btn-wa" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener">💬 Speak to an Advisor</a>
     </nav>
     <div class="navr">
       <div class="menu-wrap">
@@ -445,7 +453,8 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
             <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Sale</strong><span class="mobile-chevron" aria-hidden="true">▾</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
             <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Rent</strong><span class="mobile-chevron" aria-hidden="true">▾</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=rent&amp;type=Houses" data-nav>Houses to Rent</a><a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial to Rent</a><a href="/marketplace.html?kind=rent" data-nav>All Rentals</a></div></details>
             <a class="menu-item" href="/about" data-nav><strong>About</strong></a>
-            <a class="menu-item menu-advisor" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener"><strong>Speak to an Advisor</strong></a>
+            <a class="menu-item" href="/blog.html" data-nav><strong>Blog</strong></a>
+            <a class="menu-item menu-advisor" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener"><strong>💬 Speak to an Advisor</strong></a>
           </nav>
         </div>
         </div>
@@ -511,27 +520,11 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 </section>
 
 <div id="featSec">
-<section class="band" id="featured">
-  <div class="wrap">
-    <p class="eyebrow">FEATURED PROPERTIES</p>
-    <h2 class="stitle">Featured properties</h2>
-    <p class="ssub">Explore a selection of properties currently available across Zimbabwe.</p>
-  </div>
-</section>
-<section class="market"><div class="feat-outer"><div class="feat-grid" id="featGrid" tabindex="0" aria-label="Featured properties — scroll for more"><div class="empty">Loading listings…</div></div><div class="feat-nav" id="featNav"><button type="button" class="feat-nav-btn" id="featPrev" aria-label="Previous listings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><div class="feat-bar" id="featBar"><div class="feat-bar-fill" id="featBarFill"></div></div><button type="button" class="feat-nav-btn" id="featNext" aria-label="Next listings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div><p class="feat-more" id="featMore"></p></div></section>
-</div>
-
-<div id="rentSec">
-<section class="band" id="rent">
-  <div class="wrap">
-    <p class="eyebrow">RENT IN ZIMBABWE</p>
-    <h2 class="stitle">Find a place to rent</h2>
-    <p class="ssub">Browse available rental properties across Zimbabwe, including houses and commercial spaces. Review the listing details and contact us to arrange an enquiry or viewing.</p>
-  </div>
-</section>
-<section class="market"><div class="wrap"><div class="grid" id="rentGrid"><div class="empty">Loading listings…</div></div></div></section>
-</div>
-
+<section class="band" id="featured-sale"><div class="wrap"><p class="eyebrow">EXPLORE PROPERTY</p><h2 class="stitle">Featured properties for sale</h2><p class="ssub">Explore selected homes, stands, farms and commercial opportunities available across Zimbabwe.</p><p class="swipe-hint">Swipe to the right for more properties →</p></div></section>
+<section class="market"><div class="feat-outer"><div class="feat-grid" id="featSaleGrid" tabindex="0" aria-label="Featured properties for sale — scroll horizontally"><div class="empty">Loading properties…</div></div><div class="feat-nav" id="featSaleNav"><button type="button" class="feat-nav-btn" id="featSalePrev" aria-label="Previous properties">‹</button><div class="feat-bar" id="featSaleBar"><div class="feat-bar-fill" id="featSaleBarFill"></div></div><button type="button" class="feat-nav-btn" id="featSaleNext" aria-label="More properties">›</button></div><p class="feat-more"><a href="/marketplace.html?kind=sale">View all properties for sale →</a></p></div></section></div>
+<section class="band featured-intro"><div class="wrap"><p class="ssub">Whether you are buying your first home, expanding your property portfolio or searching for an investment opportunity, Homeland helps you explore property options and take informed next steps.</p></div></section>
+<div id="featured-rent"><section class="band" id="featured-rent-heading"><div class="wrap"><p class="eyebrow">RENTAL OPPORTUNITIES</p><h2 class="stitle">Featured properties for rent</h2><p class="ssub">Browse selected residential and commercial rentals in locations across Zimbabwe.</p><p class="swipe-hint">Swipe to the right for more properties →</p></div></section><section class="market"><div class="feat-outer"><div class="feat-grid" id="featRentGrid" tabindex="0" aria-label="Featured properties for rent — scroll horizontally"><div class="empty">Loading rentals…</div></div><div class="feat-nav" id="featRentNav"><button type="button" class="feat-nav-btn" id="featRentPrev" aria-label="Previous rentals">‹</button><div class="feat-bar" id="featRentBar"><div class="feat-bar-fill" id="featRentBarFill"></div></div><button type="button" class="feat-nav-btn" id="featRentNext" aria-label="More rentals">›</button></div><p class="feat-more"><a href="/marketplace.html?kind=rent">View all properties for rent →</a></p></div></section></div>
+<section class="why" id="why"><div class="wrap"><p class="eyebrow">WHY HOMELAND</p><h2 class="stitle">Why choose Homeland?</h2><p class="ssub">Property decisions deserve clear information and careful attention. We aim to make finding, evaluating and transacting property in Zimbabwe more straightforward.</p><div class="why-row"><div class="why-cards"><div class="why-c"><div class="snum">1</div><h4>Clear property information</h4><p>We help clients understand listing details, ownership documentation and the steps involved in a property transaction.</p></div><div class="why-c"><div class="snum">2</div><h4>Professional guidance</h4><p>We encourage appropriate legal, valuation and conveyancing support so clients can make informed decisions at every stage.</p></div><div class="why-c"><div class="snum">3</div><h4>Support throughout the process</h4><p>From the first enquiry to viewings and transaction coordination, our team helps keep the process clear and organised.</p></div></div><div class="why-img"><img src="/why-house.jpg" alt="A Zimbabwean brick home with a SOLD by Homeland Property sign in the garden" loading="lazy"></div></div><p class="paidline"><b>Local knowledge. Clear communication. Property opportunities across Zimbabwe.</b> We help connect people with properties and the information they need to move forward.</p></div></section>
 <section class="cats" id="cats">
   <div class="wrap">
     <h2 class="stitle">Browse by category</h2>
@@ -888,70 +881,10 @@ function renderGrids() {
   $('#rentGrid').innerHTML = rents.length ? rents.map((l) => card(l)).join('') : '<div class="empty">' + emptyMsg('rent') + '</div>';
 }
 
-/* Featured: 5 hand-picked listings — verified first, one per category, one rental slot
-   so both sale and rent are represented. Deterministic and stable. */
-function pickFeatured(list, n = 5) {
-  const sales = list.filter((l) => l.kind === 'sale');
-  const rents = list.filter((l) => l.kind === 'rent');
-  const out = [];
-  const rentPick = rents.find((r) => r.verified === 'yes') || rents[0];
-  if (rentPick) out.push(rentPick);
-  const verifiedSales = sales.filter((s) => s.verified === 'yes');
-  const pool = verifiedSales.length >= n - out.length ? verifiedSales : sales;
-  const seen = new Set(out.map((l) => l.cat));
-  for (const l of pool) { if (out.length >= n) break; if (!seen.has(l.cat)) { seen.add(l.cat); out.push(l); } }
-  for (const l of pool) { if (out.length >= n) break; if (!out.includes(l)) out.push(l); }
-  return out.slice(0, n);
-}
-function renderFeatured() {
-  const sec = $('#featSec'), grid = $('#featGrid');
-  if (!sec || !grid) return;
-  const feats = pickFeatured(L, 5);
-  if (!feats.length) { sec.style.display = 'none'; return; }
-  grid.innerHTML = feats.map((l) => card(l, true)).join('');
-  const more = $('#featMore');
-  if (more) more.innerHTML = L.length > feats.length
-    ? `Showing ${feats.length} of ${L.length} — <a href="/marketplace.html">view all properties →</a>`
-    : '<a href="/marketplace.html">View all properties →</a>';
-  setupFeatCarousel();
-}
-function setupFeatCarousel() {
-  const grid = $('#featGrid');
-  if (!grid) return;
-  const nav = $('#featNav'), fill = $('#featBarFill'), track = $('#featBar');
-  const prev = $('#featPrev'), next = $('#featNext');
-  function step() {
-    const c = grid.querySelector(':scope > *');
-    if (!c) return grid.clientWidth;
-    return c.getBoundingClientRect().width + 18;
-  }
-  function update() {
-    const max = grid.scrollWidth - grid.clientWidth;
-    const can = max > 6;
-    if (nav) nav.style.display = can ? 'flex' : 'none';
-    prev.disabled = grid.scrollLeft <= 4;
-    next.disabled = max - grid.scrollLeft <= 4;
-    if (fill && can) {
-      const fw = Math.max(12, (grid.clientWidth / grid.scrollWidth) * 100);
-      fill.style.width = fw + '%';
-      fill.style.left = (grid.scrollLeft / max) * (100 - fw) + '%';
-    }
-  }
-  function go(dir) { grid.scrollBy({ left: dir * step(), behavior: 'smooth' }); }
-  prev.addEventListener('click', () => go(-1));
-  next.addEventListener('click', () => go(1));
-  track.addEventListener('click', (e) => {
-    const r = track.getBoundingClientRect();
-    grid.scrollTo({ left: ((e.clientX - r.left) / r.width) * (grid.scrollWidth - grid.clientWidth), behavior: 'smooth' });
-  });
-  grid.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
-  grid.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
-  });
-  window.addEventListener('resize', update);
-  update();
-}
+/* Separate featured carousels for sales and rentals. */
+function pickFeatured(list, kind, n = 6) { const pool=list.filter((l)=>l.kind===kind); const verified=pool.filter((l)=>l.verified==="yes"); const ordered=[...verified,...pool.filter((l)=>l.verified!=="yes")]; const out=[],seen=new Set(); for(const l of ordered){if(out.length>=n)break;if(!seen.has(l.cat)){seen.add(l.cat);out.push(l);}} for(const l of ordered){if(out.length>=n)break;if(!out.includes(l))out.push(l);} return out; }
+function renderFeatured(){const sales=pickFeatured(L,"sale",6),rents=pickFeatured(L,"rent",6);const sg=$("#featSaleGrid"),rg=$("#featRentGrid");if(sg)sg.innerHTML=sales.length?sales.map((l)=>card(l,true)).join(""):"<div class=\"empty\">No featured properties for sale are available yet. Please check back soon.</div>";if(rg)rg.innerHTML=rents.length?rents.map((l)=>card(l,true)).join(""):"<div class=\"empty\">No featured rentals are available yet. Please check back soon.</div>";setupFeatCarousel("Sale");setupFeatCarousel("Rent");}
+function setupFeatCarousel(suffix){const grid=$("#feat"+suffix+"Grid");if(!grid)return;const nav=$("#feat"+suffix+"Nav"),fill=$("#feat"+suffix+"BarFill"),track=$("#feat"+suffix+"Bar"),prev=$("#feat"+suffix+"Prev"),next=$("#feat"+suffix+"Next");function step(){const cardEl=grid.querySelector(":scope > *");return cardEl?cardEl.getBoundingClientRect().width+18:grid.clientWidth;}function update(){const max=grid.scrollWidth-grid.clientWidth,can=max>6;if(nav)nav.style.display=can?"flex":"none";if(prev)prev.disabled=grid.scrollLeft<=4;if(next)next.disabled=max-grid.scrollLeft<=4;if(fill&&can){const fw=Math.max(12,grid.clientWidth/grid.scrollWidth*100);fill.style.width=fw+"%";fill.style.left=grid.scrollLeft/max*(100-fw)+"%";}}const go=(dir)=>grid.scrollBy({left:dir*step(),behavior:"smooth"});if(prev)prev.addEventListener("click",()=>go(-1));if(next)next.addEventListener("click",()=>go(1));if(track)track.addEventListener("click",(e)=>{const r=track.getBoundingClientRect();grid.scrollTo({left:(e.clientX-r.left)/r.width*(grid.scrollWidth-grid.clientWidth),behavior:"smooth"});});grid.addEventListener("scroll",()=>requestAnimationFrame(update),{passive:true});grid.addEventListener("keydown",(e)=>{if(e.key==="ArrowRight"){e.preventDefault();go(1);}if(e.key==="ArrowLeft"){e.preventDefault();go(-1);}});window.addEventListener("resize",update);update();}
 
 function renderCounts() {
   // Listing totals are not displayed as homepage claims.
