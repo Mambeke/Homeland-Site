@@ -65,7 +65,7 @@ input,select{font-family:inherit;font-size:15px}
 .menu-icon i{width:5px;height:5px;border-radius:1px;background:var(--navy);display:block}
 .menu-panel{position:absolute;right:0;top:calc(100% + 12px);width:min(520px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 18px 45px rgba(9,30,55,.18);display:none;z-index:100}
 .menu-panel.open{display:block}
-.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.menu-grid{display:grid;grid-template-columns:1fr;gap:0}.menu-item{display:flex;align-items:center;min-height:48px;padding:12px 14px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:#fff}.menu-item:last-child{border-bottom:0}.menu-item strong{font-size:14px}.menu-item span{display:none}.menu-item.menu-advisor{margin-top:8px;border:1px solid var(--gold);border-radius:8px;background:var(--cream)}
 .menu-item{display:block;padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff}
 .menu-item:hover{border-color:var(--gold);background:var(--cream)}
 .menu-item strong{display:block;color:var(--navy);font-size:14px}
@@ -385,19 +385,14 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
           <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span> MENU
         </button>
         <div class="menu-panel" id="siteMenu">
-          <div class="menu-grid">
-            <a class="menu-item" href="/marketplace.html"><strong>Marketplace</strong><span>Browse property for sale and to rent.</span></a>
-            <a class="menu-item" href="/marketplace.html?kind=sale" data-nav><strong>For Sale</strong><span>Houses, stands, farms, mines, hotels and commercial.</span></a>
-            <a class="menu-item" href="/#rent" data-nav><strong>To Rent</strong><span>Find rooms, homes, farms and commercial space.</span></a>
-            <a class="menu-item" href="/#sell" data-nav><strong>Sell or list property</strong><span>You have the stock. We have the buyers.</span></a>
-            <a class="menu-item" href="/#services" data-nav><strong>Services &amp; prices</strong><span>Advisory, verification, turnkey and build management — written prices.</span></a>
-          </div>
-          <div class="menu-foot">
-            <a href="/#why" data-nav>Why Homeland</a>
-            <a href="/#guides" data-nav>Property guides</a>
-            <a href="/about" data-nav>About Homeland</a>
-            <a href="/#contact" data-nav>Contact us</a>
-          </div>
+          <nav class="menu-grid" aria-label="Mobile navigation">
+            <a class="menu-item" href="/marketplace.html?kind=sale" data-nav><strong>For Sale</strong></a>
+            <a class="menu-item" href="/marketplace.html?kind=rent" data-nav><strong>To Rent</strong></a>
+            <a class="menu-item" href="/marketplace.html" data-nav><strong>All Properties</strong></a>
+            <a class="menu-item" href="/about" data-nav><strong>About</strong></a>
+            <a class="menu-item menu-advisor" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener"><strong>Speak to an Advisor</strong></a>
+          </nav>
+        </div>
         </div>
       </div>
     </div>
