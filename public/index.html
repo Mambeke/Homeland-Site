@@ -134,7 +134,7 @@ input,select{font-family:inherit;font-size:15px}
 .s-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:10px;white-space:nowrap}
 .s-tabs button,.s-tabs .s-mk{padding:8px 18px;border-radius:9px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:14px;color:var(--soft);transition:.15s;display:inline-block;box-shadow:0 4px 14px rgba(9,20,40,.18)}
 .s-tabs button:hover{border-color:var(--blue);color:var(--blue)}
-.s-tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.s-tabs button.on{background:#168A4A;border-color:#168A4A;color:#fff}
 .s-mk:hover{border-color:var(--blue);color:var(--blue)}
 .searchbox{background:#fff;border-radius:12px;box-shadow:0 18px 50px rgba(9,20,40,.28);position:relative}
 .s-row{display:flex;align-items:stretch;padding:8px 0 8px 10px}
@@ -484,6 +484,12 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
 .logo img{height:68px;width:auto;display:block}@media(max-width:600px){.logo img{height:68px}}
 .caret{font-size:22px!important;font-weight:800!important;line-height:1!important;color:var(--navy)!important;display:inline-block;transform:translateY(-1px)}
 .mobile-chevron{font-size:22px!important;font-weight:800!important;line-height:1;color:var(--navy)!important}
+
+/* Mobile headline must remain two lines; green selected search tab */
+@media(max-width:700px){
+ .hero h1{font-size:26px!important;line-height:1.18!important;max-width:19ch!important;letter-spacing:-.025em!important}
+ .s-tabs button.on{background:#168A4A!important;border-color:#168A4A!important;color:#fff!important}
+}
 </style>
 </head>
 <body>
