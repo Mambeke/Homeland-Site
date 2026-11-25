@@ -501,16 +501,31 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
   .s-tabs button{min-height:36px!important;height:36px!important}
   .s-row{gap:12px!important}
 }
-/* Stronger, wider downward chevrons that read as expandable controls */
-.caret,.mobile-chevron{
-  font-family:Arial Black,Arial,sans-serif!important;
-  font-size:25px!important;
-  font-weight:900!important;
-  -webkit-text-stroke:.8px currentColor;
-  transform:scaleX(1.28) translateY(-1px);
-  transform-origin:center;
-  line-height:1!important;
-  display:inline-block;
+/* Desktop keeps the compact original dropdown indicators */
+.caret{font-size:12px!important;font-weight:400!important;-webkit-text-stroke:0;transform:none;line-height:normal;display:inline-block;color:var(--soft)!important}
+.mobile-chevron{font-size:16px!important;font-weight:400!important;-webkit-text-stroke:0;transform:none;line-height:normal;display:inline-block}
+@media(max-width:700px){
+  /* Reveal search controls two seconds after the hero copy on mobile only */
+  .hero .search-wrap{opacity:0;transform:translateY(22px);animation:mobileSearchReveal .55s cubic-bezier(.2,.75,.25,1) 2s forwards}
+  @keyframes mobileSearchReveal{to{opacity:1;transform:translateY(0)}}
+  .hero .search-wrap .caret,.mobile-chevron{
+    font-family:Arial Black,Arial,sans-serif!important;
+    font-size:25px!important;
+    font-weight:900!important;
+    -webkit-text-stroke:.8px currentColor;
+    transform:scaleX(1.28);
+    transform-origin:center;
+    line-height:1!important;
+    display:inline-block;
+    align-self:center;
+  }
+  .td-btn{align-items:center!important}
+  .td-btn .caret{margin-top:0!important;margin-bottom:0!important;vertical-align:middle}
+  .mobile-submenu>summary{align-items:center!important}
+  .mobile-submenu>summary .mobile-chevron{margin-top:0;align-self:center}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero .search-wrap{animation:none!important;opacity:1!important;transform:none!important}
 }
 </style>
 </head>
@@ -528,7 +543,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
     <a class="logo" href="#" id="logoLink"><img src="/logo.svg" alt="Homeland Property Group"></a>
     <nav class="navlinks" aria-label="Main navigation">
       <div class="nitem">
-        <a href="/marketplace.html?kind=sale" data-nav>Properties for Sale <span class="caret">⌄</span></a>
+        <a href="/marketplace.html?kind=sale" data-nav>Properties for Sale <span class="caret">▾</span></a>
         <div class="dd">
           <a href="/marketplace.html?kind=sale&amp;type=Houses" data-cat="Houses" data-kind="sale">Houses for Sale</a>
           <a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-cat="Urban Stands" data-kind="sale">Urban Stands</a>
@@ -540,7 +555,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
         </div>
       </div>
       <div class="nitem">
-        <a href="/marketplace.html?kind=rent" data-nav>Properties for Rent <span class="caret">⌄</span></a>
+        <a href="/marketplace.html?kind=rent" data-nav>Properties for Rent <span class="caret">▾</span></a>
         <div class="dd">
           <a href="#rent" data-cat="Houses" data-kind="rent">Houses to Rent</a>
           <a href="#rent" data-cat="Commercial &amp; Other" data-kind="rent">Commercial to Rent</a>
@@ -558,8 +573,8 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
         </button>
         <div class="menu-panel" id="siteMenu">
           <nav class="menu-grid" aria-label="Mobile navigation">
-            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Sale</strong><span class="mobile-chevron" aria-hidden="true">⌄</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
-            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Rent</strong><span class="mobile-chevron" aria-hidden="true">⌄</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=rent&amp;type=Houses" data-nav>Houses to Rent</a><a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial to Rent</a><a href="/marketplace.html?kind=rent" data-nav>All Rentals</a></div></details>
+            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Sale</strong><span class="mobile-chevron" aria-hidden="true">▾</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
+            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Rent</strong><span class="mobile-chevron" aria-hidden="true">▾</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=rent&amp;type=Houses" data-nav>Houses to Rent</a><a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial to Rent</a><a href="/marketplace.html?kind=rent" data-nav>All Rentals</a></div></details>
             <a class="menu-item" href="/about" data-nav><strong>About</strong></a>
             <a class="menu-item" href="/blog.html" data-nav><strong>Blog</strong></a>
             <a class="menu-item menu-advisor" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener"><strong>💬 Speak to an Advisor</strong></a>
@@ -592,14 +607,14 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
             <div class="loc-panel" id="locPanel" hidden></div>
           </div>
           <div class="type-wrap">
-            <button type="button" class="td-btn" id="hTypeBtn" aria-haspopup="true" aria-expanded="false"><span id="hTypeLabel" class="td-lab">All types</span><span class="caret">⌄</span></button>
+            <button type="button" class="td-btn" id="hTypeBtn" aria-haspopup="true" aria-expanded="false"><span id="hTypeLabel" class="td-lab">All types</span><span class="caret">▾</span></button>
             <div class="td-panel" id="hTypePanel" hidden>
               <div class="td-list" id="hTypeList"></div>
               <div class="td-hint" id="hTypeHint" hidden></div>
             </div>
           </div>
           <div class="type-wrap no-sep">
-            <button type="button" class="td-btn" id="hPriceBtn" aria-haspopup="true" aria-expanded="false"><span id="hPriceLabel" class="td-lab">Price Range</span><span class="caret">⌄</span></button>
+            <button type="button" class="td-btn" id="hPriceBtn" aria-haspopup="true" aria-expanded="false"><span id="hPriceLabel" class="td-lab">Price Range</span><span class="caret">▾</span></button>
             <div class="td-panel" id="hPricePanel" hidden>
               <div class="td-list" id="hPriceList"></div>
             </div>
