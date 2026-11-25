@@ -483,7 +483,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
 /* Brand scale and clear dropdown affordance */
 .logo img{height:68px;width:auto;display:block}@media(max-width:600px){.logo img{height:68px}}
 .caret{font-size:22px!important;font-weight:800!important;line-height:1!important;color:var(--navy)!important;display:inline-block;transform:translateY(-1px)}
-.mobile-chevron{font-size:22px!important;font-weight:800!important;line-height:1;color:var(--navy)!important}
+.mobile-chevron{font-family:Arial,sans-serif!important;font-size:17px!important;font-weight:900!important;-webkit-text-stroke:1px currentColor!important;line-height:1;color:var(--navy)!important;display:inline-block}
 
 /* Mobile headline must remain two lines; green selected search tab */
 @media(max-width:700px){
@@ -504,7 +504,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
 /* Main navigation dropdowns: keep the label and slim V-chevron on one line */
 .navlinks .nitem > a{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
 .navlinks .caret{font-family:Arial,sans-serif!important;font-size:17px!important;font-weight:900!important;-webkit-text-stroke:1px currentColor!important;transform:translateY(-1px)!important;line-height:1!important;display:inline-block;color:var(--soft)!important;margin:0!important;vertical-align:middle}
-.mobile-chevron{font-family:Arial,sans-serif!important;font-size:18px!important;font-weight:400!important;-webkit-text-stroke:0!important;transform:none!important;line-height:1!important;display:inline-block}
+.mobile-chevron{font-family:Arial,sans-serif!important;font-size:17px!important;font-weight:900!important;-webkit-text-stroke:1px currentColor!important;transform:none!important;line-height:1!important;display:inline-block}
 @media(max-width:700px){
   /* Reveal search controls two seconds after the hero copy on mobile only */
   .hero .search-wrap{opacity:0;transform:translateY(22px);animation:mobileSearchReveal .55s cubic-bezier(.2,.75,.25,1) 2s forwards}
@@ -575,7 +575,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
         </button>
         <div class="menu-panel" id="siteMenu">
           <nav class="menu-grid" aria-label="Mobile navigation">
-            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Sale</strong><span class="mobile-chevron" aria-hidden="true">▾</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
+            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Sale</strong><span class="mobile-chevron" aria-hidden="true">⌄</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
             <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Rent</strong><span class="mobile-chevron" aria-hidden="true">▾</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=rent&amp;type=Houses" data-nav>Houses to Rent</a><a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial to Rent</a><a href="/marketplace.html?kind=rent" data-nav>All Rentals</a></div></details>
             <a class="menu-item" href="/about" data-nav><strong>About</strong></a>
             <a class="menu-item" href="/blog.html" data-nav><strong>Blog</strong></a>
@@ -609,7 +609,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
             <div class="loc-panel" id="locPanel" hidden></div>
           </div>
           <div class="type-wrap">
-            <button type="button" class="td-btn" id="hTypeBtn" aria-haspopup="true" aria-expanded="false"><span id="hTypeLabel" class="td-lab">All types</span><span class="caret">▾</span></button>
+            <button type="button" class="td-btn" id="hTypeBtn" aria-haspopup="true" aria-expanded="false"><span id="hTypeLabel" class="td-lab">All types</span><span class="caret" aria-hidden="true">⌄</span></button>
             <div class="td-panel" id="hTypePanel" hidden>
               <div class="td-list" id="hTypeList"></div>
               <div class="td-hint" id="hTypeHint" hidden></div>
