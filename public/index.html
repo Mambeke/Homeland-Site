@@ -553,6 +553,29 @@ body{text-align:left}
 .wa-icon{width:19px;height:19px;flex:0 0 19px;color:#fff;display:inline-block}
 .menu-advisor strong{display:inline-flex;align-items:center;gap:8px}
 .menu-advisor .wa-icon{width:18px;height:18px;flex-basis:18px}
+
+/* Explicit mobile overrides: solid triangles, visible WhatsApp CTA and aligned header */
+@media(max-width:700px){
+  .nav .wrap{padding-left:16px!important;padding-right:16px!important}
+  .logo{margin-left:0!important}
+  .mobile-submenu>summary .mobile-chevron,
+  .hero .search-wrap .td-btn .caret{
+    display:inline-block!important;
+    width:0!important;height:0!important;
+    font-size:0!important;line-height:0!important;
+    border-left:5px solid transparent!important;
+    border-right:5px solid transparent!important;
+    border-top:7px solid currentColor!important;
+    -webkit-text-stroke:0!important;
+    transform:none!important;
+    flex:0 0 auto!important;
+  }
+  .hero .search-wrap .td-btn .caret{color:var(--blue)!important;margin:0 5px 0 8px!important}
+  .mobile-submenu>summary .mobile-chevron{color:var(--navy)!important;margin:0 5px 0 10px!important}
+  .menu-item.menu-advisor{display:flex!important;align-items:center!important;justify-content:center!important;background:#168A4A!important;border:1px solid #168A4A!important}
+  .menu-item.menu-advisor strong{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;color:#fff!important}
+  .menu-item.menu-advisor .wa-icon{display:inline-block!important;width:19px!important;height:19px!important;flex:0 0 19px!important;color:#fff!important}
+}
 </style>
 </head>
 <body>
