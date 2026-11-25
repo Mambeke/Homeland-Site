@@ -387,6 +387,27 @@ body{text-align:left}
 .band .ssub,.ssub{margin-left:0;margin-right:0}
 .stitle:after{content:"";display:block;width:48%;height:3px;background:var(--gold);margin:7px auto 0}
 #featured-sale .stitle:after,#featured-rent-heading .stitle:after{margin:7px auto 0}
+
+/* Match the homepage mobile menu dropdowns exactly: solid filled down triangles */
+@media(max-width:700px){
+  .mobile-submenu>summary .mobile-chevron{
+    display:inline-block!important;
+    width:0!important;height:0!important;
+    min-width:0!important;min-height:0!important;
+    padding:0!important;overflow:visible!important;
+    font-size:0!important;line-height:0!important;
+    border:0!important;
+    border-left:6px solid transparent!important;
+    border-right:6px solid transparent!important;
+    border-top:8px solid var(--navy)!important;
+    border-radius:0!important;
+    -webkit-text-stroke:0!important;
+    transform:none!important;
+    flex:0 0 12px!important;
+    margin:0 5px 0 10px!important;
+    align-self:center!important;
+  }
+}
 </style>
 </head>
 <body class="about-page">
@@ -432,8 +453,8 @@ body{text-align:left}
         </button>
         <div class="menu-panel" id="siteMenu">
           <nav class="menu-grid" aria-label="Mobile navigation">
-            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Sale</strong><span class="mobile-chevron" aria-hidden="true">⌄</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
-            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Rent</strong><span class="mobile-chevron" aria-hidden="true">⌄</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=rent&amp;type=Houses" data-nav>Houses to Rent</a><a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial to Rent</a><a href="/marketplace.html?kind=rent" data-nav>All Rentals</a></div></details>
+            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Sale</strong><span class="mobile-chevron" aria-hidden="true">▼</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
+            <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Rent</strong><span class="mobile-chevron" aria-hidden="true">▼</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=rent&amp;type=Houses" data-nav>Houses to Rent</a><a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial to Rent</a><a href="/marketplace.html?kind=rent" data-nav>All Rentals</a></div></details>
             <a class="menu-item" href="/about" data-nav><strong>About</strong></a>
             <a class="menu-item menu-advisor btn-wa" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener"><strong>Speak to an Advisor</strong></a>
           </nav>
