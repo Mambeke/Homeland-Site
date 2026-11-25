@@ -576,6 +576,33 @@ body{text-align:left}
   .menu-item.menu-advisor strong{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;color:#fff!important}
   .menu-item.menu-advisor .wa-icon{display:inline-block!important;width:19px!important;height:19px!important;flex:0 0 19px!important;color:#fff!important}
 }
+
+/* Mobile menu backdrop and high-contrast advisor action */
+@media(max-width:980px){
+  body:has(#siteMenu.open)::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(5,20,36,.52);
+    z-index:49;
+    pointer-events:auto;
+  }
+  .nav{z-index:50}
+  .menu-wrap{z-index:51}
+  .menu-panel{z-index:100}
+  .menu-item.menu-advisor,
+  .menu-item.menu-advisor:hover,
+  .menu-item.menu-advisor:focus-visible{
+    background:#168A4A!important;
+    border-color:#168A4A!important;
+    color:#fff!important;
+  }
+  .menu-item.menu-advisor strong,
+  .menu-item.menu-advisor strong span{
+    color:#fff!important;
+  }
+  .menu-item.menu-advisor .wa-icon{color:#fff!important}
+}
 </style>
 </head>
 <body>
