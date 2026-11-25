@@ -22,6 +22,14 @@ footer{background:var(--navy-d);color:#d6e0e9;padding:32px 0;font-size:13px}foot
 .logo img{height:66px;width:auto}@media(max-width:760px){.logo img{height:62px}}
 .caret{font-size:22px!important;font-weight:800!important;line-height:1!important;color:var(--navy)!important;display:inline-block;transform:translateY(-1px)}
 .mobile-chevron{font-size:22px!important;font-weight:800!important;line-height:1;color:var(--navy)!important}
+
+/* Site-wide content alignment: headings centred, supporting copy and body text left-aligned */
+body{text-align:left}
+.stitle,.hero h1,.article h2,.cta h2{text-align:center!important;margin-left:auto;margin-right:auto}
+.ssub,.hero p:not(.eyebrow),.article p,.post p,.cta p,.about-p,.about-fine,.est-fine,.est-fin,.paidline,.legend{text-align:left!important}
+.band .ssub,.ssub{margin-left:0;margin-right:0}
+.stitle:after{content:"";display:block;width:48%;height:3px;background:var(--gold);margin:7px auto 0}
+#featured-sale .stitle:after,#featured-rent-heading .stitle:after{margin:7px auto 0}
 </style>
 </head>
 <body>
