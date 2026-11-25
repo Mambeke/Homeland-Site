@@ -387,7 +387,56 @@ body{text-align:left}
     align-self:center!important;
   }
 }
-</style>
+
+/* HOMELAND SHARED NAVIGATION — same desktop and mobile system on every page */
+.nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:100}
+.nav>.wrap{max-width:none!important;width:100%;min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:8px 24px!important}
+.nav .logo{display:flex;align-items:center;flex:0 0 auto;margin:0!important}
+.nav .logo img{height:58px;width:auto;display:block}
+.navlinks{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:600;color:var(--ink)}
+.navlinks>a,.navlinks .nitem>a{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.navlinks .caret{font-size:11px!important;font-weight:700!important;color:var(--soft)!important;margin:0!important;line-height:1!important}
+.nav .nitem{position:relative}
+.nav .dd{position:absolute;top:calc(100% + 10px);left:0;min-width:230px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;box-shadow:0 16px 40px rgba(9,30,55,.16);opacity:0;visibility:hidden;transform:translateY(6px);transition:.15s;z-index:120}
+.nav .nitem:hover .dd,.nav .nitem:focus-within .dd{opacity:1;visibility:visible;transform:translateY(0)}
+.nav .dd a{display:block;padding:9px 11px;border-radius:7px;font-size:13px}
+.nav .dd a:hover{background:var(--cream);color:var(--navy)}
+.nav .dd .dd-all{margin-top:5px;border-top:1px solid var(--line);font-weight:700}
+.nav .btn-wa,.nav .menu-advisor{background:#168A4A!important;color:#fff!important;border:1px solid #168A4A!important;border-radius:8px}
+.nav .btn-wa{display:inline-flex;align-items:center;gap:8px;padding:10px 14px!important}
+.nav .wa-icon{width:19px;height:19px;flex:0 0 19px;color:#fff;display:inline-block}
+.navr{display:flex;align-items:center}
+.menu-wrap{position:relative;display:none;align-items:center}
+.menu-toggle{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 13px;color:var(--navy);font-size:13px;font-weight:700;letter-spacing:.06em}
+.menu-icon{display:grid;grid-template-columns:repeat(2,5px);gap:3px}
+.menu-icon i{width:5px;height:5px;border-radius:1px;background:var(--navy);display:block}
+.menu-panel{position:absolute;right:0;top:calc(100% + 12px);width:min(360px,calc(100vw - 28px));background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px;box-shadow:0 18px 45px rgba(9,30,55,.2);display:none;z-index:130}
+.menu-panel.open{display:block}
+.menu-grid{display:grid;grid-template-columns:1fr;gap:0}
+.mobile-submenu>summary{list-style:none;cursor:pointer}
+.mobile-submenu>summary::-webkit-details-marker{display:none}
+.nav .menu-item{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:46px;padding:11px 12px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:#fff;color:var(--navy);text-align:left}
+.nav .menu-item strong{display:inline-flex;align-items:center;gap:8px;color:inherit;font-size:14px}
+.nav .mobile-chevron{display:inline-block!important;width:0!important;height:0!important;border-left:5px solid transparent!important;border-right:5px solid transparent!important;border-top:7px solid var(--navy)!important;font-size:0!important;line-height:0!important;flex:0 0 10px!important}
+.nav .mobile-submenu-links{padding:4px 0 8px 14px;border-bottom:1px solid var(--line)}
+.nav .mobile-submenu-links a{display:block;padding:8px 10px;color:var(--soft);font-size:13px}
+.nav .menu-item.menu-advisor{justify-content:center;margin-top:10px;border:0;border-radius:8px;background:#168A4A!important;color:#fff!important}
+.nav .menu-item.menu-advisor strong{color:#fff!important}
+.nav .menu-item.menu-advisor .wa-icon{width:19px;height:19px;flex-basis:19px;color:#fff}
+@media(max-width:980px){
+ .nav>.wrap{min-height:70px;padding:7px 16px!important}
+ .nav .logo img{height:52px}
+ .navlinks{display:none!important}
+ .menu-wrap{display:flex!important}
+}
+@media(max-width:600px){.nav .logo img{height:48px}.menu-panel{right:-2px}}
+
+<style>
+@media(max-width:980px){
+ body.nav-menu-open:before{content:"";position:fixed;inset:0;background:rgba(5,20,36,.52);z-index:90}
+ body.nav-menu-open .nav{z-index:110}
+}
+</style></style>
 </head>
 <body>
 
@@ -404,27 +453,28 @@ body{text-align:left}
     <a class="logo" href="/" id="logoLink"><img src="/logo.svg" alt="Homeland Property Group"></a>
     <nav class="navlinks" aria-label="Main navigation">
       <div class="nitem">
-        <a href="/marketplace.html?kind=sale" data-nav>Properties for Sale <span class="caret">⌄</span></a>
+        <a href="/marketplace.html?kind=sale" data-nav>Properties for Sale <span class="caret" aria-hidden="true">▼</span></a>
         <div class="dd">
-          <a href="/marketplace.html?kind=sale&amp;type=Houses">Houses for Sale</a>
-          <a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land">Urban Stands</a>
-          <a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands">Rural Stands &amp; Farms</a>
-          <a href="/marketplace.html?kind=sale&amp;type=Mines">Mines &amp; Claims</a>
-          <a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges">Hotels &amp; Lodges</a>
-          <a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories">Commercial &amp; Industrial</a>
-          <a class="dd-all" href="/marketplace.html?kind=sale">All properties for sale →</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Houses" data-cat="Houses" data-kind="sale">Houses for Sale</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-cat="Urban Stands" data-kind="sale">Urban Stands</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-cat="Rural Stands" data-kind="sale">Rural Stands &amp; Farms</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Mines" data-cat="Mines" data-kind="sale">Mines &amp; Claims</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-cat="Hotels" data-kind="sale">Hotels &amp; Lodges</a>
+          <a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-cat="Commercial &amp; Other" data-kind="sale">Commercial &amp; Industrial</a>
+          <a class="dd-all" href="/marketplace.html?kind=sale" data-cat="" data-kind="sale">All properties for sale →</a>
         </div>
       </div>
       <div class="nitem">
-        <a href="/marketplace.html?kind=rent" data-nav>Properties for Rent <span class="caret">⌄</span></a>
+        <a href="/marketplace.html?kind=rent" data-nav>Properties for Rent <span class="caret" aria-hidden="true">▼</span></a>
         <div class="dd">
-          <a href="/marketplace.html?kind=rent&amp;type=Houses">Houses to Rent</a>
-          <a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories">Commercial to Rent</a>
-          <a class="dd-all" href="/marketplace.html?kind=rent">All rentals →</a>
+          <a href="#rent" data-cat="Houses" data-kind="rent">Houses to Rent</a>
+          <a href="#rent" data-cat="Commercial &amp; Other" data-kind="rent">Commercial to Rent</a>
+          <a class="dd-all" href="#rent" data-cat="" data-kind="rent">All rentals →</a>
         </div>
-      </div><a href="/about" data-nav>About</a>
+      </div>
+<a href="/about" data-nav>About</a>
       <a href="/blog.html" data-nav>Blog</a>
-      <a class="btn btn-wa" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener">💬 Speak to an Advisor</a>
+      <a class="btn btn-wa" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener"><svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.1 11.8a8.1 8.1 0 0 1-12 7.1L4 20l1.1-4A8.1 8.1 0 1 1 20.1 11.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .7.6 1 1.4 1.8 2.4 2.3.3.2.5.2.7-.1l.8-.9c.2-.2.4-.3.7-.2l1.6.8c.3.1.4.3.4.5 0 .4-.2 1.2-.7 1.6-.5.5-1.2.7-1.9.6-1.1-.2-2.5-.9-3.8-2.1-1.5-1.3-2.4-2.8-2.7-3.9-.3-.9 0-1.8.5-2.3Z" fill="currentColor"/></svg><span>Speak to an Advisor</span></a>
     </nav>
     <div class="navr">
       <div class="menu-wrap">
@@ -436,7 +486,8 @@ body{text-align:left}
             <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Sale</strong><span class="mobile-chevron" aria-hidden="true">▼</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=sale&amp;type=Houses" data-nav>Houses for Sale</a><a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-nav>Urban Stands</a><a href="/marketplace.html?kind=sale&amp;type=Rural%20Stands" data-nav>Rural Stands & Farms</a><a href="/marketplace.html?kind=sale&amp;type=Mines" data-nav>Mines & Claims</a><a href="/marketplace.html?kind=sale&amp;type=Hotels%20%26%20Lodges" data-nav>Hotels & Lodges</a><a href="/marketplace.html?kind=sale&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial & Industrial</a><a href="/marketplace.html?kind=sale" data-nav>All Properties for Sale</a></div></details>
             <details class="mobile-submenu"><summary class="menu-item"><strong>Properties for Rent</strong><span class="mobile-chevron" aria-hidden="true">▼</span></summary><div class="mobile-submenu-links"><a href="/marketplace.html?kind=rent&amp;type=Houses" data-nav>Houses to Rent</a><a href="/marketplace.html?kind=rent&amp;type=Warehouses%20%26%20Factories" data-nav>Commercial to Rent</a><a href="/marketplace.html?kind=rent" data-nav>All Rentals</a></div></details>
             <a class="menu-item" href="/about" data-nav><strong>About</strong></a>
-            <a class="menu-item menu-advisor btn-wa" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener"><strong>Speak to an Advisor</strong></a>
+            <a class="menu-item" href="/blog.html" data-nav><strong>Blog</strong></a>
+            <a class="menu-item menu-advisor" href="https://wa.me/27685302223?text=Hi%20Homeland%20Property%20Group%2C%20I%27d%20like%20to%20speak%20to%20a%20property%20advisor." target="_blank" rel="noopener"><strong><svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.1 11.8a8.1 8.1 0 0 1-12 7.1L4 20l1.1-4A8.1 8.1 0 1 1 20.1 11.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .7.6 1 1.4 1.8 2.4 2.3.3.2.5.2.7-.1l.8-.9c.2-.2.4-.3.7-.2l1.6.8c.3.1.4.3.4.5 0 .4-.2 1.2-.7 1.6-.5.5-1.2.7-1.9.6-1.1-.2-2.5-.9-3.8-2.1-1.5-1.3-2.4-2.8-2.7-3.9-.3-.9 0-1.8.5-2.3Z" fill="currentColor"/></svg><span>Speak to an Advisor</span></strong></a>
           </nav>
         </div>
         </div>
@@ -1087,5 +1138,17 @@ window.addEventListener('hashchange', () => { if (L.length) handleHash(); });
   handleHash();
 })();
 </script>
-</body>
+
+<script>
+(function(){
+ const toggle=document.getElementById('menuToggle');
+ const panel=document.getElementById('siteMenu');
+ if(!toggle||!panel)return;
+ function close(){panel.classList.remove('open');toggle.setAttribute('aria-expanded','false');document.body.classList.remove('nav-menu-open')}
+ toggle.addEventListener('click',function(e){e.stopPropagation();const open=panel.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('nav-menu-open',open)});
+ document.addEventListener('click',function(e){if(!panel.contains(e.target)&&!toggle.contains(e.target))close()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+ panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
+})();
+</script></body>
 </html>
