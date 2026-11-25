@@ -402,7 +402,7 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.75);padding:54px 0 30px;
 h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
 .btn-wa{background:#168A4A;color:#fff;border-color:#168A4A;white-space:nowrap}.btn-wa:hover{background:#11733D;border-color:#11733D;color:#fff}.nav .btn-wa{padding:10px 16px;font-size:13.5px}
 .hero h1{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:600;letter-spacing:-.025em}
-.feat-grid{touch-action:pan-x;cursor:grab}.feat-grid:active{cursor:grabbing}.feat-grid > *{flex:0 0 calc((100% - 36px)/3)}.swipe-hint{display:none;margin-top:12px;color:var(--soft);font-size:13px;font-weight:600}.featured-intro{padding-top:20px;padding-bottom:12px}
+.feat-grid{touch-action:pan-x pan-y;cursor:grab}.feat-grid:active{cursor:grabbing}.feat-grid > *{flex:0 0 calc((100% - 36px)/3)}.swipe-hint{display:none;margin-top:12px;color:var(--soft);font-size:13px;font-weight:600}.featured-intro{padding-top:20px;padding-bottom:12px}
 @media(max-width:700px){.swipe-hint{display:block}.feat-grid > *{flex:0 0 82%}.nav .btn-wa{display:none}.feat-outer{padding:0 18px}}
 
 /* Mobile search: clear field hierarchy, generous touch targets and breathing room */
@@ -534,6 +534,14 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
 .navlinks .nitem>a{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
 .td-btn{align-items:center!important}
 .mobile-submenu>summary{align-items:center!important}
+
+/* Site-wide content alignment: headings centred, supporting copy and body text left-aligned */
+body{text-align:left}
+.stitle,.hero h1,.article h2,.cta h2{text-align:center!important;margin-left:auto;margin-right:auto}
+.ssub,.hero p:not(.eyebrow),.article p,.post p,.cta p,.about-p,.about-fine,.est-fine,.est-fin,.paidline,.legend{text-align:left!important}
+.band .ssub,.ssub{margin-left:0;margin-right:0}
+.stitle:after{content:"";display:block;width:48%;height:3px;background:var(--gold);margin:7px auto 0}
+#featured-sale .stitle:after,#featured-rent-heading .stitle:after{margin:7px auto 0}
 </style>
 </head>
 <body>
