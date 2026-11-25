@@ -632,7 +632,26 @@ body{text-align:left}
  body.nav-menu-open:before{content:"";position:fixed;inset:0;background:rgba(5,20,36,.52);z-index:90}
  body.nav-menu-open .nav{z-index:110}
 }
-</style></style>
+</style>
+/* Consistent solid dropdown indicators inside every property search bar */
+.searchbox .td-btn .caret{
+  display:block!important;
+  width:0!important;height:0!important;
+  min-width:0!important;min-height:0!important;
+  padding:0!important;margin:0 5px 0 8px!important;
+  overflow:visible!important;
+  font-size:0!important;line-height:0!important;
+  color:var(--blue)!important;
+  border:0!important;
+  border-left:6px solid transparent!important;
+  border-right:6px solid transparent!important;
+  border-top:8px solid currentColor!important;
+  border-radius:0!important;
+  -webkit-text-stroke:0!important;
+  transform:none!important;
+  flex:0 0 12px!important;
+}
+</style>
 </head>
 <body>
 
