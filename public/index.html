@@ -501,8 +501,9 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
   .s-tabs button{min-height:36px!important;height:36px!important}
   .s-row{gap:12px!important}
 }
-/* Desktop dropdown arrows: medium-sized, light V chevrons */
-.caret{font-family:Arial,sans-serif!important;font-size:18px!important;font-weight:400!important;-webkit-text-stroke:0!important;transform:none!important;line-height:1!important;display:inline-block;color:var(--soft)!important}
+/* Main navigation dropdowns: keep the label and slim V-chevron on one line */
+.navlinks .nitem > a{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.navlinks .caret{font-family:Arial,sans-serif!important;font-size:17px!important;font-weight:400!important;-webkit-text-stroke:0!important;transform:none!important;line-height:1!important;display:inline-block;color:var(--soft)!important;margin:0!important}
 .mobile-chevron{font-family:Arial,sans-serif!important;font-size:18px!important;font-weight:400!important;-webkit-text-stroke:0!important;transform:none!important;line-height:1!important;display:inline-block}
 @media(max-width:700px){
   /* Reveal search controls two seconds after the hero copy on mobile only */
@@ -544,7 +545,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
     <a class="logo" href="#" id="logoLink"><img src="/logo.svg" alt="Homeland Property Group"></a>
     <nav class="navlinks" aria-label="Main navigation">
       <div class="nitem">
-        <a href="/marketplace.html?kind=sale" data-nav>Properties for Sale <span class="caret">▾</span></a>
+        <a href="/marketplace.html?kind=sale" data-nav>Properties for Sale <span class="caret" aria-hidden="true">⌄</span></a>
         <div class="dd">
           <a href="/marketplace.html?kind=sale&amp;type=Houses" data-cat="Houses" data-kind="sale">Houses for Sale</a>
           <a href="/marketplace.html?kind=sale&amp;type=Stands%20%26%20Residential%20Land" data-cat="Urban Stands" data-kind="sale">Urban Stands</a>
@@ -556,7 +557,7 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
         </div>
       </div>
       <div class="nitem">
-        <a href="/marketplace.html?kind=rent" data-nav>Properties for Rent <span class="caret">▾</span></a>
+        <a href="/marketplace.html?kind=rent" data-nav>Properties for Rent <span class="caret" aria-hidden="true">⌄</span></a>
         <div class="dd">
           <a href="#rent" data-cat="Houses" data-kind="rent">Houses to Rent</a>
           <a href="#rent" data-cat="Commercial &amp; Other" data-kind="rent">Commercial to Rent</a>
