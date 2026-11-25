@@ -617,12 +617,14 @@ body{text-align:left}
 
 <script>
 (function(){
- const toggle=document.getElementById('menuToggle');
- const panel=document.getElementById('siteMenu');
+ const toggle=document.getElementById('menuToggle'),panel=document.getElementById('siteMenu');
  if(!toggle||!panel)return;
  function close(){panel.classList.remove('open');toggle.setAttribute('aria-expanded','false');document.body.classList.remove('nav-menu-open')}
- toggle.addEventListener('click',function(e){e.stopPropagation();const open=panel.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('nav-menu-open',open)});
- document.addEventListener('click',function(e){if(!panel.contains(e.target)&&!toggle.contains(e.target))close()});
+ document.addEventListener('click',function(e){
+  const trigger=e.target.closest('#menuToggle');
+  if(trigger){e.preventDefault();e.stopImmediatePropagation();const open=panel.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('nav-menu-open',open);return}
+  if(!panel.contains(e.target))close();
+ },true);
  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
  panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
 })();
