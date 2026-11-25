@@ -501,17 +501,17 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
   .s-tabs button{min-height:36px!important;height:36px!important}
   .s-row{gap:12px!important}
 }
-/* Desktop keeps the compact original dropdown indicators */
-.caret{font-size:12px!important;font-weight:400!important;-webkit-text-stroke:0;transform:none;line-height:normal;display:inline-block;color:var(--soft)!important}
-.mobile-chevron{font-size:16px!important;font-weight:400!important;-webkit-text-stroke:0;transform:none;line-height:normal;display:inline-block}
+/* Desktop dropdown arrows: medium-sized, light V chevrons */
+.caret{font-family:Arial,sans-serif!important;font-size:18px!important;font-weight:400!important;-webkit-text-stroke:0!important;transform:none!important;line-height:1!important;display:inline-block;color:var(--soft)!important}
+.mobile-chevron{font-family:Arial,sans-serif!important;font-size:18px!important;font-weight:400!important;-webkit-text-stroke:0!important;transform:none!important;line-height:1!important;display:inline-block}
 @media(max-width:700px){
   /* Reveal search controls two seconds after the hero copy on mobile only */
   .hero .search-wrap{opacity:0;transform:translateY(22px);animation:mobileSearchReveal .55s cubic-bezier(.2,.75,.25,1) 2s forwards}
   @keyframes mobileSearchReveal{to{opacity:1;transform:translateY(0)}}
   .hero .search-wrap .caret,.mobile-chevron{
-    font-family:Arial Black,Arial,sans-serif!important;
+    font-family:Arial,sans-serif!important;
     font-size:25px!important;
-    font-weight:900!important;
+    font-weight:800!important;
     -webkit-text-stroke:.8px currentColor;
     transform:scaleX(1.28);
     transform-origin:center;
@@ -519,10 +519,11 @@ h1,h2,h3,h4,.serif,.card h3,.step4 h4,.insc h4,.num b,.svc-price,.d-price{font-f
     display:inline-block;
     align-self:center;
   }
-  .td-btn{align-items:center!important}
-  .td-btn .caret{margin-top:0!important;margin-bottom:0!important;vertical-align:middle}
-  .mobile-submenu>summary{align-items:center!important}
-  .mobile-submenu>summary .mobile-chevron{margin-top:0;align-self:center}
+  /* Keep mobile chevrons vertically centred with a little inset from the right edge */
+  .td-btn{align-items:center!important;padding-right:18px!important}
+  .td-btn .caret{margin:0 5px 0 8px!important;vertical-align:middle}
+  .mobile-submenu>summary{align-items:center!important;padding-right:16px!important}
+  .mobile-submenu>summary .mobile-chevron{margin:0 5px 0 10px!important;align-self:center}
 }
 @media(prefers-reduced-motion:reduce){
   .hero .search-wrap{animation:none!important;opacity:1!important;transform:none!important}
