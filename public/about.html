@@ -585,35 +585,7 @@ body{text-align:left}
   </div>
 </footer>
 
-<script>
-(function () {
-  var toggle = document.getElementById('menuToggle');
-  var panel = document.getElementById('siteMenu');
-  if (toggle && panel) {
-    toggle.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var open = panel.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    document.addEventListener('click', function (e) {
-      if (panel.classList.contains('open') && !panel.contains(e.target) && !toggle.contains(e.target)) {
-        panel.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-  // closing the menu after tapping a link
-  document.querySelectorAll('#siteMenu a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      if (panel) panel.classList.remove('open');
-      if (toggle) toggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-  // logo -> home
-  var logo = document.getElementById('logoLink');
-  if (logo) logo.addEventListener('click', function (e) { e.preventDefault(); location.href = '/'; });
-})();
-</script>
+
 
 <script>
 (function(){
